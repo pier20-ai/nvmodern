@@ -48,7 +48,10 @@ updates generate their own key and change `SUFeedURL`.
 
 ## Cutting a release
 
-1. Make sure `main` is clean and tests pass: `make test` and `make test-web`.
+1. Move the entries under **Unreleased** in `CHANGELOG.md` into a new section
+   for the version, dated today, update the compare links at the bottom, and
+   commit. Make sure `main` is clean and tests pass: `make test` and
+   `make test-web`.
 2. Build, sign, notarize and generate the appcast:
 
    ```sh

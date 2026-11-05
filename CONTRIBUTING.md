@@ -75,7 +75,9 @@ to everyone). The ones that trip people up:
 
 Commit messages follow [Conventional Commits](https://www.conventionalcommits.org)
 (`feat:`, `fix:`, `docs:`, `refactor:`, `test:`, `chore:`). In the PR
-description say what changed and why, and how you tested it.
+description say what changed and why, and how you tested it. For a change
+people will notice, add a line under **Unreleased** in
+[CHANGELOG.md](CHANGELOG.md).
 
 ## Architecture orientation
 
