@@ -45,7 +45,7 @@ updates generate their own key and change `SUFeedURL`.
 
 ## Cutting a release
 
-1. Make sure `master` is clean and tests pass: `make test` and `make test-web`.
+1. Make sure `main` is clean and tests pass: `make test` and `make test-web`.
 2. Build, sign, notarize and generate the appcast:
 
    ```sh

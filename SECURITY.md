@@ -11,7 +11,7 @@ a report within a few days and will keep you informed while we work on a fix.
 
 ## Supported versions
 
-nvModern is under active development. Security fixes land on `master` and in
+nvModern is under active development. Security fixes land on `main` and in
 the latest release only.
 
 ## Trust model
