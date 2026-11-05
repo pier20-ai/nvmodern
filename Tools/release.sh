@@ -110,11 +110,16 @@ fi
 "$GEN" --download-url-prefix "https://github.com/$GITHUB_REPO/releases/download/v$VERSION/" \
   -o "$OUT_DIR/upload/appcast.xml" "$OUT_DIR/upload"
 
+# A stable-named copy gives README and website a permanent download link:
+# https://github.com/$GITHUB_REPO/releases/latest/download/nvModern.dmg
+# Made after generate_appcast so the feed lists only the versioned DMG.
+cp "$DMG" "$OUT_DIR/upload/$APP_NAME.dmg"
+
 rm -rf "$STAGE"
 echo
 echo "✅ Release artifacts are in $OUT_DIR/upload:"
 ls -1 "$OUT_DIR/upload"
 echo
 echo "Review them, then publish (drafts first is safest):"
-echo "  gh release create v$VERSION $OUT_DIR/upload/$APP_NAME-$VERSION.dmg $OUT_DIR/upload/appcast.xml \\"
+echo "  gh release create v$VERSION $OUT_DIR/upload/$APP_NAME-$VERSION.dmg $OUT_DIR/upload/$APP_NAME.dmg $OUT_DIR/upload/appcast.xml \\"
 echo "    --repo $GITHUB_REPO --title \"$APP_NAME $VERSION\" --generate-notes --draft"

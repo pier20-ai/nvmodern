@@ -55,14 +55,17 @@ updates generate their own key and change `SUFeedURL`.
      SPARKLE_PUBLIC_KEY=<public key from generate_keys>
    ```
 
-   Artifacts land in `dist/release/upload/`: `nvModern-2.1.0.dmg` and
-   `appcast.xml`. The script does not publish.
+   Artifacts land in `dist/release/upload/`: `nvModern-2.1.0.dmg`, a
+   stable-named copy `nvModern.dmg` (so README and website links like
+   `releases/latest/download/nvModern.dmg` never change), and `appcast.xml`.
+   The script does not publish.
 3. Smoke-test the notarized DMG: mount it, drag the app out, launch, and check
    **nvModern > Check for Updates…** is present.
 4. Publish as a draft first, then promote it once happy:
 
    ```sh
-   gh release create v2.1.0 dist/release/nvModern-2.1.0.dmg dist/release/appcast.xml \
+   gh release create v2.1.0 dist/release/upload/nvModern-2.1.0.dmg \
+     dist/release/upload/nvModern.dmg dist/release/upload/appcast.xml \
      --title "nvModern 2.1.0" --generate-notes --draft
    ```
 
