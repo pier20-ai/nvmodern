@@ -26,8 +26,10 @@
 </p>
 
 <p align="center">
-  <img src="docs/assets/screenshot-launch-plan.png" alt="A Markdown note in nvModern with frontmatter properties, a callout, a table, tasks and wikilinks" width="820">
+  <img src="docs/assets/hero.png" alt="The same nvModern note shown twice: once as a single clean page, and once with the sidebar, tabs, side stack and document inspector open" width="860">
 </p>
+
+<p align="center"><i>Use nvModern as a single quiet page, or open the sidebar, tabs, side stack and inspector when you need them.</i></p>
 
 One app covers Markdown and Org notes, live maths, CSV spreadsheets, PDFs, EPUBs and Excalidraw canvases. Everything is driven from the keyboard and stored as ordinary files in a folder you choose.
 
