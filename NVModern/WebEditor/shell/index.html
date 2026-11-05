@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nv3 editor</title>
+    <link rel="stylesheet" href="../src/styles/editor.lib.css" />
+    <link rel="stylesheet" href="./styles/document-themes.css" />
+    <link rel="stylesheet" href="./styles/editor.shell.css" />
+    <link rel="stylesheet" href="../src/styles/arbor.css" />
+    <link rel="stylesheet" href="./styles/arbor.dev.css" />
+  </head>
+  <body>
+    <script>
+      document.documentElement.setAttribute("data-theme", localStorage.getItem("nv3-theme") || "system");
+      document.documentElement.setAttribute(
+        "data-doc-theme",
+        localStorage.getItem("nv3-shell-document-theme") || "system",
+      );
+      document.documentElement.setAttribute(
+        "data-doc-width",
+        localStorage.getItem("nv3-shell-document-width") || "comfortable",
+      );
+      document.documentElement.setAttribute(
+        "data-doc-scale",
+        localStorage.getItem("nv3-shell-document-scale") || "normal",
+      );
+    </script>
+    <div id="root"></div>
+    <script type="module" src="./main.tsx"></script>
+  </body>
+</html>

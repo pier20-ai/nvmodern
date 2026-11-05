@@ -1,0 +1,90 @@
+#+TITLE: Comprehensive Org-Mode Test
+#+AUTHOR: nv3 Editor
+#+DATE: 2024-01-15
+
+* TODO First heading :project:urgent:
+
+Some paragraph text with *bold*, /italic/, _underline_, =verbatim=, ~code~, and +strikethrough+ markup.
+
+$E=mc^2$
+
+** DONE Sub-heading with done state
+DEADLINE: <2024-02-01 Thu>
+SCHEDULED: <2024-01-15 Mon>
+
+:PROPERTIES:
+:ID: unique-id-123
+:CREATED: 2024-01-15
+:END:
+
+This paragraph has a [[https://example.com][link with description]] and a [[my-file]] wikilink.
+
+** Regular sub-heading
+
+*** Deep nesting level 3
+
+**** Level 4
+
+* Lists
+
+- bullet item 1
+- bullet item 2
+- bullet item 3
+
++ another style bullet 1
++ another style bullet 2
+
+- asdsd :: asdasd
+- asd :: asdad
+
+1. ordered first
+2. sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas 
+2. ordered second
+3. ordered third
+
+- [ ] unchecked task
+- [X] completed task
+- [ ] another task
+- [ ] sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas sadsadasdas
+
+* Code and Blocks
+
+#+BEGIN_SRC python
+def hello():
+    print("Hello, world!")
+    return 42
+#+END_SRC
+
+#+BEGIN_SRC javascript
+console.log("hello");
+#+END_SRC
+
+#+BEGIN_QUOTE
+This is a quoted block.
+It can have multiple lines.
+#+END_QUOTE
+
+#+BEGIN_EXAMPLE
+This is example text.
+It preserves formatting.
+#+END_EXAMPLE
+
+* Tables
+
+| Name    | Age | City     |
+|---------+-----+----------|
+| Alice   | 30  | New York |
+| Bob     | 25  | London   |
+| Charlie | 35  | Tokyo    |
+
+* Math
+
+Inline math: $E = mc^2$ and \(a^2 + b^2 = c^2\).
+
+* Timestamps
+
+Meeting at <2024-01-15 Mon> and created [2024-01-15 Mon].
+
+-----
+
+Final paragraph after horizontal rule.

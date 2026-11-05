@@ -1,0 +1,3044 @@
+@import "katex/dist/katex.min.css";
+
+@layer nvmodern.tokens, nvmodern.user;
+
+/*
+ * NV3 editor library styles (opinionated Notion-like defaults).
+ *
+ * User theme CSS may be injected after this stylesheet to override these
+ * defaults. Prefer overriding the public --nv3-* tokens below; legacy token
+ * names are kept as compatibility aliases for existing app/plugin styles.
+ */
+
+/* ── Tokens ───────────────────────────────────────────────────────── */
+@layer nvmodern.tokens {
+
+  :root,
+  [data-theme="light"] {
+    --nv3-color-bg: #ffffff;
+    --nv3-color-surface: #f7f6f3;
+    --nv3-color-surface-hover: #efefec;
+    --nv3-color-surface-active: #e8e8e5;
+
+    --nv3-color-code-inline-bg: rgba(120, 119, 116, 0.11);
+    --nv3-color-code-block-bg: #f7f6f3;
+
+    --nv3-color-text: #2c2c2b;
+    --nv3-color-text-muted: #787774;
+    --nv3-color-text-subtle: #a19e99;
+
+    --nv3-color-border: #e9e9e7;
+    --nv3-color-border-strong: #d9d8d3;
+
+    --nv3-color-accent: #2383e2;
+    --nv3-selection-bg: rgba(35, 131, 226, 0.16);
+    --nv3-caret-color: var(--nv3-color-accent);
+    --nv3-color-red: #eb5757;
+    --nv3-color-orange: #d9730d;
+    --nv3-color-yellow: #cb912f;
+    --nv3-color-highlight-yellow: #fff59d;
+    --nv3-color-green: #448361;
+    --nv3-color-teal: #0f7b6c;
+    --nv3-color-blue: #2383e2;
+    --nv3-color-purple: #6940a5;
+    --nv3-color-pink: #ad1a72;
+
+    --nv3-tag-heading-s: 84%;
+    --nv3-tag-heading-l: 47%;
+    --nv3-tag-heading-border-s: 90%;
+    --nv3-tag-heading-border-l: 43%;
+    --nv3-tag-heading-border-a: 0.95;
+
+    --nv3-syntax-keyword: #8250df;
+    --nv3-syntax-string: #0a7d35;
+    --nv3-syntax-number: #0a63c9;
+    --nv3-syntax-atom: #b54708;
+    --nv3-syntax-function: #005cc5;
+    --nv3-syntax-type: #953800;
+    --nv3-syntax-variable: #24292f;
+    --nv3-syntax-property: #0550ae;
+    --nv3-syntax-namespace: #953800;
+    --nv3-syntax-definition: #0550ae;
+    --nv3-syntax-operator: #953800;
+    --nv3-syntax-punctuation: #656d76;
+    --nv3-syntax-regexp: #116329;
+    --nv3-syntax-escape: #116329;
+    --nv3-syntax-doc-comment: #6e7781;
+    --nv3-syntax-invalid: #cf222e;
+    --nv3-syntax-inserted: #1a7f37;
+    --nv3-syntax-deleted: #cf222e;
+
+    --nv3-wikilink-underline: #37352f40;
+    --nv3-link-color: var(--nv3-color-text);
+    --nv3-link-hover-color: var(--nv3-color-blue);
+
+    --nv3-font-sans: ui-sans-serif, -apple-system, "SF Pro Text", "SF Pro Display",
+      BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji";
+    --nv3-font-display: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Helvetica, Arial, sans-serif;
+    --nv3-font-mono: "SF Mono", "SFMono-Regular", ui-monospace, Menlo, Monaco, Consolas,
+      "Liberation Mono", monospace;
+
+    --nv3-radius: 6px;
+    --nv3-editor-max-width: 740px;
+    --nv3-editor-content-width: var(--nv3-editor-max-width);
+
+    --nv3-md-h1-font-family: var(--nv3-font-display);
+    --nv3-md-h1-color: var(--nv3-color-text);
+    --nv3-md-h1-font-size: 1.875em;
+    --nv3-md-h1-line-height: 1.3;
+    --nv3-md-h1-font-weight: 700;
+    --nv3-md-h1-letter-spacing: -0.01em;
+    --nv3-md-h1-font-style: normal;
+    --nv3-md-h1-font-feature-settings: normal;
+    --nv3-md-h1-text-transform: none;
+    --nv3-md-h2-font-family: var(--nv3-font-display);
+    --nv3-md-h2-color: var(--nv3-color-text);
+    --nv3-md-h2-font-size: 1.5em;
+    --nv3-md-h2-line-height: 1.3;
+    --nv3-md-h2-font-weight: 600;
+    --nv3-md-h2-letter-spacing: inherit;
+    --nv3-md-h2-font-style: normal;
+    --nv3-md-h2-font-feature-settings: normal;
+    --nv3-md-h2-text-transform: none;
+    --nv3-md-h3-font-family: var(--nv3-font-display);
+    --nv3-md-h3-color: var(--nv3-color-text);
+    --nv3-md-h3-font-size: 1.25em;
+    --nv3-md-h3-line-height: 1.3;
+    --nv3-md-h3-font-weight: 600;
+    --nv3-md-h3-letter-spacing: inherit;
+    --nv3-md-h3-font-style: normal;
+    --nv3-md-h3-font-feature-settings: normal;
+    --nv3-md-h3-text-transform: none;
+    --nv3-md-h4-font-family: var(--nv3-font-display);
+    --nv3-md-h4-color: var(--nv3-color-text);
+    --nv3-md-h4-font-size: 1em;
+    --nv3-md-h4-line-height: 1.3;
+    --nv3-md-h4-font-weight: 600;
+    --nv3-md-h4-letter-spacing: inherit;
+    --nv3-md-h4-font-style: normal;
+    --nv3-md-h4-font-feature-settings: normal;
+    --nv3-md-h4-text-transform: none;
+    --nv3-md-h5-font-family: var(--nv3-font-display);
+    --nv3-md-h5-color: var(--nv3-color-text);
+    --nv3-md-h5-font-size: 1em;
+    --nv3-md-h5-line-height: 1.3;
+    --nv3-md-h5-font-weight: 600;
+    --nv3-md-h5-letter-spacing: inherit;
+    --nv3-md-h5-font-style: normal;
+    --nv3-md-h5-font-feature-settings: normal;
+    --nv3-md-h5-text-transform: none;
+    --nv3-md-h6-font-family: var(--nv3-font-display);
+    --nv3-md-h6-color: var(--nv3-color-text);
+    --nv3-md-h6-font-size: 1em;
+    --nv3-md-h6-line-height: 1.3;
+    --nv3-md-h6-font-weight: 600;
+    --nv3-md-h6-letter-spacing: inherit;
+    --nv3-md-h6-font-style: normal;
+    --nv3-md-h6-font-feature-settings: normal;
+    --nv3-md-h6-text-transform: none;
+
+    --nv3-md-inline-code-font-family: var(--nv3-font-mono);
+    /* Graphite ink on a quiet chip: code reads as code by its face, not by
+       colour, so a code-heavy page doesn't turn into a field of red. */
+    --nv3-md-inline-code-color: color-mix(in srgb, var(--nv3-color-text) 84%, var(--nv3-color-accent));
+    --nv3-md-inline-code-bg: var(--nv3-color-code-inline-bg);
+    --nv3-md-inline-code-font-size: 0.9em;
+    --nv3-md-inline-code-heading-font-size: 1em;
+    --nv3-md-inline-code-padding: 0.1em 0.3em;
+    --nv3-md-inline-code-radius: 3px;
+
+    --nv3-md-code-block-font-family: var(--nv3-font-mono);
+    --nv3-md-code-block-color: inherit;
+    --nv3-md-code-block-bg: transparent;
+    --nv3-md-code-block-font-size: 0.875em;
+    --nv3-md-code-block-line-height: 1.6;
+    --nv3-md-code-block-border-color: transparent;
+    --nv3-md-code-block-border-width: 0;
+    --nv3-md-code-block-radius: 0;
+    --nv3-md-code-block-delimiter-font-size: 0.8rem;
+    --nv3-md-code-block-language-letter-spacing: 0.01em;
+    --nv3-md-horizontal-rule-width: clamp(5rem, 22%, 11rem);
+    --nv3-md-horizontal-rule-padding-block: 0.45em;
+    --nv3-md-horizontal-rule-border: 1px solid color-mix(in srgb, var(--nv3-color-text-subtle) 38%, transparent);
+    --nv3-md-horizontal-rule-active-border: 1px solid color-mix(in srgb, var(--nv3-color-text-subtle) 58%, transparent);
+    --nv3-md-horizontal-rule-source-color: var(--nv3-color-text-subtle);
+
+    --nv3-md-callout-color-note: var(--nv3-color-blue);
+    --nv3-md-callout-color-tip: var(--nv3-color-green);
+    --nv3-md-callout-color-warning: var(--nv3-color-orange);
+    --nv3-md-callout-color-danger: var(--nv3-color-red);
+    --nv3-md-callout-color-example: var(--nv3-color-pink);
+    --nv3-md-callout-color-quote: var(--nv3-color-text-muted);
+    --nv3-md-callout-color-question: var(--nv3-color-purple);
+    --nv3-md-callout-font-family: inherit;
+    --nv3-md-callout-color: inherit;
+    --nv3-md-callout-font-size: inherit;
+    --nv3-md-callout-line-height: inherit;
+    --nv3-md-callout-border-width: 2px;
+    --nv3-md-callout-marker-font-weight: 600;
+    --nv3-md-callout-title-font-weight: 600;
+    --nv3-md-callout-title-color: var(--nv3-color-text);
+    --nv3-md-callout-title-font-family: inherit;
+    --nv3-md-callout-title-font-size: inherit;
+    --nv3-md-callout-title-letter-spacing: inherit;
+    --nv3-md-callout-title-text-transform: none;
+    --nv3-md-blockquote-font-family: inherit;
+    --nv3-md-blockquote-color: inherit;
+    --nv3-md-blockquote-font-size: inherit;
+    --nv3-md-blockquote-line-height: inherit;
+    --nv3-md-blockquote-font-style: normal;
+    --nv3-md-blockquote-bg: transparent;
+    --nv3-md-blockquote-border-color: color-mix(in srgb, var(--nv3-color-text) 78%, transparent);
+    --nv3-md-blockquote-border-width: 3px;
+    --nv3-md-blockquote-prefix-active-color: var(--nv3-color-text-subtle);
+    --nv3-md-highlight-bg: color-mix(in srgb, var(--nv3-color-highlight-yellow) 72%, transparent);
+    --nv3-md-highlight-color: inherit;
+
+    /* Tables, task checkboxes and links. */
+    --nv3-table-frame: none;
+    --nv3-table-header-bg: transparent;
+    --nv3-table-header-color: var(--nv3-color-text-muted);
+    --nv3-table-header-font-family: var(--nv3-font-label);
+    --nv3-table-header-font-scale: 1;
+    --nv3-table-header-font-style: normal;
+    --nv3-table-header-font-weight: 600;
+    --nv3-table-header-letter-spacing: 0.01em;
+    --nv3-table-header-text-transform: none;
+    --nv3-table-header-border: 1px solid var(--nv3-color-border-strong);
+    --nv3-table-row-border: 1px solid var(--nv3-color-border);
+    --nv3-table-column-border: none;
+    --nv3-task-checkbox-border: color-mix(in srgb, var(--nv3-color-text-subtle) 70%, var(--nv3-color-text));
+    --nv3-task-checkbox-checked: var(--nv3-color-accent);
+    --nv3-task-checkbox-tick: var(--nv3-color-bg);
+    --nv3-task-checkbox-radius: 3px;
+    --nv3-link-underline-style: solid;
+    --nv3-link-underline-thickness: 0.06em;
+
+    /* Document typography, shared by Markdown, Org and outlines.
+       --nv3-font-size-adjust is the theme's x-height as a fraction of the font
+       size, normally its body face's own ratio. Code faces are always scaled to
+       it. Body text is scaled to it only when a filetype default or frontmatter
+       swaps the body font (the override sets --nv3-content-font-size-adjust),
+       so a substitute face lands at the theme's optical size while emoji and
+       CJK fallbacks in ordinary text keep their natural size. */
+    --nv3-font-label: var(--nv3-font-sans);
+    --nv3-font-size-adjust: none;
+    --nv3-content-font-size: 1em;
+    --nv3-content-line-height: 1.625;
+    --nv3-content-font-size-adjust: none;
+
+    /* Org-mode tokens. Org shares the document typography above, so these
+       cover only org's own syntax. Headline level N takes Markdown heading
+       N+1, which leaves H1 for the `#+title:` line. Everything derives from
+       the palette, so a theme that sets only --nv3-color-* still gets a
+       coherent org surface. */
+    --nv3-org-h1-color: var(--nv3-md-h2-color);
+    --nv3-org-h2-color: var(--nv3-md-h3-color);
+    --nv3-org-h3-color: var(--nv3-md-h4-color);
+    --nv3-org-h4-color: var(--nv3-md-h5-color);
+    --nv3-org-h5-color: var(--nv3-md-h6-color);
+    --nv3-org-h6-color: var(--nv3-md-h6-color);
+    --nv3-org-h1-spacing: 0.9em;
+    --nv3-org-h2-spacing: 0.45em;
+    --nv3-org-h3-spacing: 0.25em;
+    --nv3-org-h1-rule: none;
+    --nv3-org-keyword-font-family: var(--nv3-font-label);
+    --nv3-org-todo-color: var(--nv3-color-red);
+    /* TODO labels keep the body size across all headline levels. */
+    --nv3-org-todo-scale: 1;
+    --nv3-org-todo-font-weight: 300;
+    --nv3-org-todo-letter-spacing: 0.04em;
+    --nv3-org-doing-color: var(--nv3-color-orange);
+    --nv3-org-done-color: var(--nv3-color-text-subtle);
+    --nv3-org-done-keyword-color: var(--nv3-color-green);
+    --nv3-org-planning-color: var(--nv3-color-text-muted);
+    --nv3-org-planning-keyword-color: var(--nv3-color-text-subtle);
+    --nv3-org-deadline-color: var(--nv3-color-red);
+    --nv3-org-timestamp-color: var(--nv3-color-text-muted);
+    --nv3-org-keyword-color: var(--nv3-color-text-subtle);
+    --nv3-org-checkbox-color: var(--nv3-color-accent);
+    --nv3-org-checkbox-checked-color: var(--nv3-color-text-subtle);
+    --nv3-org-list-marker-color: var(--nv3-color-text-subtle);
+    --nv3-org-link-color: var(--nv3-link-color);
+    --nv3-org-tag-color: var(--nv3-color-text-muted);
+    --nv3-org-tag-scale: 0.72;
+    --nv3-org-property-key-color: var(--nv3-color-text-muted);
+
+    --bg: var(--nv3-color-bg);
+    --bg-secondary: var(--nv3-color-surface);
+    --bg-hover: var(--nv3-color-surface-hover);
+    --bg-active: var(--nv3-color-surface-active);
+    --bg-code-inline: var(--nv3-color-code-inline-bg);
+    --bg-code-block: var(--nv3-color-code-block-bg);
+    --text: var(--nv3-color-text);
+    --text-secondary: var(--nv3-color-text-muted);
+    --text-tertiary: var(--nv3-color-text-subtle);
+    --border: var(--nv3-color-border);
+    --border-heavy: var(--nv3-color-border-strong);
+    --accent: var(--nv3-color-accent);
+    --selection: var(--nv3-selection-bg);
+    --red: var(--nv3-color-red);
+    --orange: var(--nv3-color-orange);
+    --yellow: var(--nv3-color-yellow);
+    --highlight-yellow: var(--nv3-color-highlight-yellow);
+    --green: var(--nv3-color-green);
+    --teal: var(--nv3-color-teal);
+    --blue: var(--nv3-color-blue);
+    --purple: var(--nv3-color-purple);
+    --pink: var(--nv3-color-pink);
+    --tag-heading-s: var(--nv3-tag-heading-s);
+    --tag-heading-l: var(--nv3-tag-heading-l);
+    --tag-heading-border-s: var(--nv3-tag-heading-border-s);
+    --tag-heading-border-l: var(--nv3-tag-heading-border-l);
+    --tag-heading-border-a: var(--nv3-tag-heading-border-a);
+    --cm-keyword: var(--nv3-syntax-keyword);
+    --cm-string: var(--nv3-syntax-string);
+    --cm-number: var(--nv3-syntax-number);
+    --cm-atom: var(--nv3-syntax-atom);
+    --cm-function: var(--nv3-syntax-function);
+    --cm-type: var(--nv3-syntax-type);
+    --cm-variable: var(--nv3-syntax-variable);
+    --cm-property: var(--nv3-syntax-property);
+    --cm-namespace: var(--nv3-syntax-namespace);
+    --cm-definition: var(--nv3-syntax-definition);
+    --cm-operator: var(--nv3-syntax-operator);
+    --cm-punctuation: var(--nv3-syntax-punctuation);
+    --cm-regexp: var(--nv3-syntax-regexp);
+    --cm-escape: var(--nv3-syntax-escape);
+    --cm-doc-comment: var(--nv3-syntax-doc-comment);
+    --cm-invalid: var(--nv3-syntax-invalid);
+    --cm-inserted: var(--nv3-syntax-inserted);
+    --cm-deleted: var(--nv3-syntax-deleted);
+    --wikilink-underline: var(--nv3-wikilink-underline);
+    --font-sans: var(--nv3-font-sans);
+    --font-display: var(--nv3-font-display);
+    --font-mono: var(--nv3-font-mono);
+    --radius: var(--nv3-radius);
+    --editor-max-w: var(--nv3-editor-max-width);
+    --editor-content-w: var(--nv3-editor-content-width);
+
+    --nv3-table-cell-font-size: 0.875em;
+
+    color-scheme: light;
+  }
+
+  [data-theme="dark"] {
+    --nv3-color-bg: #191919;
+    --nv3-color-surface: #232323;
+    --nv3-color-surface-hover: #2c2c2c;
+    --nv3-color-surface-active: #363636;
+
+    --nv3-color-code-inline-bg: rgba(210, 210, 205, 0.1);
+    --nv3-color-code-block-bg: #202020;
+
+    --nv3-color-text: #f0efed;
+    --nv3-color-text-muted: #9b9a97;
+    --nv3-color-text-subtle: #7d7a75;
+
+    --nv3-color-border: #2f2f2f;
+    --nv3-color-border-strong: #3a3a3a;
+
+    --nv3-color-accent: #4e9de2;
+    --nv3-selection-bg: rgba(78, 157, 226, 0.22);
+    --nv3-color-red: #eb5758;
+    --nv3-color-orange: #e08a3c;
+    --nv3-color-yellow: #d4a72c;
+    --nv3-color-highlight-yellow: #b59b2f;
+    --nv3-color-green: #4daa6f;
+    --nv3-color-teal: #2bc5b4;
+    --nv3-color-blue: #4e9de2;
+    --nv3-color-purple: #9a6dd7;
+    --nv3-color-pink: #d94d9a;
+
+    --nv3-tag-heading-s: 94%;
+    --nv3-tag-heading-l: 71%;
+    --nv3-tag-heading-border-s: 98%;
+    --nv3-tag-heading-border-l: 77%;
+    --nv3-tag-heading-border-a: 0.98;
+
+    --nv3-syntax-keyword: #c792ea;
+    --nv3-syntax-string: #9ccc65;
+    --nv3-syntax-number: #82aaff;
+    --nv3-syntax-atom: #f78c6c;
+    --nv3-syntax-function: #82aaff;
+    --nv3-syntax-type: #ffcb6b;
+    --nv3-syntax-variable: #bfc7d5;
+    --nv3-syntax-property: #f78c6c;
+    --nv3-syntax-namespace: #ffcb6b;
+    --nv3-syntax-definition: #82aaff;
+    --nv3-syntax-operator: #89ddff;
+    --nv3-syntax-punctuation: #676e95;
+    --nv3-syntax-regexp: #c3e88d;
+    --nv3-syntax-escape: #9ccc65;
+    --nv3-syntax-doc-comment: #546e7a;
+    --nv3-syntax-invalid: #ff5370;
+    --nv3-syntax-inserted: #80cbc4;
+    --nv3-syntax-deleted: #f07178;
+
+    --nv3-wikilink-underline: #373737;
+
+    --nv3-table-cell-font-size: 0.875em;
+
+    color-scheme: dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    [data-theme="system"] {
+      --nv3-color-bg: #191919;
+      --nv3-color-surface: #232323;
+      --nv3-color-surface-hover: #2c2c2c;
+      --nv3-color-surface-active: #363636;
+
+      --nv3-color-code-inline-bg: rgba(210, 210, 205, 0.1);
+      --nv3-color-code-block-bg: #202020;
+
+      --nv3-color-text: #f0efed;
+      --nv3-color-text-muted: #9b9a97;
+      --nv3-color-text-subtle: #7d7a75;
+
+      --nv3-color-border: #2f2f2f;
+      --nv3-color-border-strong: #3a3a3a;
+
+      --nv3-color-accent: #4e9de2;
+      --nv3-selection-bg: rgba(78, 157, 226, 0.22);
+      --nv3-color-red: #eb5758;
+      --nv3-color-orange: #e08a3c;
+      --nv3-color-yellow: #d4a72c;
+      --nv3-color-highlight-yellow: #b59b2f;
+      --nv3-color-green: #4daa6f;
+      --nv3-color-teal: #2bc5b4;
+      --nv3-color-blue: #4e9de2;
+      --nv3-color-purple: #9a6dd7;
+      --nv3-color-pink: #d94d9a;
+
+      --nv3-tag-heading-s: 94%;
+      --nv3-tag-heading-l: 71%;
+      --nv3-tag-heading-border-s: 98%;
+      --nv3-tag-heading-border-l: 77%;
+      --nv3-tag-heading-border-a: 0.98;
+
+      --nv3-syntax-keyword: #c792ea;
+      --nv3-syntax-string: #9ccc65;
+      --nv3-syntax-number: #82aaff;
+      --nv3-syntax-atom: #f78c6c;
+      --nv3-syntax-function: #82aaff;
+      --nv3-syntax-type: #ffcb6b;
+      --nv3-syntax-variable: #bfc7d5;
+      --nv3-syntax-property: #f78c6c;
+      --nv3-syntax-namespace: #ffcb6b;
+      --nv3-syntax-definition: #82aaff;
+      --nv3-syntax-operator: #89ddff;
+      --nv3-syntax-punctuation: #676e95;
+      --nv3-syntax-regexp: #c3e88d;
+      --nv3-syntax-escape: #9ccc65;
+      --nv3-syntax-doc-comment: #546e7a;
+      --nv3-syntax-invalid: #ff5370;
+      --nv3-syntax-inserted: #80cbc4;
+      --nv3-syntax-deleted: #f07178;
+
+      --nv3-wikilink-underline: #373737;
+
+      color-scheme: dark;
+    }
+  }
+}
+
+html {
+  --nv3-document-scale: 100%;
+}
+
+/* The body text size as an absolute length. Registered so `1em` computes on
+   .cm-content and inherits as pixels: labels inside headings can then size
+   against the body instead of the heading they sit in. */
+@property --nv3-body-font-size {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 16px;
+}
+
+/* ── CodeMirror 6 (Notion-like typography) ───────────────────────── */
+.cm-editor {
+  position: relative;
+  outline: none;
+  background: transparent;
+}
+
+.cm-editor.cm-focused {
+  outline: none;
+}
+
+.cm-editor .cm-scroller {
+  font-family: var(--font-sans);
+  font-size: var(--nv3-document-scale);
+  line-height: var(--nv3-content-line-height);
+}
+
+.cm-editor .cm-content {
+  min-height: calc(100vh - 230px);
+  padding: 8px 0 0;
+  padding-bottom: max(140px, 50vh);
+  color: var(--text);
+  font-size: var(--nv3-content-font-size);
+  font-size-adjust: var(--nv3-content-font-size-adjust);
+  line-height: var(--nv3-content-line-height);
+  --nv3-body-font-size: 1em;
+  font-weight: 400;
+  letter-spacing: -0.002em;
+  caret-color: var(--nv3-caret-color);
+  tab-size: 2;
+  font-variant-numeric: proportional-nums;
+  max-width: var(--editor-content-w);
+}
+
+.cm-editor .cm-line {
+  padding: 0 2px;
+}
+
+.cm-editor .cm-selectionBackground {
+  background: var(--selection) !important;
+}
+
+/* CodeMirror injects its search base theme after this stylesheet. These
+ * dependency overrides keep browser-style search colors stable in both
+ * light and dark appearances. */
+.cm-editor .cm-searchMatch {
+  background-color: #ffeb3b !important;
+  color: #151515 !important;
+}
+
+.cm-editor .cm-searchMatch.cm-searchMatch-selected {
+  background-color: #ffd400 !important;
+  color: #151515 !important;
+}
+
+.cm-editor .cm-selectionLayer.nv3-selection-layer-repaint {
+  display: none !important;
+}
+
+.cm-editor .cm-cursor,
+.cm-editor .cm-dropCursor {
+  border-left-color: var(--nv3-caret-color) !important;
+  border-left-width: 2px !important;
+}
+
+.cm-editor .cm-activeLine,
+.cm-editor .cm-activeLineGutter {
+  background: transparent !important;
+}
+
+.cm-editor .cm-gutters {
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+}
+
+.cm-editor .cm-foldPlaceholder {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-secondary);
+  color: var(--text-tertiary);
+}
+
+.cm-editor .cm-placeholder {
+  color: var(--text-tertiary);
+}
+
+.cm-editor .cm-tooltip {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.cm-editor img.cm-widgetBuffer[aria-hidden="true"]+.nv3-latex-preview-block,
+.cm-editor .nv3-latex-preview-block+img.cm-widgetBuffer[aria-hidden="true"] {
+  display: none !important;
+}
+
+/* ── Markdown plugin visuals ──────────────────────────────────────── */
+.nv3-tag {
+  display: inline;
+}
+
+.nv3-tag-hash {
+  background: color-mix(in srgb, var(--bg-secondary) 84%, var(--bg));
+  color: var(--text-secondary);
+  border-radius: 3px;
+  padding: 1px 6px;
+}
+
+.nv3-list-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  /*min-width: 24px;*/
+  /*margin-right: var(--nv3-list-gap, 0px);*/
+  /*text-align: center;*/
+  text-align: right;
+  color: var(--text) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+
+.nv3-list-prefix-hidden {
+  display: none;
+}
+
+.cm-editor .cm-line.nv3-list-item-line {
+  --nv3-list-base-inset: 8px;
+  --nv3-list-indent-step: 24px;
+  --nv3-list-marker-box: 24px;
+  --nv3-list-gap: 6px;
+  --nv3-list-marker-offset: calc(var(--nv3-list-base-inset) + var(--nv3-list-depth, 0) * var(--nv3-list-indent-step));
+  --nv3-list-text-offset: calc(var(--nv3-list-marker-offset) + var(--nv3-list-marker-box) + var(--nv3-list-gap));
+}
+
+.cm-editor .cm-line.nv3-list-item-bullet {
+  --nv3-list-base-inset: 10px;
+}
+
+.cm-editor .cm-line.nv3-list-item-start {
+  padding-left: var(--nv3-list-text-offset);
+  /*text-indent: calc(-1 * (var(--nv3-list-marker-box) + var(--nv3-list-gap)));*/
+  text-indent: calc(-1 * (var(--nv3-list-marker-box)));
+}
+
+.cm-editor .cm-line.nv3-list-item-continuation {
+  padding-left: var(--nv3-list-text-offset);
+}
+
+.nv3-task-checkbox-widget {
+  width: 14px;
+  height: 14px;
+  margin: 0 0.24em 0 -12px;
+  vertical-align: -0.1em;
+  accent-color: var(--accent);
+  cursor: pointer;
+  display: inline-flex;
+}
+
+.cm-line.nv3-list-item-task .nv3-list-mark {
+  display: none;
+}
+
+.cm-editor .cm-line.nv3-list-prefix-line {
+  padding-left: 0;
+}
+
+.cm-editor .cm-line.nv3-list-prefix-line-ordered {
+  font-variant-numeric: tabular-nums;
+}
+
+.cm-editor .cm-line.nv3-list-hang-probe-line {
+  padding-left: calc(var(--nv3-quote-hang-offset, 0px) + 28px + var(--nv3-list-depth, 0) * 24px);
+}
+
+.cm-editor .cm-line.nv3-list-hang-probe-task-line {
+  padding-left: calc(var(--nv3-quote-hang-offset, 0px) + 24px + var(--nv3-list-depth, 0) * 24px);
+}
+
+.cm-editor .cm-line.nv3-list-hang-probe-ordered-line {
+  padding-left: calc(
+    var(--nv3-quote-hang-offset, 0px) + var(--nv3-list-hang-marker-box, 24px) + var(--nv3-list-depth, 0) * 24px + 8px
+  );
+}
+
+.nv3-list-probe-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 24px;
+  min-width: 24px;
+  color: inherit !important;
+}
+
+.nv3-list-probe-mark-bullet {
+  justify-content: center;
+}
+
+.nv3-list-hang-probe-mark {
+  margin-left: calc(-28px - var(--nv3-list-depth, 0) * 18px);
+  margin-right: 0;
+}
+
+.nv3-list-hang-probe-ordered-mark {
+  /* width: var(--nv3-list-hang-marker-box, 24px); */
+  /* min-width: var(--nv3-list-hang-marker-box, 24px); */
+  /* margin-left: calc(-1 * var(--nv3-list-hang-marker-box, 24px) - 4px - var(--nv3-list-depth, 0) * 18px); */
+
+  /*
+   * Keep ordered-list markers on a fixed visual lane instead of honoring the
+   * per-line dynamic marker-box width from the plugin. When marker width varies
+   * by line (`1.` vs `10.`), the text column jumps to the right at 10+, which
+   * causes the misalignment seen in ordered lists. Hard-coding 30px keeps items
+   * aligned consistently up to 99 while preserving the current safe hang-indent
+   * approach.
+   */
+  width: 30px;
+  min-width: 30px;
+  margin-left: calc(-1 * var(--nv3-list-hang-marker-box, 24px) - 10px - var(--nv3-list-depth, 0) * 18px);
+  margin-right: 0;
+}
+
+.nv3-list-probe-mark-ordered {
+  padding-right: 4px;
+  box-sizing: border-box;
+  font-variant-numeric: tabular-nums;
+}
+
+.nv3-list-probe-mark-task,
+.nv3-list-probe-mark-task * {
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden;
+  color: transparent !important;
+}
+
+.nv3-list-probe-task-gap,
+.nv3-list-probe-task-gap * {
+  font-size: 0;
+  color: transparent !important;
+}
+
+.nv3-list-probe-task-token {
+  /* Tweakable knobs for the checkbox + tick. */
+  --nv3-task-tick-color: #fff;
+  --nv3-task-tick-stroke: 1.75px;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  min-width: 24px;
+  height: 1.2em;
+  line-height: 1;
+  margin-right: 0;
+  overflow: visible;
+  white-space: nowrap;
+  /* vertical-align: -0.08em; */
+  color: transparent !important;
+  cursor: pointer;
+}
+
+.nv3-list-probe-task-token,
+.nv3-list-probe-task-token * {
+  color: transparent !important;
+}
+
+.nv3-list-hang-probe-task-token {
+  margin-left: calc(-24px - 24px - var(--nv3-list-depth, 0) * 10px);
+  margin-right: 0;
+}
+
+.nv3-list-probe-task-token::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  transform: translate(-50%, -50%);
+  border: 1.5px solid var(--nv3-task-checkbox-border);
+  border-radius: var(--nv3-task-checkbox-radius);
+  background: var(--bg);
+  box-sizing: border-box;
+}
+
+.nv3-list-probe-task-token::after {
+  content: "";
+  position: absolute;
+  left: 48%;
+  top: 48%;
+  width: 4px;
+  height: 7px;
+  border-right: 1.85px solid var(--nv3-task-checkbox-tick);
+  border-bottom: 1.85px solid var(--nv3-task-checkbox-tick);
+  transform: translate(-45%, -58%) rotate(45deg);
+  opacity: 0;
+}
+
+.nv3-list-probe-task-token-checked::before {
+  border-color: var(--nv3-task-checkbox-checked);
+  background: var(--nv3-task-checkbox-checked);
+}
+
+.nv3-list-probe-task-token-checked::after {
+  opacity: 1;
+}
+
+.nv3-list-probe-mark-task-reveal {
+  width: unset !important;
+  min-width: unset !important;
+}
+
+.cm-editor .cm-line.nv3-callout-line {
+  --nv3-callout-color: var(--nv3-md-callout-color-note);
+}
+
+.cm-editor .cm-line.nv3-quote-hang-probe-line {
+  --nv3-quote-hang-offset: var(--nv3-quote-prefix-width, 0px);
+}
+
+.cm-editor .cm-line.nv3-quote-hang-probe-line:not(.nv3-list-hang-probe-line):not(.nv3-list-hang-probe-task-line):not(.nv3-list-hang-probe-ordered-line) {
+  padding-left: var(--nv3-quote-hang-offset, 0px);
+}
+
+/* Quote blocks: simple line styling plus first/last-line padding. */
+.cm-editor .cm-line.nv3-md-quote-line {
+  --nv3-quote-fill-default: color-mix(in srgb, var(--nv3-callout-color) 10%, transparent);
+  --nv3-quote-border-default: color-mix(in srgb, var(--nv3-callout-color) 48%, var(--border));
+  --nv3-quote-fill: var(--nv3-md-callout-bg, var(--nv3-quote-fill-default));
+  --nv3-quote-border: var(--nv3-md-callout-border-color, var(--nv3-quote-border-default));
+  background: var(--nv3-quote-fill) !important;
+  box-shadow: inset var(--nv3-md-callout-border-width) 0 0 var(--nv3-quote-border);
+}
+
+.cm-editor .cm-line.nv3-callout-line {
+  font-family: var(--nv3-md-callout-font-family);
+  color: var(--nv3-md-callout-color);
+  font-size: var(--nv3-md-callout-font-size);
+  line-height: var(--nv3-md-callout-line-height);
+  margin-left: 3.5px;
+}
+
+.cm-editor .cm-line.nv3-md-quote-line.nv3-md-quote-start:not(.nv3-md-quote-end) {
+  padding-top: 12px;
+}
+
+.cm-editor .cm-line.nv3-md-quote-line.nv3-md-quote-end:not(.nv3-md-quote-start) {
+  padding-bottom: 12px;
+}
+
+/* Plain `>` blockquotes: no fill; left bar uses accent (not `--text-secondary`). */
+.cm-editor .cm-line.nv3-md-quote-line.nv3-blockquote-line:not(.nv3-callout-line) {
+  font-family: var(--nv3-md-blockquote-font-family);
+  font-style: var(--nv3-md-blockquote-font-style);
+  color: var(--nv3-md-blockquote-color);
+  font-size: var(--nv3-md-blockquote-font-size);
+  line-height: var(--nv3-md-blockquote-line-height);
+  background: var(--nv3-md-blockquote-bg) !important;
+  margin-left: 3.5px;
+  box-shadow: inset var(--nv3-md-blockquote-border-width) 0 0 var(--nv3-md-blockquote-border-color);
+}
+
+.cm-editor .cm-line.nv3-callout-type-note,
+.cm-editor .cm-line.nv3-callout-type-info,
+.cm-editor .cm-line.nv3-callout-type-abstract,
+.cm-editor .cm-line.nv3-callout-type-summary,
+.cm-editor .cm-line.nv3-callout-type-tldr {
+  --nv3-callout-color: var(--nv3-md-callout-color-note);
+}
+
+.cm-editor .cm-line.nv3-callout-type-tip,
+.cm-editor .cm-line.nv3-callout-type-hint,
+.cm-editor .cm-line.nv3-callout-type-important,
+.cm-editor .cm-line.nv3-callout-type-success,
+.cm-editor .cm-line.nv3-callout-type-check,
+.cm-editor .cm-line.nv3-callout-type-done {
+  --nv3-callout-color: var(--nv3-md-callout-color-tip);
+}
+
+.cm-editor .cm-line.nv3-callout-type-warning,
+.cm-editor .cm-line.nv3-callout-type-caution,
+.cm-editor .cm-line.nv3-callout-type-attention {
+  --nv3-callout-color: var(--nv3-md-callout-color-warning);
+}
+
+.cm-editor .cm-line.nv3-callout-type-danger,
+.cm-editor .cm-line.nv3-callout-type-error,
+.cm-editor .cm-line.nv3-callout-type-fail,
+.cm-editor .cm-line.nv3-callout-type-bug,
+.cm-editor .cm-line.nv3-callout-type-failure,
+.cm-editor .cm-line.nv3-callout-type-missing {
+  --nv3-callout-color: var(--nv3-md-callout-color-danger);
+}
+
+.cm-editor .cm-line.nv3-callout-type-example {
+  --nv3-callout-color: var(--nv3-md-callout-color-example);
+}
+
+.cm-editor .cm-line.nv3-callout-type-quote,
+.cm-editor .cm-line.nv3-callout-type-cite {
+  --nv3-callout-color: var(--nv3-md-callout-color-quote);
+}
+
+.cm-editor .cm-line.nv3-callout-type-todo,
+.cm-editor .cm-line.nv3-callout-type-question,
+.cm-editor .cm-line.nv3-callout-type-help,
+.cm-editor .cm-line.nv3-callout-type-faq {
+  --nv3-callout-color: var(--nv3-md-callout-color-question);
+}
+
+/* Blockquote `>` prefix: keep source text in flow, but use the list-style hang-indent
+   pattern so wrapped quote/callout lines align with the first line's body text. */
+.nv3-quote-hang-probe-prefix {
+  display: inline-block;
+  margin-left: calc(-1 * var(--nv3-quote-prefix-width, 0));
+  margin-right: 0;
+}
+
+/* Blockquote `>` prefix: hide unless this line is the active (cursor) line. */
+.nv3-blockquote-prefix,
+.nv3-blockquote-prefix * {
+  color: transparent !important;
+}
+
+.cm-editor.cm-focused .cm-line.cm-activeLine .nv3-blockquote-prefix,
+.cm-editor.cm-focused .cm-line.cm-activeLine .nv3-blockquote-prefix * {
+  color: var(--nv3-md-blockquote-prefix-active-color) !important;
+}
+
+.nv3-callout-marker {
+  /*display: inline-block;*/
+  /*margin-right: 0.45em;*/
+  /*padding: 0.02em 0.5em;*/
+  /*border-radius: 999px;*/
+  /*background: color-mix(in srgb, var(--nv3-callout-color) 15%, var(--bg));*/
+  /*box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--nv3-callout-color) 30%, transparent);*/
+  /*color: color-mix(in srgb, var(--nv3-callout-color) 15%, var(--bg));*/
+  /*font-size: 0.8em;*/
+  font-weight: var(--nv3-md-callout-marker-font-weight);
+  /*letter-spacing: 0.02em;*/
+  /*text-transform: uppercase;*/
+  /* The marker is part of the callout's label, so it follows the title face. */
+  font-family: var(--nv3-md-callout-title-font-family);
+  font-size: var(--nv3-md-callout-title-font-size);
+  letter-spacing: var(--nv3-md-callout-title-letter-spacing);
+}
+
+.nv3-callout-marker,
+.nv3-callout-marker * {
+  color: var(--nv3-md-callout-marker-color, color-mix(in srgb, var(--nv3-callout-color) 78%, var(--text))) !important;
+}
+
+.nv3-callout-title,
+.nv3-callout-title * {
+  font-weight: var(--nv3-md-callout-title-font-weight) !important;
+  color: var(--nv3-md-callout-title-color) !important;
+}
+
+.nv3-callout-title {
+  font-family: var(--nv3-md-callout-title-font-family);
+  font-size: var(--nv3-md-callout-title-font-size);
+  letter-spacing: var(--nv3-md-callout-title-letter-spacing);
+  text-transform: var(--nv3-md-callout-title-text-transform);
+}
+
+.nv3-table-widget {
+  margin: 0;
+  padding: 4px 0 6px;
+  box-sizing: border-box;
+}
+
+.nv3-table-wrapper {
+  overflow-x: auto;
+  border: var(--nv3-table-frame);
+  border-radius: 4px;
+  background: var(--bg);
+}
+
+.nv3-table-ui {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  outline: none;
+}
+
+.nv3-table-ui-row-header {
+  background: var(--nv3-table-header-bg);
+}
+
+.nv3-table-ui-cell {
+  position: relative;
+  min-width: 80px;
+  padding: 0;
+  text-align: left;
+  vertical-align: top;
+  border-right: var(--nv3-table-column-border);
+  border-bottom: var(--nv3-table-row-border);
+}
+
+.nv3-table-ui thead .nv3-table-ui-cell {
+  border-bottom: var(--nv3-table-header-border);
+  font-family: var(--nv3-table-header-font-family);
+  font-style: var(--nv3-table-header-font-style);
+  font-weight: var(--nv3-table-header-font-weight);
+  letter-spacing: var(--nv3-table-header-letter-spacing);
+  text-transform: var(--nv3-table-header-text-transform);
+}
+
+.nv3-table-ui thead .nv3-table-ui-cell-display {
+  color: var(--nv3-table-header-color);
+  font-size: calc(var(--nv3-table-cell-font-size) * var(--nv3-table-header-font-scale, 1));
+}
+
+.nv3-table-ui tr>.nv3-table-ui-cell:last-child {
+  border-right: none;
+}
+
+.nv3-table-ui tbody tr:last-child>.nv3-table-ui-cell {
+  border-bottom: none;
+}
+
+.nv3-table-ui-cell-content {
+  position: relative;
+  min-height: 34px;
+}
+
+.nv3-table-ui-cell-display,
+.nv3-table-ui-input {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 34px;
+  padding: 6px 8px;
+  box-sizing: border-box;
+  border: none;
+  margin: 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: var(--nv3-table-cell-font-size);
+  letter-spacing: inherit;
+  line-height: 1.35;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.nv3-table-ui-cell-display {
+  display: block;
+  cursor: text;
+}
+
+.nv3-table-ui .nv3-table-latex-preview {
+  display: inline-block;
+  vertical-align: baseline;
+  overflow: visible;
+}
+
+.nv3-table-strong {
+  font-weight: 600;
+}
+
+.nv3-table-emphasis {
+  font-style: italic;
+}
+
+.nv3-table-ui-cell:hover .nv3-table-ui-cell-display {
+  background: color-mix(in srgb, var(--bg-hover) 32%, transparent);
+}
+
+.nv3-table-ui-cell-content.is-editing {
+  position: absolute;
+  inset: 0;
+  height: auto;
+  /* height comes from top+bottom, not content */
+  min-height: 0;
+}
+
+.nv3-table-ui-cell-content.is-editing .nv3-table-ui-cell-display.is-measure-only {
+  visibility: hidden;
+}
+
+.nv3-table-ui-input {
+  position: absolute;
+  inset: 0;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  resize: none;
+  overflow: hidden;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--bg) 96%, var(--bg-secondary));
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--accent) 52%, transparent);
+}
+
+.nv3-table-ui-cell.is-active {
+  background: color-mix(in srgb, var(--accent) 4%, var(--bg));
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--accent) 72%, transparent);
+}
+
+.nv3-table-ui-cell-display:focus-visible,
+.nv3-table-ui-input:focus-visible {
+  outline: none;
+}
+
+.nv3-tag-heading {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  font-size: 0.88em;
+  font-weight: 500;
+  line-height: 1.5;
+  color: hsl(var(--nv3-tag-hue, 210), var(--tag-heading-s), var(--tag-heading-l));
+  border-bottom: 2px solid hsla(var(--nv3-tag-hue, 210),
+      var(--tag-heading-border-s),
+      var(--tag-heading-border-l),
+      var(--tag-heading-border-a));
+  border-radius: 0;
+}
+
+/* Remove border if inside .nv3-org-heading-tag-block */
+.nv3-org-heading-tag-block .nv3-tag-heading {
+  border-bottom: none;
+}
+
+.nv3-mention {
+  color: hsl(var(--nv3-tag-hue, 210), var(--tag-heading-s), var(--tag-heading-l));
+}
+
+.nv3-mention * {
+  color: inherit !important;
+}
+
+.cm-editor .cm-line.nv3-frontmatter-line {
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+  font-size-adjust: var(--nv3-font-size-adjust);
+  line-height: 1.65;
+  color: var(--text-tertiary);
+}
+
+.cm-editor .cm-line.nv3-frontmatter-line-error {
+  color: var(--red);
+}
+
+.cm-editor .cm-line.nv3-frontmatter-line * {
+  color: inherit !important;
+  font-style: normal !important;
+  text-decoration: none !important;
+}
+
+/* Frontmatter while reading: a quiet property list in document type. */
+.cm-editor .nv3-frontmatter-props {
+  display: grid;
+  grid-template-columns: minmax(4.5em, max-content) minmax(0, 1fr);
+  column-gap: 1.1em;
+  row-gap: 0.12em;
+  margin: 0 0 1.1em;
+  padding: 0.35em 0.5em;
+  margin-left: -0.5em;
+  border-radius: 6px;
+  font-family: var(--nv3-font-sans);
+  font-size: 0.78em;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  cursor: text;
+  transition: background-color 140ms ease;
+}
+
+.cm-editor .nv3-frontmatter-props:hover {
+  background: color-mix(in srgb, var(--nv3-color-text) 3.5%, transparent);
+}
+
+.cm-editor .nv3-frontmatter-props-key {
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+
+.cm-editor .nv3-frontmatter-props-value {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.cm-editor .nv3-frontmatter-props-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25em;
+}
+
+.cm-editor .nv3-frontmatter-props-pill {
+  padding: 0 0.5em;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--nv3-color-text) 7%, transparent);
+}
+
+.cm-editor .nv3-frontmatter-props-wikilink,
+.cm-editor .nv3-frontmatter-props-url {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--wikilink-underline);
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+}
+
+.cm-editor .nv3-frontmatter-props-wikilink:hover,
+.cm-editor .nv3-frontmatter-props-url:hover {
+  color: var(--nv3-link-hover-color, var(--nv3-color-text));
+}
+
+.nv3-inline-code {
+  font-family: var(--nv3-md-inline-code-font-family) !important;
+  font-size: var(--nv3-md-inline-code-font-size);
+  font-size-adjust: var(--nv3-font-size-adjust);
+  color: var(--nv3-md-inline-code-color) !important;
+  background: var(--nv3-md-inline-code-bg);
+  border-radius: var(--nv3-md-inline-code-radius);
+  padding: var(--nv3-md-inline-code-padding);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.nv3-inline-code,
+.nv3-inline-code * {
+  color: var(--nv3-md-inline-code-color) !important;
+}
+
+/* Syntax highlighting may nest a heading span inside the code mark. */
+.nv3-inline-code *,
+.cm-editor .om-code * {
+  font-family: monospace !important;
+}
+
+.cm-editor .cm-line.nv3-heading-line .nv3-inline-code,
+.cm-editor .cm-line.om-heading .om-code {
+  font-size: var(--nv3-md-inline-code-heading-font-size);
+}
+
+.nv3-latex-fragment {
+  background: color-mix(in srgb, var(--accent) 13%, var(--bg));
+  border-radius: 3px;
+}
+
+.nv3-latex-block {
+  background: transparent;
+  border-radius: 0;
+}
+
+.nv3-latex-source-hidden {
+  display: none;
+}
+
+.cm-editor .cm-line.nv3-latex-source-collapsed-line {
+  min-height: 1px;
+  height: 1px;
+  line-height: 1px;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 1px;
+  color: transparent;
+  overflow: hidden;
+}
+
+.nv3-latex-preview-inline {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  vertical-align: baseline;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.nv3-latex-preview-block {
+  display: block;
+  margin: 2px 0;
+  padding: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.nv3-latex-preview .katex {
+  font-size: 1em;
+}
+
+.nv3-latex-preview-block .katex-display {
+  margin: 0;
+}
+
+.cm-editor .cm-line.nv3-math-block-line {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  font-size-adjust: var(--nv3-font-size-adjust);
+  line-height: 1.6;
+  background: transparent;
+  border-left: none;
+  padding-left: 2px;
+}
+
+.cm-editor .cm-line.nv3-math-block-start,
+.cm-editor .cm-line.nv3-math-block-end {
+  border-radius: 0;
+}
+
+.cm-editor .cm-line.nv3-calc-fence-line,
+.cm-editor .nv3-calc-plot {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  font-size-adjust: var(--nv3-font-size-adjust);
+  line-height: 1.6;
+  /* `!important` beats `.cm-activeLine { background: transparent !important }` (higher specificity). */
+  background: color-mix(in srgb, var(--purple) 5%, transparent) !important;
+  /* border-left: 2px solid color-mix(in srgb, var(--purple) 28%, var(--border)); */
+  padding-left: 12px;
+}
+
+/* .cm-editor .cm-line.nv3-calc-fence-start { */
+/* border-top-left-radius: 6px; */
+/* border-top-right-radius: 6px; */
+/* } */
+
+/* .cm-editor .cm-line.nv3-calc-fence-end { */
+/* border-bottom-left-radius: 6px; */
+/* border-bottom-right-radius: 6px; */
+/* } */
+
+.cm-editor .cm-line.nv3-calc-line-error {
+  border-left-color: var(--red);
+}
+
+.nv3-calc-inline {
+  background: color-mix(in srgb, var(--purple) 8%, var(--bg));
+  border-radius: 4px;
+}
+
+.nv3-calc-inline-result {
+  display: inline-flex;
+  align-items: baseline;
+  max-width: 100%;
+  padding: 0 0.28em;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--purple) 12%, var(--bg));
+  color: color-mix(in srgb, var(--purple) 60%, var(--text)) !important;
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+  white-space: pre-wrap;
+}
+
+.nv3-calc-inline-result-error {
+  background: color-mix(in srgb, var(--red) 10%, var(--bg));
+  color: color-mix(in srgb, var(--red) 72%, var(--text)) !important;
+}
+
+.nv3-calc-plot {
+  padding: 8px 12px 12px;
+  color: var(--nv3-color-text);
+  white-space: normal;
+}
+
+.nv3-calc-plot-chart {
+  position: relative;
+  cursor: crosshair;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.nv3-calc-plot-can-pan { cursor: grab; }
+.nv3-calc-plot-panning { cursor: grabbing; user-select: none; }
+.nv3-calc-plot-chart:focus-visible { outline: 1px solid var(--nv3-color-accent); }
+
+.nv3-calc-plot-tooltip {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 5px 8px;
+  border-radius: 4px;
+  background: var(--nv3-color-surface);
+  color: var(--nv3-color-text);
+  box-shadow: 0 0 0 1px var(--nv3-color-border);
+  font-family: var(--nv3-font-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+
+.nv3-calc-plot-svg {
+  display: block;
+  width: 100%;
+  min-width: 280px;
+  height: 280px;
+  overflow: hidden;
+}
+
+.nv3-calc-plot-tick,
+.nv3-calc-plot-label {
+  fill: var(--nv3-color-text-muted);
+  font-family: var(--nv3-font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.nv3-calc-plot-grid {
+  fill: none;
+  stroke: var(--nv3-color-text);
+  stroke-opacity: 0.1;
+  stroke-width: 1;
+}
+
+.nv3-calc-plot-axis {
+  fill: none;
+  stroke: var(--nv3-color-text);
+  stroke-opacity: 0.38;
+  stroke-width: 1;
+}
+
+.nv3-calc-plot-line {
+  fill: none;
+  stroke: var(--nv3-color-accent);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.nv3-calc-plot-dot,
+.nv3-calc-plot-bar {
+  fill: var(--nv3-color-accent);
+}
+
+.nv3-calc-plot-hit {
+  fill: transparent;
+  pointer-events: all;
+}
+
+.nv3-calc-plot-hover { pointer-events: none; }
+.nv3-calc-plot-guide {
+  stroke: var(--nv3-color-text-muted);
+  stroke-opacity: 0.5;
+  stroke-dasharray: 3 3;
+}
+.nv3-calc-plot-marker {
+  fill: var(--nv3-color-accent);
+  stroke: var(--nv3-color-bg);
+  stroke-width: 2;
+}
+
+.nv3-calc-inline-delimiter,
+.nv3-calc-fence-language {
+  color: color-mix(in srgb, var(--purple) 72%, var(--text-secondary)) !important;
+  font-family: var(--font-mono);
+}
+
+.nv3-calc-inline-separator,
+.nv3-calc-inline-separator * {
+  color: color-mix(in srgb, var(--purple) 76%, var(--text-secondary)) !important;
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.nv3-calc-inline-output,
+.nv3-calc-inline-output * {
+  color: color-mix(in srgb, var(--purple) 62%, var(--text)) !important;
+  font-family: var(--font-mono);
+}
+
+.nv3-calc-inline-body,
+.nv3-calc-statement {
+  font-family: var(--font-mono);
+}
+
+.nv3-calc-definition,
+.nv3-calc-definition * {
+  color: var(--cm-definition) !important;
+  font-weight: 600;
+}
+
+.nv3-calc-parameter,
+.nv3-calc-parameter * {
+  color: var(--cm-variable) !important;
+}
+
+.nv3-calc-name,
+.nv3-calc-name * {
+  color: var(--cm-variable) !important;
+}
+
+.nv3-calc-callable,
+.nv3-calc-callable * {
+  color: var(--cm-function) !important;
+}
+
+.nv3-calc-namespace,
+.nv3-calc-namespace * {
+  color: var(--cm-namespace) !important;
+}
+
+.nv3-calc-property,
+.nv3-calc-property * {
+  color: var(--cm-property) !important;
+}
+
+.nv3-calc-string,
+.nv3-calc-string * {
+  color: var(--cm-string) !important;
+}
+
+.nv3-calc-number,
+.nv3-calc-number * {
+  color: var(--cm-number) !important;
+}
+
+.nv3-calc-atom,
+.nv3-calc-atom * {
+  color: var(--cm-atom) !important;
+}
+
+.nv3-calc-keyword,
+.nv3-calc-keyword * {
+  color: var(--cm-keyword) !important;
+}
+
+.nv3-calc-error,
+.nv3-calc-error * {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--red);
+  text-decoration-thickness: 1.3px;
+}
+
+.nv3-hidden-mark {
+  display: none;
+}
+
+/* ── Markdown horizontal rules ─────────────────────────────────────────── */
+
+.cm-editor .cm-line.nv3-horizontal-rule-line {
+  position: relative;
+  padding-block: var(--nv3-md-horizontal-rule-padding-block);
+}
+
+.cm-editor .cm-line.nv3-horizontal-rule-line::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--nv3-md-horizontal-rule-width);
+  transform: translate(-50%, -50%);
+  border-top: var(--nv3-md-horizontal-rule-border);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.cm-editor .cm-line.cm-activeLine.nv3-horizontal-rule-line::after,
+.cm-editor .cm-line.nv3-horizontal-rule-line.nv3-horizontal-rule-active::after {
+  border-top: var(--nv3-md-horizontal-rule-active-border);
+  opacity: 0.35;
+}
+
+.cm-editor .nv3-horizontal-rule-mark {
+  position: relative;
+  z-index: 1;
+  color: transparent !important;
+}
+
+.cm-editor .cm-activeLine .nv3-horizontal-rule-mark,
+.cm-editor .nv3-horizontal-rule-mark.nv3-horizontal-rule-active {
+  color: var(--nv3-md-horizontal-rule-source-color) !important;
+}
+
+.cm-editor .nv3-md-highlight,
+.cm-editor .nv3-md-highlight * {
+  background: var(--nv3-md-highlight-bg);
+  border-radius: 0.18em;
+  color: var(--nv3-md-highlight-color) !important;
+}
+
+.cm-editor .nv3-md-highlight {
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Annotations: labelled marks placed over the text (never written to it). */
+.cm-editor [data-nv3-annotation-color="yellow"] { --nv3-annotation-color: var(--nv3-color-yellow); }
+.cm-editor [data-nv3-annotation-color="blue"] { --nv3-annotation-color: var(--nv3-color-blue); }
+.cm-editor [data-nv3-annotation-color="green"] { --nv3-annotation-color: var(--nv3-color-green); }
+.cm-editor [data-nv3-annotation-color="pink"] { --nv3-annotation-color: var(--nv3-color-pink); }
+.cm-editor [data-nv3-annotation-color="purple"] { --nv3-annotation-color: var(--nv3-color-purple); }
+.cm-editor [data-nv3-annotation-color="orange"] { --nv3-annotation-color: var(--nv3-color-orange); }
+.cm-editor [data-nv3-annotation-color="red"] { --nv3-annotation-color: var(--nv3-color-red); }
+
+.cm-editor .nv3-annotation {
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  border-radius: 0.18em;
+  transition: background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.cm-editor .nv3-annotation-highlight {
+  background: color-mix(in srgb, var(--nv3-annotation-color) 22%, transparent);
+}
+
+.cm-editor .nv3-annotation-underline {
+  text-decoration: underline 2px var(--nv3-annotation-color);
+  text-underline-offset: 0.22em;
+  text-decoration-skip-ink: none;
+}
+
+.cm-editor .nv3-annotation-box {
+  box-shadow: inset 0 0 0 1.5px var(--nv3-annotation-color);
+}
+
+.cm-editor .nv3-annotation-focused {
+  background: color-mix(in srgb, var(--nv3-annotation-color) 34%, transparent);
+  animation: nv3-annotation-focus 1.2s ease-out 1;
+}
+
+@keyframes nv3-annotation-focus {
+  0%, 40% { box-shadow: 0 0 0 3px color-mix(in srgb, var(--nv3-annotation-color) 45%, transparent); }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+.cm-editor .nv3-annotation-badge {
+  display: inline-block;
+  min-width: 1.35em;
+  margin-right: 0.2em;
+  padding: 0 0.38em;
+  border-radius: 999px;
+  background: var(--nv3-annotation-color);
+  color: #fff;
+  font-family: var(--nv3-font-sans);
+  font-size: 0.68em;
+  font-style: normal;
+  font-weight: 650;
+  line-height: 1.5;
+  text-align: center;
+  vertical-align: 0.18em;
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.cm-editor .nv3-annotation-badge[data-nv3-annotation-color="yellow"] {
+  color: #2b2410;
+}
+
+/* Margin notes: an annotation's note beside its passage, outside the text.
+ * Hosts reserve `--nv3-annotation-note-reserve` beside the text column while
+ * the scroller carries data-nv3-margin-notes="margin". */
+.cm-editor {
+  --nv3-annotation-note-width: 260px;
+  --nv3-annotation-note-reserve: calc(var(--nv3-annotation-note-width) + 48px);
+}
+
+.cm-editor .nv3-annotation-notes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.cm-editor .nv3-annotation-note {
+  position: absolute;
+  box-sizing: border-box;
+  width: var(--nv3-annotation-note-width);
+  padding: 0.5em 1.6em 0.55em 0.7em;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--nv3-annotation-color) 7%, var(--nv3-color-bg));
+  color: var(--nv3-color-text);
+  font-family: var(--nv3-font-sans);
+  font-size: 0.74em;
+  line-height: 1.5;
+  letter-spacing: 0;
+  pointer-events: auto;
+  cursor: default;
+  user-select: text;
+  -webkit-user-select: text;
+  transition: background-color 160ms ease, top 160ms ease;
+}
+
+.cm-editor .nv3-annotation-note:hover,
+.cm-editor .nv3-annotation-note-focused {
+  background: color-mix(in srgb, var(--nv3-annotation-color) 13%, var(--nv3-color-bg));
+}
+
+.cm-editor .nv3-annotation-note > .nv3-annotation-badge {
+  float: left;
+  margin: 0.15em 0.45em 0 0;
+  font-size: 0.86em;
+}
+
+.cm-editor .nv3-annotation-note-body p,
+.cm-editor .nv3-annotation-note-body ul {
+  margin: 0 0 0.45em;
+}
+
+.cm-editor .nv3-annotation-note-body > :last-child {
+  margin-bottom: 0;
+}
+
+.cm-editor .nv3-annotation-note-body ul {
+  padding-left: 1.1em;
+}
+
+.cm-editor .nv3-annotation-note-body code {
+  padding: 0.05em 0.3em;
+  border-radius: 4px;
+  background: var(--nv3-color-code-inline-bg);
+  font-family: var(--nv3-font-mono, ui-monospace, monospace);
+  font-size: 0.92em;
+}
+
+.cm-editor .cm-scroller[data-nv3-margin-notes="inline"] .nv3-annotation-note {
+  background: color-mix(in srgb, var(--nv3-annotation-color) 10%, var(--nv3-color-bg));
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  font-size: 0.8em;
+}
+
+.cm-editor .nv3-annotation-note-actions {
+  position: absolute;
+  top: 0.2em;
+  right: 0.25em;
+  display: flex;
+  gap: 0.1em;
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.cm-editor .nv3-annotation-note:hover .nv3-annotation-note-actions {
+  opacity: 1;
+}
+
+.cm-editor .nv3-annotation-note-remove,
+.cm-editor .nv3-annotation-note-edit {
+  width: 1.4em;
+  height: 1.4em;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--nv3-color-text-muted);
+  font: inherit;
+  font-size: 1em;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+}
+
+.cm-editor .nv3-annotation-note-edit[hidden] {
+  display: none;
+}
+
+.cm-editor .nv3-annotation-note-remove:hover,
+.cm-editor .nv3-annotation-note-edit:hover {
+  background: color-mix(in srgb, var(--nv3-color-text) 10%, transparent);
+  color: var(--nv3-color-text);
+}
+
+.cm-editor .nv3-annotation-note-answer {
+  clear: both;
+  margin-top: 0.55em;
+}
+
+.cm-editor .nv3-annotation-note-answer-stale {
+  opacity: 0.55;
+}
+
+.cm-editor .nv3-annotation-note-answer-by {
+  margin-bottom: 0.15em;
+  color: var(--nv3-color-text-muted);
+  font-size: 0.86em;
+  font-weight: 600;
+}
+
+.cm-editor .nv3-annotation-note-answer p,
+.cm-editor .nv3-annotation-note-answer ul {
+  margin: 0 0 0.45em;
+}
+
+.cm-editor .nv3-annotation-note-answer > :last-child {
+  margin-bottom: 0;
+}
+
+.cm-editor .nv3-annotation-note-answer ul {
+  padding-left: 1.1em;
+}
+
+.cm-editor .nv3-annotation-note-answer code {
+  padding: 0.05em 0.3em;
+  border-radius: 4px;
+  background: var(--nv3-color-code-inline-bg);
+  font-family: var(--nv3-font-mono, ui-monospace, monospace);
+  font-size: 0.92em;
+}
+
+.cm-editor .nv3-annotation-note-user {
+  padding-right: 3em;
+}
+
+.cm-editor .nv3-annotation-note-user .nv3-annotation-note-body {
+  font-style: italic;
+}
+
+.cm-editor .nv3-annotation-pending {
+  background: var(--nv3-selection-bg);
+  border-radius: 0.18em;
+}
+
+.cm-editor .cm-tooltip:has(> .nv3-annotation-composer) {
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+}
+
+.cm-editor .nv3-annotation-composer {
+  box-sizing: border-box;
+  width: min(360px, 80vw);
+  padding: 0.5em 0.6em 0.4em;
+  border-radius: 8px;
+  background: var(--nv3-color-surface);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+  font-family: var(--nv3-font-sans);
+  font-size: 0.8rem;
+}
+
+.cm-editor .nv3-annotation-composer-input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 12em;
+  padding: 0.3em 0;
+  border: 0;
+  outline: none;
+  resize: none;
+  background: transparent;
+  color: var(--nv3-color-text);
+  font: inherit;
+  font-size: 1.05em;
+  /* The font's own line height: with a taller custom one WebKit draws the
+     caret against the line box, which sits it above the text. */
+  line-height: normal;
+}
+
+.cm-editor .nv3-annotation-composer-hint {
+  margin-top: 0.25em;
+  color: var(--nv3-color-text-muted);
+  font-size: 0.85em;
+}
+
+.cm-editor .nv3-annotation-badge[data-nv3-annotation-id] {
+  cursor: pointer;
+}
+
+.cm-editor .nv3-heading-prefix {
+  display: inline-block;
+  width: calc(var(--nv3-heading-prefix-columns, 0) * 1ch);
+  margin-left: calc(-1 * var(--nv3-heading-prefix-columns, 0) * 1ch);
+  white-space: pre;
+  text-align: right;
+  color: var(--text-tertiary) !important;
+  cursor: pointer;
+  opacity: 0.05;
+  transition: opacity 120ms ease, color 120ms ease;
+}
+
+.cm-editor .nv3-heading-prefix-level-1 {
+  --nv3-heading-prefix-columns: 2;
+}
+
+.cm-editor .nv3-heading-prefix-level-2 {
+  --nv3-heading-prefix-columns: 3;
+}
+
+.cm-editor .nv3-heading-prefix-level-3 {
+  --nv3-heading-prefix-columns: 4;
+}
+
+.cm-editor .nv3-heading-prefix-level-4 {
+  --nv3-heading-prefix-columns: 5;
+}
+
+.cm-editor .nv3-heading-prefix-level-5 {
+  --nv3-heading-prefix-columns: 6;
+}
+
+.cm-editor .nv3-heading-prefix-level-6 {
+  --nv3-heading-prefix-columns: 7;
+}
+
+.cm-editor .nv3-heading-prefix,
+.cm-editor .nv3-heading-prefix * {
+  color: var(--text-tertiary) !important;
+}
+
+.cm-editor .nv3-heading-prefix:hover,
+.cm-editor .nv3-heading-prefix:focus,
+.cm-editor .cm-activeLine .nv3-heading-prefix,
+.cm-editor .nv3-heading-prefix.nv3-heading-prefix-active {
+  color: inherit !important;
+  opacity: 1;
+}
+
+.cm-editor .nv3-heading-prefix:hover *,
+.cm-editor .nv3-heading-prefix:focus *,
+.cm-editor .cm-activeLine .nv3-heading-prefix *,
+.cm-editor .nv3-heading-prefix.nv3-heading-prefix-active,
+.cm-editor .nv3-heading-prefix.nv3-heading-prefix-active * {
+  color: inherit !important;
+  opacity: 1;
+}
+
+.cm-editor .nv3-heading-prefix.nv3-heading-prefix-collapsed,
+.cm-editor .nv3-heading-prefix.nv3-heading-prefix-collapsed * {
+  color: var(--accent) !important;
+}
+
+.nv3-link:not(:has(.nv3-image-syntax-hidden)) {
+  border-radius: 4px;
+  padding: 0 2px;
+}
+
+.nv3-link:has(.nv3-image-syntax-hidden)::before {
+  content: "\1F4F7\0020";
+  /* 📷 with space */
+  display: inline-block;
+  font-size: 0.9em;
+  margin-right: 0.15em;
+  vertical-align: text-bottom;
+  opacity: 0.68;
+}
+
+a.nv3-link-wikilink {
+  color: var(--nv3-link-color);
+  background: transparent;
+  text-decoration-line: underline;
+  text-decoration-style: var(--nv3-link-underline-style);
+  text-decoration-color: var(--wikilink-underline);
+  text-decoration-thickness: var(--nv3-link-underline-thickness);
+  text-underline-offset: 10%;
+  cursor: pointer;
+}
+
+a.nv3-link-wikilink::after {
+  content: "↗";
+  margin-left: 0.22em;
+  font-size: 0.78em;
+  opacity: 0.78;
+}
+
+a.nv3-link-inline {
+  color: var(--nv3-link-color);
+  text-decoration-line: underline;
+  text-decoration-style: var(--nv3-link-underline-style);
+  text-decoration-color: var(--wikilink-underline);
+  text-decoration-thickness: var(--nv3-link-underline-thickness);
+  text-underline-offset: 10%;
+}
+
+.nv3-inline-link-open-arrow {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.2em;
+  font-size: 0.78em;
+  opacity: 0.82;
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.nv3-inline-link-open-arrow:hover {
+  color: var(--text);
+}
+
+.nv3-link-hidden-syntax {
+  display: none;
+}
+
+.nv3-link-wikilink-text,
+.nv3-link-wikilink-text *,
+.nv3-link-wikilink-note,
+.nv3-link-wikilink-note * {
+  color: var(--nv3-link-color) !important;
+}
+
+.nv3-link-wikilink-subpath-marker,
+.nv3-link-wikilink-subpath-marker *,
+.nv3-link-wikilink-subpath-text,
+.nv3-link-wikilink-subpath-text * {
+  color: color-mix(in srgb, var(--text-secondary) 88%, var(--text)) !important;
+}
+
+.nv3-link-wikilink-subpath-marker,
+.nv3-link-wikilink-subpath-text {
+  opacity: 0.72;
+}
+
+.nv3-link-wikilink-bracket,
+.nv3-link-wikilink-bracket * {
+  color: color-mix(in srgb, var(--text) 50%, transparent) !important;
+  opacity: 0.5;
+}
+
+.nv3-link-transclusion {
+  color: #0f7b6c;
+  background: rgba(15, 123, 108, 0.12);
+}
+
+.nv3-block-reference,
+.nv3-block-reference * {
+  color: color-mix(in srgb, var(--text-secondary) 86%, var(--text)) !important;
+}
+
+.nv3-block-reference {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  letter-spacing: 0.01em;
+  border-radius: 4px;
+  padding: 0 0.22em;
+  background: color-mix(in srgb, var(--bg-secondary) 70%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--border) 72%, transparent);
+}
+
+.nv3-link-preview:not(:has(.nv3-image-syntax-hidden)) {
+  color: #b06a00;
+  background: rgba(176, 106, 0, 0.12);
+}
+
+.nv3-footnote-ref,
+.nv3-footnote-ref * {
+  color: color-mix(in srgb, var(--text-secondary) 80%, var(--text)) !important;
+  text-decoration: none !important;
+}
+
+.nv3-footnote-ref {
+  border-radius: 4px;
+  padding: 0 0.18em;
+  background: color-mix(in srgb, var(--bg-secondary) 72%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--border) 68%, transparent);
+  font-size: 0.92em;
+}
+
+.nv3-footnote-ref-unresolved,
+.nv3-footnote-ref-unresolved * {
+  color: color-mix(in srgb, var(--red) 62%, var(--text-secondary)) !important;
+}
+
+.cm-editor .cm-tooltip.cm-tooltip-hover:has(.nv3-footnote-tooltip) {
+  border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+  border-radius: 8px;
+  background: var(--bg);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 8px 24px -6px rgba(0, 0, 0, 0.18);
+  padding: 0;
+  overflow: hidden;
+  animation: nv3-footnote-tooltip-in 120ms ease-out;
+}
+
+@keyframes nv3-footnote-tooltip-in {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cm-tooltip.cm-tooltip-hover .nv3-footnote-tooltip {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 220px;
+  max-width: min(440px, 70vw);
+  padding: 12px 14px;
+}
+
+.nv3-footnote-tooltip-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-tertiary);
+  text-transform: none;
+}
+
+.nv3-footnote-tooltip-body {
+  white-space: pre-wrap;
+  color: var(--text);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+.nv3-footnote-tooltip-math-inline .katex {
+  font-size: 1em;
+}
+
+.nv3-footnote-tooltip-math-block {
+  display: block;
+  margin: 4px 0;
+  text-align: center;
+}
+
+.nv3-footnote-tooltip-math-block .katex-display {
+  margin: 0;
+}
+
+/* ── Image preview (block widget below ![alt](url)) ─────────────────────── */
+
+.nv3-image-preview {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 6px 0 10px;
+  min-height: 32px;
+  user-select: none;
+}
+
+.nv3-image-preview-img {
+  max-width: 100%;
+  max-height: 600px;
+  border-radius: var(--radius);
+  object-fit: contain;
+  /* box-shadow: 0 0 0 1px color-mix(in srgb, var(--border) 60%, transparent); */
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.nv3-image-preview-loaded .nv3-image-preview-img {
+  opacity: 1;
+}
+
+.nv3-image-preview-error {
+  justify-content: flex-start;
+}
+
+.nv3-image-preview-error-msg {
+  color: var(--text-tertiary);
+  font-size: 12px;
+  font-style: italic;
+  padding: 4px 0;
+}
+
+/* Concealed image syntax (when cursor is elsewhere) */
+.nv3-image-syntax-hidden,
+.nv3-image-syntax-hidden * {
+  font-size: 0;
+  letter-spacing: -1px;
+  color: transparent !important;
+}
+
+.nv3-image-caption,
+.nv3-image-caption * {
+  font-size: 12px;
+  color: var(--text-tertiary) !important;
+  font-style: italic;
+}
+
+.nv3-timestamp {
+  cursor: pointer;
+}
+
+.nv3-timestamp,
+.nv3-timestamp * {
+  text-decoration: none !important;
+}
+
+.nv3-timestamp-inactive,
+.nv3-timestamp-inactive *,
+.nv3-timestamp-active,
+.nv3-timestamp-active * {
+  color: color-mix(in srgb, var(--text) 54%, var(--yellow)) !important;
+  /*background: color-mix(in srgb, var(--yellow) 10%, transparent);*/
+  text-decoration: none !important;
+}
+
+.nv3-timestamp:hover,
+.nv3-timestamp:hover * {
+  background: color-mix(in srgb, var(--yellow) 16%, transparent);
+  text-decoration: none !important;
+}
+
+.nv3-leader-overlay {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 30;
+  min-width: 220px;
+  padding: 10px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--bg-secondary) 96%, var(--bg));
+  border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.14),
+    0 1px 0 rgba(255, 255, 255, 0.04) inset;
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 110ms ease, transform 110ms ease;
+}
+
+.nv3-leader-overlay[data-nv3-open="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nv3-leader-overlay-title {
+  margin-bottom: 8px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.nv3-leader-overlay-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nv3-leader-overlay-item {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  min-height: 28px;
+  padding: 2px 0;
+  font-size: 12px;
+  color: var(--text);
+}
+
+.nv3-leader-overlay-item kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 4px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--border) 86%, transparent);
+}
+
+.nv3-leader-overlay-item span {
+  white-space: nowrap;
+}
+
+.nv3-heading-state {
+  --nv3-heading-state-color: var(--yellow);
+  border-radius: 4px;
+  /*padding: 0 6px;*/
+  /*background: color-mix(in srgb, var(--nv3-heading-state-color) 12%, transparent);*/
+  /*box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--nv3-heading-state-color) 24%, transparent);*/
+}
+
+.nv3-heading-state,
+.nv3-heading-state * {
+  /*color: color-mix(in srgb, var(--text) 72%, var(--nv3-heading-state-color)) !important;*/
+  color: var(--nv3-heading-state-color) !important;
+  text-decoration: none !important;
+  font-weight: 300;
+}
+
+.nv3-transclusion-block {
+  position: relative;
+  margin: 0 -60px;
+  background: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--border-heavy) 30%, transparent) 0%,
+    color-mix(in srgb, var(--bg-secondary) 45%, transparent) 0.3%,
+    color-mix(in srgb, var(--bg-secondary) 10%, transparent) 3%,
+    transparent 5%
+  );
+}
+
+.nv3-transclusion-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 4px 8px 0 0;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  width: initial;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.nv3-transclusion-header::before {
+  content: "⊖";
+  color: var(--text-tertiary);
+  font-size: 10px;
+  line-height: 1;
+  opacity: 0.72;
+}
+
+.nv3-transclusion-block[data-nv3-transclusion-collapsed="true"] .nv3-transclusion-header::before {
+  content: "⊕";
+}
+
+.nv3-transclusion-block[data-nv3-transclusion-collapsed="true"] .nv3-transclusion-target {
+  opacity: 0.58;
+}
+
+.nv3-transclusion-target {
+  font-family: var(--font-mono);
+  color: var(--text-tertiary);
+  font-size: 11px;
+  opacity: 0.78;
+}
+
+.nv3-transclusion-status {
+  width: 7px;
+  height: 7px;
+  min-width: 7px;
+  border-radius: 999px;
+  background: var(--text-tertiary);
+  opacity: 0.8;
+}
+
+.nv3-transclusion-status[data-nv3-transclusion-state="loading"] {
+  background: #b07900;
+}
+
+.nv3-transclusion-status[data-nv3-transclusion-state="ready"],
+.nv3-transclusion-status[data-nv3-transclusion-state="saved"] {
+  background: #0f7b6c;
+}
+
+.nv3-transclusion-status[data-nv3-transclusion-state="saving"],
+.nv3-transclusion-status[data-nv3-transclusion-state="dirty"] {
+  background: var(--yellow);
+}
+
+.nv3-transclusion-status[data-nv3-transclusion-state="error"],
+.nv3-transclusion-status[data-nv3-transclusion-state="missing"],
+.nv3-transclusion-status[data-nv3-transclusion-state="depth-limit"] {
+  background: var(--red);
+}
+
+.nv3-transclusion-body {
+  min-height: 44px;
+  color: var(--text);
+  padding: 0 16px;
+}
+
+.nv3-transclusion-body[data-nv3-transclusion-state="loading"] {
+  opacity: 0.8;
+}
+
+.nv3-transclusion-body[data-nv3-transclusion-state="error"],
+.nv3-transclusion-body[data-nv3-transclusion-state="missing"] {
+  color: var(--red);
+}
+
+.nv3-transclusion-body .cm-scroller {
+  overflow: visible;
+}
+
+.nv3-transclusion-body .cm-editor {
+  border-radius: 0;
+  background: transparent;
+}
+
+.nv3-transclusion-body .cm-content {
+  min-height: 0;
+  padding-bottom: 0;
+  font-size: inherit;
+  overflow: visible;
+}
+
+.cm-editor .cm-line.nv3-code-fence-line {
+  font-family: var(--nv3-md-code-block-font-family);
+  font-size: var(--nv3-md-code-block-font-size);
+  font-size-adjust: var(--nv3-font-size-adjust);
+  line-height: var(--nv3-md-code-block-line-height);
+  color: var(--nv3-md-code-block-color);
+  background: var(--nv3-md-code-block-bg);
+  border-left: var(--nv3-md-code-block-border-width) solid var(--nv3-md-code-block-border-color);
+  border-radius: var(--nv3-md-code-block-radius);
+}
+
+.cm-editor .cm-line.nv3-code-fence-start {
+  /* opacity: 0.5; */
+  font-size: var(--nv3-md-code-block-delimiter-font-size);
+}
+
+.cm-editor .cm-line.nv3-code-fence-end {
+  /* opacity: 0.5; */
+  font-size: var(--nv3-md-code-block-delimiter-font-size);
+}
+
+.nv3-code-fence-language {
+  letter-spacing: var(--nv3-md-code-block-language-letter-spacing);
+}
+
+.nv3-toc {
+  position: relative;
+  z-index: 1;
+  width: 38px;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 8px;
+  padding: 6px 5px;
+  background: transparent;
+  border: 1px solid transparent;
+  outline: none;
+  transition: width 130ms ease, background-color 130ms ease, border-color 130ms ease;
+}
+
+.nv3-toc:hover,
+.nv3-toc:focus-within {
+  width: 220px;
+  background: color-mix(in srgb, var(--bg-secondary) 84%, var(--bg));
+  border-color: color-mix(in srgb, var(--border) 70%, transparent);
+}
+
+.nv3-toc-collapsed {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 3px;
+}
+
+.nv3-toc:hover .nv3-toc-collapsed,
+.nv3-toc:focus-within .nv3-toc-collapsed {
+  display: none;
+}
+
+.nv3-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nv3-toc-list-expanded {
+  display: none;
+}
+
+.nv3-toc:hover .nv3-toc-list-expanded,
+.nv3-toc:focus-within .nv3-toc-list-expanded {
+  display: flex;
+}
+
+.nv3-toc-list-collapsed {
+  gap: 0;
+}
+
+.nv3-toc-item {
+  width: 100%;
+}
+
+.nv3-toc-collapsed-entry {
+  display: flex;
+  align-items: center;
+  min-height: 9px;
+  padding: 1px 4px;
+}
+
+.nv3-toc-collapsed-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 0;
+}
+
+.nv3-toc-collapsed-more span {
+  width: 3px;
+  height: 3px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text-tertiary) 38%, transparent);
+}
+
+.nv3-toc-button {
+  width: 100%;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  padding: 3px 4px;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.nv3-toc-button:hover {
+  background: var(--bg-hover);
+  color: var(--text-secondary);
+}
+
+.nv3-toc-line {
+  display: inline-flex;
+  height: 2px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text-tertiary) 68%, transparent);
+  flex-shrink: 0;
+  transition: margin-left 130ms ease;
+}
+
+.nv3-toc-item-h1 .nv3-toc-line {
+  width: 20px;
+}
+
+.nv3-toc-item-h2 .nv3-toc-line {
+  width: 12px;
+  margin-left: 8px;
+}
+
+.nv3-toc-item-h3 .nv3-toc-line {
+  width: 8px;
+  margin-left: 12px;
+}
+
+.nv3-toc:hover .nv3-toc-item-h2 .nv3-toc-line,
+.nv3-toc:focus-within .nv3-toc-item-h2 .nv3-toc-line {
+  margin-left: 16px;
+}
+
+.nv3-toc:hover .nv3-toc-item-h3 .nv3-toc-line,
+.nv3-toc:focus-within .nv3-toc-item-h3 .nv3-toc-line {
+  margin-left: 24px;
+}
+
+
+.nv3-toc-label {
+  opacity: 0;
+  transform: translateX(-5px);
+  transition: opacity 120ms ease, transform 120ms ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+}
+
+.nv3-toc:hover .nv3-toc-label,
+.nv3-toc:focus-within .nv3-toc-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.nv3-toc-item.is-active .nv3-toc-line {
+  background: var(--blue);
+}
+
+.nv3-toc-item.is-active .nv3-toc-label {
+  color: var(--blue);
+  font-weight: 500;
+}
+
+/* ── Auto-detected URLs ─────────────────────────────────────────────────── */
+
+a.nv3-auto-link {
+  color: var(--nv3-link-color);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--text) 30%, transparent);
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+a.nv3-auto-link:hover {
+  text-decoration-color: var(--nv3-link-hover-color);
+  color: var(--nv3-link-hover-color);
+}
+
+/* ── Org mode ───────────────────────────────────────────────────────────── */
+
+/*
+ * Org shares the document typography with Markdown: body, heading, label and
+ * code faces and sizes all come from the theme tokens. What stays here is
+ * org's own syntax: the stars gutter, org-indent geometry, keywords, planning
+ * lines, drawers and checkboxes.
+ *
+ * Section indentation is measured in `ch` on the line box, so every font
+ * change inside indented content is applied to a mark, never to a line.
+ * Heading lines keep the body size for the same reason; the headline text
+ * mark carries the heading typography, as Markdown's heading spans do.
+ */
+.cm-editor[data-nv3-language="org"] .cm-content {
+  box-sizing: border-box;
+  padding-top: 12px;
+  padding-left: 4em;
+  padding-right: 0;
+  max-width: 100%;
+}
+
+/* Keep org-indent-mode geometry on the CM line box. Inline spacer widgets only
+   moved the first visual row, so wrapped rows and CM's vertical cursor model
+   disagreed about the line's horizontal position. */
+.cm-editor .cm-line.om-section-indent-line {
+  padding-left: calc(2px + var(--om-section-indent, 0ch));
+}
+
+/* The list body's source prefix determines the hanging inset. The prefix is
+   pulled into that inset while all text remains in normal inline flow,
+   mirroring the stable Markdown list implementation. Indent, marker and
+   spacing share one box and a checklist token gets another, each exactly
+   its source columns wide in `ch`, so the first row's text starts on the
+   same column as wrapped rows in any face, proportional or monospace. */
+.cm-editor .cm-line.om-list-line {
+  padding-left: calc(
+    2px + var(--om-section-indent, 0ch) + var(--om-list-prefix-width, 2ch)
+  );
+}
+
+.cm-editor .om-list-marker {
+  display: inline-block;
+  width: var(--om-list-box, auto);
+  margin-left: calc(0px - var(--om-list-prefix-width, 2ch));
+  white-space: pre;
+  text-align: right;
+  color: var(--nv3-org-list-marker-color);
+}
+
+.cm-editor .om-list-marker-ordered {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Star prefix: pulled left into the gutter, nearly invisible, fully visible
+   on hover; click folds the subtree. It sits inside the headline mark, so its
+   `ch` box scales with the heading it belongs to. */
+.cm-editor .om-stars {
+  display: inline-block;
+  width: calc(var(--om-stars-cols, 0) * 1ch);
+  margin-left: calc(-1 * var(--om-stars-cols, 0) * 1ch);
+  white-space: pre;
+  text-align: right;
+  font-style: normal;
+  opacity: 0.1;
+  cursor: pointer;
+  transition: opacity 120ms ease;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.cm-editor .om-stars:hover {
+  opacity: 1;
+}
+.cm-editor .om-stars-l1 { --om-stars-cols: 2; }
+.cm-editor .om-stars-l2 { --om-stars-cols: 3; }
+.cm-editor .om-stars-l3 { --om-stars-cols: 4; }
+.cm-editor .om-stars-l4 { --om-stars-cols: 5; }
+.cm-editor .om-stars-l5 { --om-stars-cols: 6; }
+.cm-editor .om-stars-l6 { --om-stars-cols: 7; }
+
+/* `#+title:` is the document's H1. */
+.cm-editor .cm-line.om-title {
+  padding-bottom: 0.15em;
+}
+.cm-editor .om-title-key {
+  font-family: var(--nv3-org-keyword-font-family);
+  font-size: 0.75em;
+  letter-spacing: 0.04em;
+  color: var(--nv3-org-keyword-color);
+}
+.cm-editor .om-title-text {
+  font-family: var(--nv3-md-h1-font-family);
+  font-size: var(--nv3-md-h1-font-size);
+  font-weight: var(--nv3-md-h1-font-weight);
+  font-style: var(--nv3-md-h1-font-style);
+  font-feature-settings: var(--nv3-md-h1-font-feature-settings);
+  line-height: var(--nv3-md-h1-line-height);
+  letter-spacing: var(--nv3-md-h1-letter-spacing);
+  text-transform: var(--nv3-md-h1-text-transform);
+  color: var(--nv3-md-h1-color);
+}
+
+/* Headline lines own spacing; headline text marks own typography. */
+.cm-editor .cm-line.om-h1 {
+  padding-top: var(--nv3-org-h1-spacing);
+  border-top: var(--nv3-org-h1-rule);
+}
+.cm-editor .cm-line.om-h2 {
+  padding-top: var(--nv3-org-h2-spacing);
+}
+.cm-editor .cm-line.om-h3 {
+  padding-top: var(--nv3-org-h3-spacing);
+}
+
+/* The first heading in the file needs no rule above it. */
+.cm-editor .cm-line.om-h1:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.cm-editor .om-hl1 {
+  font-family: var(--nv3-md-h2-font-family);
+  font-size: var(--nv3-md-h2-font-size);
+  font-weight: var(--nv3-md-h2-font-weight);
+  font-style: var(--nv3-md-h2-font-style);
+  font-feature-settings: var(--nv3-md-h2-font-feature-settings);
+  line-height: var(--nv3-md-h2-line-height);
+  letter-spacing: var(--nv3-md-h2-letter-spacing);
+  text-transform: var(--nv3-md-h2-text-transform);
+  color: var(--nv3-org-h1-color);
+}
+.cm-editor .om-hl2 {
+  font-family: var(--nv3-md-h3-font-family);
+  font-size: var(--nv3-md-h3-font-size);
+  font-weight: var(--nv3-md-h3-font-weight);
+  font-style: var(--nv3-md-h3-font-style);
+  font-feature-settings: var(--nv3-md-h3-font-feature-settings);
+  line-height: var(--nv3-md-h3-line-height);
+  letter-spacing: var(--nv3-md-h3-letter-spacing);
+  text-transform: var(--nv3-md-h3-text-transform);
+  color: var(--nv3-org-h2-color);
+}
+.cm-editor .om-hl3 {
+  font-family: var(--nv3-md-h4-font-family);
+  font-size: var(--nv3-md-h4-font-size);
+  font-weight: var(--nv3-md-h4-font-weight);
+  font-style: var(--nv3-md-h4-font-style);
+  font-feature-settings: var(--nv3-md-h4-font-feature-settings);
+  line-height: var(--nv3-md-h4-line-height);
+  letter-spacing: var(--nv3-md-h4-letter-spacing);
+  text-transform: var(--nv3-md-h4-text-transform);
+  color: var(--nv3-org-h3-color);
+}
+.cm-editor .om-hl4 {
+  font-family: var(--nv3-md-h5-font-family);
+  font-size: var(--nv3-md-h5-font-size);
+  font-weight: var(--nv3-md-h5-font-weight);
+  font-style: var(--nv3-md-h5-font-style);
+  font-feature-settings: var(--nv3-md-h5-font-feature-settings);
+  line-height: var(--nv3-md-h5-line-height);
+  letter-spacing: var(--nv3-md-h5-letter-spacing);
+  text-transform: var(--nv3-md-h5-text-transform);
+  color: var(--nv3-org-h4-color);
+}
+.cm-editor .om-hl5,
+.cm-editor .om-hl6 {
+  font-family: var(--nv3-md-h6-font-family);
+  font-size: var(--nv3-md-h6-font-size);
+  font-weight: var(--nv3-md-h6-font-weight);
+  font-style: var(--nv3-md-h6-font-style);
+  font-feature-settings: var(--nv3-md-h6-font-feature-settings);
+  line-height: var(--nv3-md-h6-line-height);
+  letter-spacing: var(--nv3-md-h6-letter-spacing);
+  text-transform: var(--nv3-md-h6-text-transform);
+  color: var(--nv3-org-h5-color);
+}
+.cm-editor .om-hl6 {
+  color: var(--nv3-org-h6-color);
+}
+
+/* Closed headlines recede as a whole; the keyword keeps its own colour. */
+.cm-editor .cm-line.om-heading-done .om-heading-text {
+  color: var(--nv3-org-done-color);
+}
+
+/* Labels keep their own face, independent of headline typography. */
+.cm-editor .om-todo,
+.cm-editor .om-done,
+.cm-editor .om-tags,
+.cm-editor .om-cookie {
+  font-family: var(--nv3-org-keyword-font-family);
+  font-style: normal;
+  font-feature-settings: normal;
+  text-transform: none;
+}
+.cm-editor .om-todo,
+.cm-editor .om-done {
+  font-size: calc(var(--nv3-body-font-size) * var(--nv3-org-todo-scale));
+  font-weight: var(--nv3-org-todo-font-weight);
+  letter-spacing: var(--nv3-org-todo-letter-spacing);
+  cursor: pointer;
+}
+.cm-editor .om-todo {
+  color: var(--nv3-org-todo-color);
+}
+.cm-editor .om-kw-doing,
+.cm-editor .om-kw-next,
+.cm-editor .om-kw-started,
+.cm-editor .om-kw-wait,
+.cm-editor .om-kw-waiting {
+  color: var(--nv3-org-doing-color);
+}
+.cm-editor .om-done {
+  color: var(--nv3-org-done-keyword-color);
+}
+.cm-editor .om-tags {
+  font-size: calc(var(--nv3-body-font-size) * var(--nv3-org-tag-scale));
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--nv3-org-tag-color);
+}
+.cm-editor .om-cookie {
+  font-size: calc(var(--nv3-body-font-size) * 0.75);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--nv3-color-text-subtle);
+}
+
+.om-todo-popover {
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  font-family: var(--nv3-org-keyword-font-family);
+  font-size: var(--nv3-document-scale);
+  line-height: 1.4;
+  background: var(--nv3-color-bg, #fff);
+  border: 1px solid var(--nv3-color-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+.om-todo-popover button {
+  border: none;
+  background: none;
+  font: inherit;
+  text-align: left;
+  padding: 4px 10px;
+  border-radius: 5px;
+  color: var(--nv3-color-text);
+}
+.om-todo-popover button:hover {
+  background: var(--nv3-color-surface-hover);
+}
+.om-todo-popover .om-todo-current {
+  font-weight: 600;
+  background: var(--nv3-color-surface);
+}
+
+/* Planning lines are metadata, not content: one quiet colour, no box. */
+.cm-editor .om-planning {
+  color: var(--nv3-org-planning-color);
+}
+.cm-editor .om-planning-keyword {
+  font-family: var(--nv3-org-keyword-font-family);
+  font-size: var(--nv3-body-font-size);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: var(--nv3-org-planning-keyword-color);
+}
+.cm-editor .om-planning-deadline,
+.cm-editor .om-timestamp-deadline {
+  color: var(--nv3-org-deadline-color);
+}
+.cm-editor .om-planning-closed,
+.cm-editor .om-timestamp-closed {
+  color: var(--nv3-org-done-color);
+}
+.cm-editor .om-keyword {
+  color: var(--nv3-org-keyword-color);
+}
+.cm-editor .om-timestamp {
+  color: var(--nv3-org-timestamp-color);
+  font-variant-numeric: tabular-nums;
+}
+
+.cm-editor .om-link {
+  color: var(--nv3-org-link-color);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.cm-editor .om-comment {
+  color: var(--nv3-color-text-subtle);
+}
+
+.cm-editor .om-properties-boundary {
+  color: var(--nv3-color-text-subtle);
+}
+.cm-editor .om-property-line {
+  color: var(--nv3-color-text-muted);
+}
+.cm-editor .om-property-key {
+  font-family: var(--nv3-org-keyword-font-family);
+  font-size: 0.85em;
+  letter-spacing: 0.02em;
+  color: var(--nv3-org-property-key-color);
+}
+.cm-editor .om-property-value {
+  color: var(--nv3-color-text);
+}
+
+.cm-editor .om-description-term {
+  font-weight: 600;
+}
+
+/* Source blocks are never section-indented, so their lines can change face
+   and size like Markdown code fences. */
+.cm-editor .cm-line.om-src-delimiter,
+.cm-editor .cm-line.om-src-body {
+  font-family: var(--nv3-md-code-block-font-family);
+  font-size: var(--nv3-md-code-block-font-size);
+  font-size-adjust: var(--nv3-font-size-adjust);
+  line-height: var(--nv3-md-code-block-line-height);
+  background: var(--nv3-md-code-block-bg);
+}
+.cm-editor .om-src-delimiter {
+  color: var(--nv3-color-text-subtle);
+}
+.cm-editor .om-src-body {
+  color: var(--nv3-md-code-block-color);
+}
+
+.cm-editor .om-bold { font-weight: 700; }
+.cm-editor .om-italic { font-style: italic; }
+.cm-editor .om-underline { text-decoration: underline; }
+.cm-editor .om-strike {
+  text-decoration: line-through;
+  color: var(--nv3-color-text-subtle);
+}
+.cm-editor .om-code {
+  font-family: var(--nv3-md-inline-code-font-family) !important;
+  font-size: var(--nv3-md-inline-code-font-size);
+  font-size-adjust: var(--nv3-font-size-adjust);
+  color: var(--nv3-md-inline-code-color);
+  background: var(--nv3-md-inline-code-bg);
+  border-radius: var(--nv3-md-inline-code-radius);
+  padding: var(--nv3-md-inline-code-padding);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.cm-editor .om-dim {
+  color: var(--nv3-color-text-subtle);
+}
+
+.cm-editor .om-checkbox {
+  font-family: monospace;
+  display: inline-block;
+  width: var(--om-list-box, auto);
+  white-space: pre;
+  color: var(--nv3-org-checkbox-color);
+  font-weight: 600;
+  cursor: pointer;
+}
+.cm-editor .om-checked {
+  color: var(--nv3-org-checkbox-checked-color);
+  font-weight: 400;
+}
+
+/* Mermaid previews keep the fenced source in CodeMirror's normal text flow. */
+.nv3-mermaid-preview {
+  padding: 12px 0 16px;
+  min-height: 40px;
+}
+.nv3-mermaid-diagram {
+  --pele-bg: var(--nv3-color-bg);
+  --pele-fg: var(--nv3-color-text);
+  --pele-muted: var(--nv3-color-text-muted);
+  --pele-line: var(--nv3-color-text);
+  --pele-surface: var(--nv3-color-surface);
+  --pele-surface-alt: var(--nv3-color-surface-active);
+  --pele-border: var(--nv3-color-border-strong);
+  --pele-accent: var(--nv3-color-accent);
+  --pele-error: var(--nv3-color-red);
+  --pele-font: var(--nv3-font-sans);
+  --pele-font-mono: var(--nv3-font-mono);
+  overflow-x: auto;
+}
+.nv3-mermaid-diagram svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+}
+.nv3-mermaid-status {
+  font-size: 0.85em;
+  opacity: 0.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 6em;
+  overflow-y: auto;
+}
+.nv3-mermaid-status:empty {
+  display: none;
+}
+
+/* Calc discovery uses CodeMirror's native completion, tooltip, and panel surfaces. */
+.nv3-calc-help {
+  padding: 10px 12px;
+  max-width: min(420px, 80vw);
+  box-sizing: border-box;
+  color: var(--nv3-color-text);
+  background: var(--nv3-color-surface);
+  font-family: var(--nv3-font-sans);
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: normal;
+}
+.nv3-calc-help p { margin: 6px 0; text-wrap: pretty; }
+.nv3-calc-help pre,
+.nv3-calc-signature,
+.nv3-calc-reference-signature {
+  font-family: var(--nv3-font-mono);
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.nv3-calc-help pre { margin: 8px 0 0; color: var(--nv3-color-text-muted); }
+.nv3-calc-signature strong { color: var(--nv3-color-accent); text-decoration: underline; text-underline-offset: 3px; }
+.nv3-calc-explore-button {
+  position: relative;
+  margin-inline-start: 18px;
+  padding: 2px 6px;
+  color: var(--nv3-color-text-muted);
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  font: 12px/1.5 var(--nv3-font-sans);
+  cursor: pointer;
+  vertical-align: baseline;
+}
+.nv3-calc-explore-button::before { content: ""; position: absolute; inset: -9px -3px; }
+.nv3-calc-explore-button:hover { color: var(--nv3-color-accent); background: var(--nv3-color-surface-hover); }
+.nv3-calc-explorer {
+  color: var(--nv3-color-text);
+  background: var(--nv3-color-surface);
+  font: 13px/1.5 var(--nv3-font-sans);
+  max-height: min(48vh, 440px);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 -1px 0 var(--nv3-color-border);
+}
+.nv3-calc-explorer-header { display: flex; align-items: center; gap: 12px; padding: 8px 12px; }
+.nv3-calc-explorer-header strong { white-space: nowrap; }
+.nv3-calc-explorer input,
+.nv3-calc-explorer select,
+.nv3-calc-explorer button {
+  box-sizing: border-box;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  min-height: 40px;
+}
+.nv3-calc-explorer input { flex: 1; min-width: 80px; padding: 6px 10px; background: var(--nv3-color-bg); box-shadow: 0 0 0 1px var(--nv3-color-border); }
+.nv3-calc-explorer select { padding-inline: 8px; max-width: 150px; }
+.nv3-calc-explorer button { cursor: pointer; padding: 6px 10px; }
+.nv3-calc-explorer-header > button { min-width: 40px; font-size: 20px; }
+.nv3-calc-explorer button:hover { background: var(--nv3-color-surface-hover); }
+.nv3-calc-explorer button:disabled { opacity: 0.45; cursor: default; }
+.nv3-calc-explorer button:focus-visible,
+.nv3-calc-explorer input:focus-visible,
+.nv3-calc-explorer select:focus-visible,
+.nv3-calc-explore-button:focus-visible { outline: 2px solid var(--nv3-color-accent); outline-offset: 1px; }
+.nv3-calc-explorer-body { min-height: 0; display: grid; grid-template-columns: minmax(160px, 32%) minmax(0, 1fr); overflow: hidden; flex: 1; }
+.nv3-calc-explorer-list { overflow-y: auto; padding: 4px 8px; border-inline-end: 1px solid var(--nv3-color-border); }
+.nv3-calc-explorer-list button { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; text-align: start; width: 100%; }
+.nv3-calc-explorer-list button span { overflow-wrap: anywhere; font-family: var(--nv3-font-mono); font-size: 12px; }
+.nv3-calc-explorer-list small { color: var(--nv3-color-text-muted); font-size: 12px; }
+.nv3-calc-explorer-list [aria-selected="true"] { background: var(--nv3-color-surface-active); color: var(--nv3-color-accent); }
+.nv3-calc-explorer-details { padding: 10px 18px 14px; overflow-y: auto; }
+.nv3-calc-explorer-details h3 { font: 600 15px/1.3 var(--nv3-font-sans); margin: 0 0 8px; }
+.nv3-calc-explorer-details p { max-width: 65ch; margin: 8px 0; text-wrap: pretty; }
+.nv3-calc-reference-signature { display: block; margin-block: 4px; }
+.nv3-calc-explorer-details pre { padding: 8px 10px; background: var(--nv3-color-bg); border-radius: 4px; font: 12px/1.5 var(--nv3-font-mono); white-space: pre-wrap; overflow-wrap: anywhere; margin-block: 12px 4px; }
+.nv3-calc-reference-result { color: var(--nv3-color-text-muted); font-family: var(--nv3-font-mono); white-space: pre-wrap; overflow-wrap: anywhere; }
+.nv3-calc-reference-aliases,
+.nv3-calc-explorer-footer { color: var(--nv3-color-text-muted); font-size: 12px; }
+.nv3-calc-explorer-footer { padding: 6px 12px; font-variant-numeric: tabular-nums; }
+@media (max-width: 600px) {
+  .nv3-calc-explorer-header { flex-wrap: wrap; gap: 6px; }
+  .nv3-calc-explorer-header input { order: 1; flex-basis: 100%; font-size: 16px; }
+  .nv3-calc-explorer-body { grid-template-columns: minmax(120px, 40%) minmax(0, 1fr); }
+  .nv3-calc-explorer-list small { display: none; }
+}

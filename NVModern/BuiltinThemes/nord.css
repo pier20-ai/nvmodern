@@ -1,0 +1,329 @@
+/*
+ * Nord — an arctic, north-bluish page.
+ *
+ * Polar Night by night and Snow Storm by day, with the four Frost blues for
+ * structure and Aurora for state. The title is set light in Manrope, large
+ * and quiet, over a thin band of northern lights: Aurora green running
+ * through the Frost blues into Aurora purple, with a soft glow beneath it.
+ * Section heads are Frost, kickers are tracked capitals, and Instrument Sans
+ * and Iosevka keep text and code narrow and cool. In Snow Storm the Frost
+ * and Aurora inks are deepened so they hold up on the light page.
+ *
+ * Built into nvModern; a file with the same id in the user themes directory
+ * overrides this one.
+ */
+
+:root {
+  --nv3-theme-name: Nord;
+  --nv3-theme-subtitle: Polar Night, Frost and Aurora;
+  --nv3-theme-swatch: #2e3440;
+  --nv3-theme-swatch-2: #88c0d0;
+  --nv3-theme-swatch-3: #a3be8c;
+
+  --nv3-font-sans: "Instrument Sans", "Inter", -apple-system, "Helvetica Neue", sans-serif;
+  --nv3-font-display: "Manrope Variable", "Manrope", "Instrument Sans", -apple-system, sans-serif;
+  --nv3-font-label: var(--nv3-font-display);
+  --nv3-font-mono: "Iosevka", "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+  --nv3-font-size-adjust: 0.51;
+  --nv3-content-font-size: 1.03em;
+  --nv3-content-line-height: 1.68;
+  --nv3-radius: 6px;
+
+  --nv3-md-h1-font-size: 2.45em;
+  --nv3-md-h1-font-weight: 300;
+  --nv3-md-h1-line-height: 1.1;
+  --nv3-md-h1-letter-spacing: -0.025em;
+  --nv3-md-h2-font-size: 1.5em;
+  --nv3-md-h2-font-weight: 600;
+  --nv3-md-h2-line-height: 1.22;
+  --nv3-md-h2-letter-spacing: -0.012em;
+  --nv3-md-h3-font-family: var(--nv3-font-label);
+  --nv3-md-h3-font-size: 0.8em;
+  --nv3-md-h3-font-weight: 700;
+  --nv3-md-h3-letter-spacing: 0.14em;
+  --nv3-md-h3-text-transform: uppercase;
+  --nv3-md-h4-font-size: 1.08em;
+  --nv3-md-h4-font-weight: 600;
+  --nv3-md-h5-font-weight: 600;
+  --nv3-md-h6-font-weight: 500;
+
+  --nv3-md-inline-code-font-size: 1em;
+  --nv3-md-inline-code-heading-font-size: 0.92em;
+  --nv3-md-inline-code-padding: 0.08em 0.34em;
+  --nv3-md-inline-code-radius: 4px;
+  --nv3-md-code-block-font-size: 0.95em;
+  --nv3-md-code-block-line-height: 1.6;
+
+  --nv3-md-blockquote-border-width: 2px;
+  --nv3-md-callout-border-width: 2px;
+  --nv3-md-callout-title-font-family: var(--nv3-font-label);
+  --nv3-md-callout-title-font-weight: 700;
+  --nv3-md-callout-title-font-size: 0.74em;
+  --nv3-md-callout-title-letter-spacing: 0.14em;
+  --nv3-md-callout-title-text-transform: uppercase;
+  --nv3-md-horizontal-rule-width: 62%;
+  --nv3-md-horizontal-rule-padding-block: 0.9em;
+  --nv3-md-horizontal-rule-border: 0 solid transparent;
+  --nv3-md-horizontal-rule-active-border: 0 solid transparent;
+
+  --nv3-table-header-font-family: var(--nv3-font-label);
+  --nv3-table-header-font-scale: 0.78;
+  --nv3-table-header-font-weight: 700;
+  --nv3-table-header-letter-spacing: 0.12em;
+  --nv3-table-header-text-transform: uppercase;
+  --nv3-task-checkbox-radius: 3px;
+  --nv3-link-underline-thickness: 1px;
+
+  --nv3-org-todo-scale: 0.74;
+  --nv3-org-todo-font-weight: 700;
+  --nv3-org-todo-letter-spacing: 0.12em;
+  --nv3-org-tag-scale: 0.74;
+  --nv3-org-h1-spacing: 1.1em;
+  --nv3-org-h2-spacing: 0.55em;
+}
+
+/* Snow Storm */
+[data-theme="light"] {
+  --nord-frost-1: #3f8584;
+  --nord-frost-2: #3b7f94;
+  --nord-frost-3: #4f72a0;
+  --nord-frost-4: #5e81ac;
+  --nord-red: #bf616a;
+  --nord-orange: #b5643f;
+  --nord-yellow: #9a7424;
+  --nord-green: #61834a;
+  --nord-purple: #8e6488;
+  --nord-glow: 0.45;
+
+  --nv3-color-bg: #eceff4;
+  --nv3-color-surface: #e5e9f0;
+  --nv3-color-surface-hover: #d8dee9;
+  --nv3-color-surface-active: #cdd3de;
+  --nv3-color-code-inline-bg: #e1e6ee;
+  --nv3-color-code-block-bg: #e5e9f0;
+  --nv3-color-text: #2e3440;
+  --nv3-color-text-muted: #4c566a;
+  --nv3-color-text-subtle: #7b88a1;
+  --nv3-color-border: #d8dee9;
+  --nv3-color-border-strong: #b8c1d1;
+  --nv3-color-accent: #5e81ac;
+  --nv3-selection-bg: rgba(94, 129, 172, 0.2);
+  --nv3-caret-color: #5e81ac;
+  --nv3-color-highlight-yellow: #ebcb8b;
+
+  --nv3-md-h1-color: #2e3440;
+  --nv3-md-highlight-bg: color-mix(in srgb, #ebcb8b 55%, transparent);
+
+  --nv3-tag-heading-s: 38%;
+  --nv3-tag-heading-l: 42%;
+  --nv3-tag-heading-border-s: 40%;
+  --nv3-tag-heading-border-l: 56%;
+}
+
+/* Polar Night */
+[data-theme="dark"] {
+  --nord-frost-1: #8fbcbb;
+  --nord-frost-2: #88c0d0;
+  --nord-frost-3: #81a1c1;
+  --nord-frost-4: #5e81ac;
+  --nord-red: #bf616a;
+  --nord-orange: #d08770;
+  --nord-yellow: #ebcb8b;
+  --nord-green: #a3be8c;
+  --nord-purple: #b48ead;
+  --nord-glow: 0.75;
+
+  --nv3-color-bg: #2e3440;
+  --nv3-color-surface: #3b4252;
+  --nv3-color-surface-hover: #434c5e;
+  --nv3-color-surface-active: #4c566a;
+  --nv3-color-code-inline-bg: #3b4252;
+  --nv3-color-code-block-bg: #292e39;
+  --nv3-color-text: #d8dee9;
+  --nv3-color-text-muted: #a3adbf;
+  --nv3-color-text-subtle: #616e88;
+  --nv3-color-border: #3b4252;
+  --nv3-color-border-strong: #4c566a;
+  --nv3-color-accent: #88c0d0;
+  --nv3-selection-bg: rgba(129, 161, 193, 0.3);
+  --nv3-caret-color: #88c0d0;
+  --nv3-color-highlight-yellow: #ebcb8b;
+
+  --nv3-md-h1-color: #eceff4;
+  --nv3-md-highlight-bg: color-mix(in srgb, #ebcb8b 16%, transparent);
+  --nv3-md-highlight-color: #ebcb8b;
+
+  --nv3-tag-heading-s: 40%;
+  --nv3-tag-heading-l: 72%;
+  --nv3-tag-heading-border-s: 42%;
+  --nv3-tag-heading-border-l: 64%;
+}
+
+/* Palette roles shared by both appearances. */
+[data-theme="light"],
+[data-theme="dark"] {
+  --nv3-color-red: var(--nord-red);
+  --nv3-color-orange: var(--nord-orange);
+  --nv3-color-yellow: var(--nord-yellow);
+  --nv3-color-green: var(--nord-green);
+  --nv3-color-teal: var(--nord-frost-1);
+  --nv3-color-blue: var(--nord-frost-3);
+  --nv3-color-purple: var(--nord-purple);
+  --nv3-color-pink: var(--nord-purple);
+
+  /* Syntax follows the official Nord editor ports. */
+  --nv3-syntax-keyword: var(--nord-frost-3);
+  --nv3-syntax-string: var(--nord-green);
+  --nv3-syntax-number: var(--nord-purple);
+  --nv3-syntax-atom: var(--nord-frost-3);
+  --nv3-syntax-function: var(--nord-frost-2);
+  --nv3-syntax-type: var(--nord-frost-1);
+  --nv3-syntax-variable: var(--nv3-color-text);
+  --nv3-syntax-property: var(--nv3-color-text);
+  --nv3-syntax-namespace: var(--nord-frost-1);
+  --nv3-syntax-definition: var(--nord-frost-2);
+  --nv3-syntax-operator: var(--nord-frost-3);
+  --nv3-syntax-punctuation: var(--nv3-color-text-muted);
+  --nv3-syntax-regexp: var(--nord-yellow);
+  --nv3-syntax-escape: var(--nord-yellow);
+  --nv3-syntax-doc-comment: var(--nv3-color-text-subtle);
+  --nv3-syntax-invalid: var(--nord-red);
+  --nv3-syntax-inserted: var(--nord-green);
+  --nv3-syntax-deleted: var(--nord-red);
+
+  --nv3-md-h2-color: var(--nord-frost-2);
+  --nv3-md-h3-color: var(--nord-frost-3);
+  --nv3-md-h4-color: var(--nord-frost-1);
+  --nv3-md-h6-color: var(--nv3-color-text-muted);
+
+  --nv3-md-inline-code-color: var(--nord-frost-2);
+  --nv3-md-inline-code-bg: var(--nv3-color-code-inline-bg);
+  --nv3-md-code-block-bg: var(--nv3-color-code-block-bg);
+  --nv3-md-blockquote-color: var(--nv3-color-text);
+  --nv3-md-blockquote-bg: color-mix(in srgb, var(--nord-frost-2) 7%, transparent);
+  --nv3-md-blockquote-border-color: var(--nord-frost-2);
+  --nv3-md-callout-color-note: var(--nord-frost-2);
+  --nv3-md-callout-color-tip: var(--nord-green);
+  --nv3-md-callout-color-warning: var(--nord-yellow);
+  --nv3-md-callout-color-danger: var(--nord-red);
+  --nv3-md-callout-color-example: var(--nord-purple);
+  --nv3-md-callout-color-quote: var(--nv3-color-text-subtle);
+  --nv3-md-callout-color-question: var(--nord-frost-3);
+  --nv3-md-horizontal-rule-source-color: var(--nv3-color-text-subtle);
+  --nv3-link-color: var(--nv3-color-text);
+  --nv3-link-hover-color: var(--nord-frost-2);
+  --nv3-wikilink-underline: color-mix(in srgb, var(--nord-frost-2) 55%, transparent);
+
+  --nv3-table-header-color: var(--nord-frost-3);
+  --nv3-table-header-border: 1px solid var(--nv3-color-border-strong);
+  --nv3-table-row-border: 1px solid var(--nv3-color-border);
+  --nv3-task-checkbox-border: var(--nv3-color-text-subtle);
+  --nv3-task-checkbox-checked: var(--nord-frost-2);
+  --nv3-task-checkbox-tick: var(--nv3-color-bg);
+
+  --nv3-org-todo-color: var(--nord-orange);
+  --nv3-org-doing-color: var(--nord-frost-2);
+  --nv3-org-done-color: var(--nv3-color-text-subtle);
+  --nv3-org-done-keyword-color: var(--nord-green);
+  --nv3-org-planning-color: var(--nv3-color-text-muted);
+  --nv3-org-planning-keyword-color: var(--nv3-color-text-subtle);
+  --nv3-org-deadline-color: var(--nord-red);
+  --nv3-org-timestamp-color: var(--nord-frost-1);
+  --nv3-org-keyword-color: var(--nv3-color-text-subtle);
+  --nv3-org-checkbox-color: var(--nv3-color-text-muted);
+  --nv3-org-checkbox-checked-color: var(--nord-green);
+  --nv3-org-list-marker-color: var(--nord-frost-3);
+  --nv3-org-link-color: var(--nord-frost-2);
+  --nv3-org-tag-color: var(--nord-frost-3);
+  --nv3-org-property-key-color: var(--nord-frost-3);
+}
+
+/* The title rests on a band of northern lights: a hairline running from
+   Aurora green through the Frost blues into Aurora purple, fading out to the
+   right, with a blurred copy beneath it for the glow. */
+.cm-editor .cm-line.nv3-heading-line-level-1,
+.cm-editor .cm-line.om-title {
+  position: relative;
+  isolation: isolate;
+  padding-top: 0.5em;
+  padding-bottom: 0.85em;
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-1::before,
+.cm-editor .cm-line.nv3-heading-line-level-1::after,
+.cm-editor .cm-line.om-title::before,
+.cm-editor .cm-line.om-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.4em;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg,
+    var(--nord-green) 0%, var(--nord-frost-1) 18%, var(--nord-frost-2) 36%,
+    var(--nord-frost-3) 56%, var(--nord-purple) 78%, transparent 100%);
+  pointer-events: none;
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-1::before,
+.cm-editor .cm-line.om-title::before {
+  z-index: -1;
+  bottom: 0.1em;
+  height: 0.8em;
+  filter: blur(12px);
+  opacity: var(--nord-glow);
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-2 {
+  padding-top: 0.7em;
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-3 {
+  padding-top: 0.6em;
+}
+
+/* Code blocks are one rounded card: only the fences round their corners. */
+.cm-editor .cm-line.nv3-code-fence-start {
+  border-radius: 6px 6px 0 0;
+}
+
+.cm-editor .cm-line.nv3-code-fence-end {
+  border-radius: 0 0 6px 6px;
+}
+
+/* Rules are a frost hairline that fades at both ends. */
+.cm-editor .cm-line.nv3-horizontal-rule-line::after {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--nord-frost-2) 30%, var(--nord-frost-3) 70%, transparent);
+}
+
+/* Org keywords and tags are tracked capitals, coloured but unframed. */
+.cm-editor .om-tags {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.cm-editor .om-timestamp,
+.cm-editor .cm-line.om-planning {
+  font-variant-numeric: tabular-nums;
+}
+
+.cm-editor .nv3-tag-heading {
+  color: inherit;
+}
+
+.cm-editor .om-tags .nv3-tag-heading {
+  border-bottom: 0;
+}
+
+/* Org's second level is mostly tasks, so it reads as a Frost subhead rather
+   than a tracked kicker. */
+.cm-editor .om-hl2 {
+  font-family: var(--nv3-font-display);
+  font-size: 1.15em;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  color: var(--nord-frost-3);
+}

@@ -1,0 +1,265 @@
+/*
+ * Kunsthalle — Swiss exhibition-poster typography.
+ *
+ * Switzer at heavy weights with tight tracking, thick rules over headings,
+ * black ink and a single signal orange. Org keywords become solid labels and
+ * dates line up in tabular figures, so a page of tasks scans fast. For
+ * agendas, meeting notes and specs.
+ *
+ * Built into nvModern; a file with the same id in the user themes directory
+ * overrides this one.
+ */
+
+:root {
+  --nv3-theme-name: Kunsthalle;
+  --nv3-theme-subtitle: Swiss poster grotesk with signal orange;
+  --nv3-theme-swatch: #ffffff;
+  --nv3-theme-swatch-2: #0a0a0a;
+  --nv3-theme-swatch-3: #ff4b00;
+
+  --nv3-font-sans: "Switzer Variable", "Switzer", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --nv3-font-display: "Switzer Variable", "Switzer", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --nv3-font-label: var(--nv3-font-sans);
+  --nv3-font-mono: "Geist Mono", "SF Mono", ui-monospace, monospace;
+  --nv3-font-size-adjust: 0.531;
+  --nv3-content-font-size: 1em;
+  --nv3-content-line-height: 1.55;
+
+  --nv3-md-h1-font-size: 2.9em;
+  --nv3-md-h1-font-weight: 800;
+  --nv3-md-h1-line-height: 1;
+  --nv3-md-h1-letter-spacing: -0.045em;
+  --nv3-md-h2-font-size: 1.6em;
+  --nv3-md-h2-font-weight: 750;
+  --nv3-md-h2-line-height: 1.1;
+  --nv3-md-h2-letter-spacing: -0.025em;
+  --nv3-md-h3-font-size: 1.08em;
+  --nv3-md-h3-font-weight: 700;
+  --nv3-md-h3-letter-spacing: -0.005em;
+  --nv3-md-h4-font-size: 0.8em;
+  --nv3-md-h4-font-weight: 700;
+  --nv3-md-h4-letter-spacing: 0.05em;
+  --nv3-md-h4-text-transform: uppercase;
+  --nv3-md-h5-font-weight: 700;
+  --nv3-md-h6-font-weight: 600;
+
+  --nv3-md-inline-code-font-size: 0.94em;
+  --nv3-md-inline-code-heading-font-size: 1em;
+  --nv3-md-inline-code-padding: 0.08em 0.3em;
+  --nv3-md-inline-code-radius: 0;
+  --nv3-md-code-block-font-size: 0.9em;
+
+  --nv3-md-blockquote-font-size: 1.18em;
+  --nv3-md-blockquote-line-height: 1.35;
+  --nv3-md-blockquote-border-width: 5px;
+  --nv3-md-callout-border-width: 0;
+  --nv3-md-callout-title-font-weight: 700;
+  --nv3-md-callout-title-font-size: 0.78em;
+  --nv3-md-callout-title-letter-spacing: 0.05em;
+  --nv3-md-callout-title-text-transform: uppercase;
+  --nv3-md-horizontal-rule-width: 100%;
+  --nv3-md-horizontal-rule-padding-block: 0.8em;
+
+  --nv3-table-header-font-scale: 0.82;
+  --nv3-table-header-font-weight: 700;
+  --nv3-table-header-letter-spacing: 0.05em;
+  --nv3-table-header-text-transform: uppercase;
+  --nv3-task-checkbox-radius: 0;
+  --nv3-link-underline-thickness: 0.09em;
+
+  --nv3-org-todo-scale: 1;
+  --nv3-org-todo-font-weight: 300;
+  --nv3-org-todo-letter-spacing: 0.05em;
+  --nv3-org-tag-scale: 0.72;
+  --nv3-org-h1-spacing: 0.6em;
+  --nv3-org-h2-spacing: 0.4em;
+}
+
+[data-theme="light"] {
+  --kh-signal: #ff4b00;
+  --kh-signal-text: #d63c00;
+
+  --nv3-color-bg: #ffffff;
+  --nv3-color-surface: #f1f1f1;
+  --nv3-color-surface-hover: #e6e6e6;
+  --nv3-color-surface-active: #dadada;
+  --nv3-color-code-inline-bg: #f1f1f1;
+  --nv3-color-code-block-bg: #f4f4f4;
+  --nv3-color-text: #0a0a0a;
+  --nv3-color-text-muted: #555555;
+  --nv3-color-text-subtle: #8e8e8e;
+  --nv3-color-border: #e0e0e0;
+  --nv3-color-border-strong: #0a0a0a;
+  --nv3-color-accent: #ff4b00;
+  --nv3-selection-bg: rgba(255, 75, 0, 0.22);
+  --nv3-caret-color: #ff4b00;
+  --nv3-color-highlight-yellow: #ffd2bd;
+
+  --nv3-color-red: #d63c00;
+  --nv3-color-orange: #d63c00;
+  --nv3-color-yellow: #0a0a0a;
+  --nv3-color-green: #0a0a0a;
+  --nv3-color-teal: #0a0a0a;
+  --nv3-color-blue: #0a0a0a;
+  --nv3-color-purple: #555555;
+  --nv3-color-pink: #d63c00;
+
+  --nv3-syntax-keyword: #0a0a0a;
+  --nv3-syntax-string: #555555;
+  --nv3-syntax-number: #d63c00;
+  --nv3-syntax-atom: #d63c00;
+  --nv3-syntax-function: #0a0a0a;
+  --nv3-syntax-type: #0a0a0a;
+  --nv3-syntax-variable: #0a0a0a;
+  --nv3-syntax-property: #0a0a0a;
+  --nv3-syntax-namespace: #0a0a0a;
+  --nv3-syntax-definition: #0a0a0a;
+  --nv3-syntax-operator: #555555;
+  --nv3-syntax-punctuation: #8e8e8e;
+  --nv3-syntax-regexp: #555555;
+  --nv3-syntax-escape: #d63c00;
+  --nv3-syntax-doc-comment: #8e8e8e;
+  --nv3-syntax-invalid: #d63c00;
+  --nv3-syntax-inserted: #0a0a0a;
+  --nv3-syntax-deleted: #d63c00;
+}
+
+[data-theme="dark"] {
+  --kh-signal: #ff5a1f;
+  --kh-signal-text: #ff7a45;
+
+  --nv3-color-bg: #0b0b0b;
+  --nv3-color-surface: #1b1b1b;
+  --nv3-color-surface-hover: #242424;
+  --nv3-color-surface-active: #2e2e2e;
+  --nv3-color-code-inline-bg: #1b1b1b;
+  --nv3-color-code-block-bg: #141414;
+  --nv3-color-text: #f4f4f4;
+  --nv3-color-text-muted: #a8a8a8;
+  --nv3-color-text-subtle: #707070;
+  --nv3-color-border: #2a2a2a;
+  --nv3-color-border-strong: #f4f4f4;
+  --nv3-color-accent: #ff5a1f;
+  --nv3-selection-bg: rgba(255, 90, 31, 0.32);
+  --nv3-caret-color: #ff5a1f;
+  --nv3-color-highlight-yellow: #7a2a0b;
+
+  --nv3-color-red: #ff7a45;
+  --nv3-color-orange: #ff7a45;
+  --nv3-color-yellow: #f4f4f4;
+  --nv3-color-green: #f4f4f4;
+  --nv3-color-teal: #f4f4f4;
+  --nv3-color-blue: #f4f4f4;
+  --nv3-color-purple: #a8a8a8;
+  --nv3-color-pink: #ff7a45;
+
+  --nv3-syntax-keyword: #f4f4f4;
+  --nv3-syntax-string: #a8a8a8;
+  --nv3-syntax-number: #ff7a45;
+  --nv3-syntax-atom: #ff7a45;
+  --nv3-syntax-function: #f4f4f4;
+  --nv3-syntax-type: #f4f4f4;
+  --nv3-syntax-variable: #f4f4f4;
+  --nv3-syntax-property: #f4f4f4;
+  --nv3-syntax-namespace: #f4f4f4;
+  --nv3-syntax-definition: #f4f4f4;
+  --nv3-syntax-operator: #a8a8a8;
+  --nv3-syntax-punctuation: #707070;
+  --nv3-syntax-regexp: #a8a8a8;
+  --nv3-syntax-escape: #ff7a45;
+  --nv3-syntax-doc-comment: #707070;
+  --nv3-syntax-invalid: #ff7a45;
+  --nv3-syntax-inserted: #f4f4f4;
+  --nv3-syntax-deleted: #ff7a45;
+}
+
+/* Palette roles shared by both appearances. */
+:root {
+  --nv3-md-h4-color: var(--nv3-color-text-muted);
+  --nv3-md-inline-code-color: var(--nv3-color-text);
+  --nv3-md-code-block-bg: var(--nv3-color-code-block-bg);
+  --nv3-md-blockquote-border-color: var(--kh-signal);
+  --nv3-md-callout-bg: var(--nv3-color-surface);
+  --nv3-md-callout-title-color: var(--nv3-color-text);
+  --nv3-md-callout-marker-color: var(--kh-signal-text);
+  --nv3-md-horizontal-rule-border: 2px solid var(--nv3-color-text);
+  --nv3-md-horizontal-rule-active-border: 2px solid var(--kh-signal);
+  --nv3-md-highlight-bg: color-mix(in srgb, var(--kh-signal) 22%, transparent);
+  --nv3-link-color: var(--nv3-color-text);
+  --nv3-link-hover-color: var(--kh-signal-text);
+  --nv3-wikilink-underline: var(--nv3-color-text);
+
+  --nv3-table-header-color: var(--nv3-color-text);
+  --nv3-table-header-border: 2px solid var(--nv3-color-text);
+  --nv3-table-row-border: 1px solid var(--nv3-color-border);
+  --nv3-task-checkbox-border: var(--nv3-color-text);
+  --nv3-task-checkbox-checked: var(--kh-signal);
+  --nv3-task-checkbox-tick: #0a0a0a;
+
+  --nv3-org-todo-color: var(--nv3-color-bg);
+  --nv3-org-doing-color: #0a0a0a;
+  --nv3-org-done-keyword-color: var(--nv3-color-text-subtle);
+  --nv3-org-deadline-color: var(--kh-signal-text);
+  --nv3-org-planning-keyword-color: var(--nv3-color-text-muted);
+  --nv3-org-tag-color: var(--nv3-color-text-subtle);
+  --nv3-org-checkbox-color: var(--nv3-color-text);
+  --nv3-org-list-marker-color: var(--nv3-color-text);
+  --nv3-org-h1-rule: 2px solid var(--nv3-color-text);
+}
+
+/* Posters hang their headings from heavy rules. */
+.cm-editor .cm-line.nv3-heading-line-level-1,
+.cm-editor .cm-line.om-title {
+  padding-top: 0.3em;
+  padding-bottom: 0.2em;
+  border-top: 6px solid var(--nv3-color-text);
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-2 {
+  padding-top: 0.45em;
+  border-top: 2px solid var(--nv3-color-text);
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-3 {
+  padding-top: 0.6em;
+}
+
+.cm-editor .om-timestamp,
+.cm-editor .cm-line.om-planning {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Org keywords are solid labels: black for open, signal for in progress. */
+.cm-editor .om-todo,
+.cm-editor .om-done {
+  display: inline-block;
+  padding: 0.2em 0.45em 0.14em;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.cm-editor .om-todo {
+  background: var(--nv3-color-text);
+}
+
+.cm-editor .om-kw-doing,
+.cm-editor .om-kw-next,
+.cm-editor .om-kw-started,
+.cm-editor .om-kw-wait,
+.cm-editor .om-kw-waiting {
+  background: var(--kh-signal);
+}
+
+.cm-editor .om-done {
+  text-decoration: line-through;
+}
+
+.cm-editor .om-tags {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.cm-editor .nv3-tag-heading {
+  color: inherit;
+  border-bottom: 0;
+}

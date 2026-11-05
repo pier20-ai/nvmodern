@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/arbor/**/*.ts",
+    "src/arbor/**/*.tsx",
+    "src/lib/arbor/**/*.ts",
+    "shell/ArborDevSurface.tsx",
+    "shell/arborKernel.ts",
+    "shell/server.ts"
+  ],
+  "exclude": ["**/*.test.ts"]
+}

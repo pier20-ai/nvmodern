@@ -1,0 +1,299 @@
+/*
+ * Riso — Renaissance type through a risograph.
+ *
+ * Michelangelus on uncoated stock, printed with two fluorescent spot inks:
+ * the title sits on a pink block with a halftone edge, section heads get a
+ * mint highlighter, and Org keywords become ink chips. In dark mode the
+ * stock turns black, as in the Michelangelus specimen.
+ *
+ * Built into nvModern; a file with the same id in the user themes directory
+ * overrides this one.
+ */
+
+:root {
+  --nv3-theme-name: Riso;
+  --nv3-theme-subtitle: Fluorescent pink and mint spot inks;
+  --nv3-theme-swatch: #f1f1ee;
+  --nv3-theme-swatch-2: #ff7fe5;
+  --nv3-theme-swatch-3: #86f2b0;
+
+  --riso-ink: #161616;
+
+  --nv3-font-sans: "Michelangelus", "Iowan Old Style", Palatino, Georgia, serif;
+  --nv3-font-display: "Michelangelus", "Iowan Old Style", Palatino, Georgia, serif;
+  --nv3-font-label: var(--nv3-font-sans);
+  --nv3-font-mono: "IBM Plex Mono", "SF Mono", ui-monospace, monospace;
+  --nv3-font-size-adjust: 0.45;
+  --nv3-content-font-size: 1.125em;
+  --nv3-content-line-height: 1.58;
+
+  --nv3-md-h1-font-size: 2.2em;
+  --nv3-md-h1-font-weight: 400;
+  --nv3-md-h1-line-height: 1.06;
+  --nv3-md-h1-letter-spacing: -0.01em;
+  --nv3-md-h1-font-feature-settings: "dlig", "kern";
+  --nv3-md-h1-color: var(--riso-ink);
+  --nv3-md-h2-font-size: 1.5em;
+  --nv3-md-h2-font-weight: 400;
+  --nv3-md-h2-line-height: 1.18;
+  --nv3-md-h2-font-style: italic;
+  --nv3-md-h2-font-feature-settings: "dlig", "init";
+  --nv3-md-h3-font-size: 1.15em;
+  --nv3-md-h3-font-weight: 700;
+  --nv3-md-h3-font-style: italic;
+  --nv3-md-h3-line-height: 1.3;
+  --nv3-md-h4-font-weight: 700;
+  --nv3-md-h5-font-weight: 400;
+  --nv3-md-h5-font-style: italic;
+  --nv3-md-h6-font-weight: 400;
+  --nv3-md-h6-font-style: italic;
+
+  --nv3-md-inline-code-font-size: 0.92em;
+  --nv3-md-inline-code-heading-font-size: 1em;
+  --nv3-md-inline-code-padding: 0.06em 0.28em;
+  --nv3-md-inline-code-radius: 0;
+  --nv3-md-code-block-font-size: 0.86em;
+  --nv3-md-code-block-border-width: 4px;
+
+  --nv3-md-blockquote-font-style: italic;
+  --nv3-md-blockquote-font-size: 1.06em;
+  --nv3-md-blockquote-border-width: 0;
+  --nv3-md-callout-border-width: 0;
+  --nv3-md-callout-title-font-weight: 700;
+  --nv3-md-callout-title-font-size: 0.78em;
+  --nv3-md-callout-title-letter-spacing: 0.12em;
+  --nv3-md-callout-title-text-transform: uppercase;
+  --nv3-md-horizontal-rule-width: 40%;
+  --nv3-md-horizontal-rule-padding-block: 0.7em;
+
+  --nv3-table-header-font-style: italic;
+  --nv3-table-header-font-weight: 700;
+  --nv3-task-checkbox-radius: 0;
+  --nv3-task-checkbox-tick: var(--riso-ink);
+  --nv3-link-underline-thickness: 0.16em;
+
+  --nv3-org-todo-scale: 1;
+  --nv3-org-todo-letter-spacing: 0.1em;
+  --nv3-org-tag-scale: 0.82;
+  --nv3-org-h1-spacing: 1.1em;
+  --nv3-org-h2-spacing: 0.5em;
+}
+
+[data-theme="light"] {
+  --riso-pink: #ff7fe5;
+  --riso-mint: #86f2b0;
+
+  --nv3-color-bg: #f1f1ee;
+  --nv3-color-surface: #e5e5e0;
+  --nv3-color-surface-hover: #dadad4;
+  --nv3-color-surface-active: #cfcfc8;
+  --nv3-color-code-inline-bg: color-mix(in srgb, #86f2b0 55%, transparent);
+  --nv3-color-code-block-bg: #e7e7e2;
+  --nv3-color-text: #161616;
+  --nv3-color-text-muted: #4a4a47;
+  --nv3-color-text-subtle: #8a8a85;
+  --nv3-color-border: #d6d6d0;
+  --nv3-color-border-strong: #161616;
+  --nv3-color-accent: #d6249f;
+  --nv3-selection-bg: rgba(134, 242, 176, 0.7);
+  --nv3-caret-color: #d6249f;
+  --nv3-color-highlight-yellow: #ff7fe5;
+
+  --nv3-color-red: #e8364f;
+  --nv3-color-orange: #f26a2e;
+  --nv3-color-yellow: #c99a00;
+  --nv3-color-green: #00a95c;
+  --nv3-color-teal: #00a3a0;
+  --nv3-color-blue: #0078bf;
+  --nv3-color-purple: #765ba7;
+  --nv3-color-pink: #d6249f;
+
+  --nv3-syntax-keyword: #b5168a;
+  --nv3-syntax-string: #0b7d45;
+  --nv3-syntax-number: #0067a3;
+  --nv3-syntax-atom: #b5168a;
+  --nv3-syntax-function: #161616;
+  --nv3-syntax-type: #765ba7;
+  --nv3-syntax-variable: #161616;
+  --nv3-syntax-property: #161616;
+  --nv3-syntax-namespace: #765ba7;
+  --nv3-syntax-definition: #161616;
+  --nv3-syntax-operator: #4a4a47;
+  --nv3-syntax-punctuation: #8a8a85;
+  --nv3-syntax-regexp: #0b7d45;
+  --nv3-syntax-escape: #b5168a;
+  --nv3-syntax-doc-comment: #8a8a85;
+  --nv3-syntax-invalid: #e8364f;
+  --nv3-syntax-inserted: #0b7d45;
+  --nv3-syntax-deleted: #e8364f;
+
+  --nv3-md-h2-color: var(--nv3-color-text);
+  --nv3-md-highlight-bg: color-mix(in srgb, #ff7fe5 55%, transparent);
+}
+
+[data-theme="dark"] {
+  --riso-pink: #ff86ec;
+  --riso-mint: #8ef6b4;
+
+  --nv3-color-bg: #0c0c0c;
+  --nv3-color-surface: #1a1a1a;
+  --nv3-color-surface-hover: #232323;
+  --nv3-color-surface-active: #2c2c2c;
+  --nv3-color-code-inline-bg: #1f1f1f;
+  --nv3-color-code-block-bg: #151515;
+  --nv3-color-text: #f1f1ee;
+  --nv3-color-text-muted: #b0b0aa;
+  --nv3-color-text-subtle: #75756f;
+  --nv3-color-border: #2a2a28;
+  --nv3-color-border-strong: #4a4a46;
+  --nv3-color-accent: #ff86ec;
+  --nv3-selection-bg: rgba(255, 134, 236, 0.38);
+  --nv3-caret-color: #ff86ec;
+  --nv3-color-highlight-yellow: #8ef6b4;
+
+  --nv3-color-red: #ff6f7f;
+  --nv3-color-orange: #ff9a63;
+  --nv3-color-yellow: #ffe066;
+  --nv3-color-green: #8ef6b4;
+  --nv3-color-teal: #6fe3dc;
+  --nv3-color-blue: #6fc0ff;
+  --nv3-color-purple: #b9a2f0;
+  --nv3-color-pink: #ff86ec;
+
+  --nv3-syntax-keyword: #ff86ec;
+  --nv3-syntax-string: #8ef6b4;
+  --nv3-syntax-number: #6fc0ff;
+  --nv3-syntax-atom: #ff86ec;
+  --nv3-syntax-function: #f1f1ee;
+  --nv3-syntax-type: #b9a2f0;
+  --nv3-syntax-variable: #f1f1ee;
+  --nv3-syntax-property: #f1f1ee;
+  --nv3-syntax-namespace: #b9a2f0;
+  --nv3-syntax-definition: #f1f1ee;
+  --nv3-syntax-operator: #b0b0aa;
+  --nv3-syntax-punctuation: #75756f;
+  --nv3-syntax-regexp: #8ef6b4;
+  --nv3-syntax-escape: #ff86ec;
+  --nv3-syntax-doc-comment: #75756f;
+  --nv3-syntax-invalid: #ff6f7f;
+  --nv3-syntax-inserted: #8ef6b4;
+  --nv3-syntax-deleted: #ff6f7f;
+
+  --nv3-md-h2-color: var(--riso-mint);
+  --nv3-md-highlight-bg: var(--riso-mint);
+  --nv3-md-highlight-color: var(--riso-ink);
+}
+
+/* Palette roles shared by both appearances. */
+:root {
+  --nv3-md-inline-code-color: var(--nv3-color-text);
+  --nv3-md-code-block-bg: var(--nv3-color-code-block-bg);
+  --nv3-md-code-block-border-color: var(--riso-mint);
+  --nv3-md-blockquote-bg: color-mix(in srgb, var(--riso-pink) 32%, transparent);
+  --nv3-md-callout-bg: color-mix(in srgb, var(--riso-mint) 40%, transparent);
+  --nv3-md-callout-title-color: var(--nv3-color-text);
+  --nv3-md-callout-marker-color: var(--nv3-color-text-muted);
+  --nv3-md-horizontal-rule-border: 5px dotted var(--riso-pink);
+  --nv3-md-horizontal-rule-active-border: 5px dotted var(--riso-pink);
+  --nv3-link-color: var(--nv3-color-text);
+  --nv3-link-hover-color: var(--nv3-color-accent);
+  --nv3-wikilink-underline: var(--riso-pink);
+
+  --nv3-table-header-bg: var(--riso-mint);
+  --nv3-table-header-color: var(--riso-ink);
+  --nv3-table-header-border: 0;
+  --nv3-table-row-border: 1px solid var(--nv3-color-border-strong);
+  --nv3-task-checkbox-border: var(--nv3-color-text);
+  --nv3-task-checkbox-checked: var(--riso-pink);
+
+  --nv3-org-todo-color: var(--riso-ink);
+  --nv3-org-doing-color: var(--riso-ink);
+  --nv3-org-done-keyword-color: var(--nv3-color-text-subtle);
+  --nv3-org-deadline-color: var(--nv3-color-accent);
+  --nv3-org-tag-color: var(--nv3-color-text);
+  --nv3-org-checkbox-color: var(--nv3-color-text);
+  --nv3-org-list-marker-color: var(--nv3-color-accent);
+}
+
+/* The title prints on a pink block whose right edge breaks into halftone.
+   The top border, painted in the paper colour, stands in for a margin. The
+   block must survive the editor's transparent active-line rule. */
+.cm-editor .cm-line.nv3-heading-line-level-1,
+.cm-editor .cm-line.om-title {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 0.3em 0.45em 0.24em;
+  border-top: 0.5em solid var(--nv3-color-bg);
+  background: var(--riso-pink) !important;
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-1::after,
+.cm-editor .cm-line.om-title::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 45%;
+  z-index: -1;
+  background-image: radial-gradient(circle, rgba(22, 22, 22, 0.2) 31%, transparent 35%);
+  background-size: 7px 7px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 88%);
+  mask-image: linear-gradient(90deg, transparent, #000 88%);
+  pointer-events: none;
+}
+
+.cm-editor .cm-line.om-title .om-title-key {
+  color: color-mix(in srgb, var(--riso-ink) 55%, transparent);
+}
+
+/* Section heads run through a mint highlighter: a thick underline pulled up
+   behind the letters. It sits on the heading text span so it scales with the
+   heading; inline-block children (the gutter prefix, Org keywords and tags)
+   do not inherit it, and closed Org headlines drop it. */
+[data-theme="light"] .cm-editor .cm-line.nv3-heading-line-level-2 > span:not(.nv3-heading-prefix),
+[data-theme="light"] .cm-editor .om-hl1 {
+  text-decoration-line: underline;
+  text-decoration-color: var(--riso-mint);
+  text-decoration-thickness: 0.38em;
+  text-underline-offset: -0.3em;
+  text-decoration-skip-ink: none;
+}
+
+[data-theme="light"] .cm-editor .om-heading-done .om-hl1 {
+  text-decoration-line: none;
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-2 {
+  padding-top: 0.8em;
+}
+
+.cm-editor .om-tags,
+.cm-editor .om-cookie {
+  display: inline-block;
+}
+
+/* Org keywords become spot-ink chips. */
+.cm-editor .om-todo,
+.cm-editor .om-done {
+  display: inline-block;
+  padding: 0.14em 0.42em 0.06em;
+  line-height: 1.2;
+  background: var(--riso-pink);
+}
+
+.cm-editor .om-kw-doing,
+.cm-editor .om-kw-next,
+.cm-editor .om-kw-started,
+.cm-editor .om-kw-wait,
+.cm-editor .om-kw-waiting {
+  background: var(--riso-mint);
+}
+
+.cm-editor .om-done {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--nv3-color-border-strong);
+}
+
+.cm-editor .nv3-tag-heading {
+  color: inherit;
+  border-bottom-color: var(--riso-pink);
+}

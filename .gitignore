@@ -1,0 +1,10 @@
+NVModern/WebEditor/node_modules/
+NVModern/Resources/WebEditor/
+*.xcuserstate
+dist/
+.DS_Store
+NVModern.xcodeproj/xcuserdata/admin.xcuserdatad/xcdebugger/
+*.log
+.build/
+xcuserdata/
+.swiftpm/

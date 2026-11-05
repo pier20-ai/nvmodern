@@ -1,0 +1,354 @@
+/*
+ * Mayfair — private-bank stationery.
+ *
+ * Nebula Sans, an open revival of Whitney's humanist sans, does all the
+ * typesetting, as Whitney does for the museum it was drawn for. The title is
+ * Light under a short brass rule; section heads are Medium; kickers, labels
+ * and Org keywords are small, letterspaced capitals. (Nebula Sans's small
+ * caps cover Greek only, so true Latin small caps aren't available and
+ * synthesized ones look starved.) Text runs in old-style
+ * figures, tables and timestamps in tabular lining ones. Midnight ink on
+ * ivory by day, champagne on midnight by night, with brass as the one accent
+ * and oxblood kept for deadlines. Input Mono, whose x-height matches Nebula
+ * Sans almost exactly, sets the code.
+ *
+ * Built into nvModern; a file with the same id in the user themes directory
+ * overrides this one.
+ */
+
+:root {
+  --nv3-theme-name: Mayfair;
+  --nv3-theme-subtitle: Nebula Sans on ivory, with brass;
+  --nv3-theme-swatch: #f8f5ee;
+  --nv3-theme-swatch-2: #1c2230;
+  --nv3-theme-swatch-3: #a37b3b;
+
+  --nv3-font-sans: "Nebula Sans", "Whitney", "Gill Sans", -apple-system, sans-serif;
+  --nv3-font-display: var(--nv3-font-sans);
+  --nv3-font-label: var(--nv3-font-sans);
+  --nv3-font-mono: "Input Mono", "SF Mono", ui-monospace, monospace;
+  --nv3-font-size-adjust: 0.547;
+  --nv3-content-font-size: 1em;
+  --nv3-content-line-height: 1.68;
+  --nv3-radius: 2px;
+
+  --nv3-md-h1-font-size: 2.5em;
+  --nv3-md-h1-font-weight: 300;
+  --nv3-md-h1-line-height: 1.1;
+  --nv3-md-h1-letter-spacing: -0.022em;
+  --nv3-md-h2-font-size: 1.5em;
+  --nv3-md-h2-font-weight: 500;
+  --nv3-md-h2-line-height: 1.22;
+  --nv3-md-h2-letter-spacing: -0.012em;
+  --nv3-md-h3-font-size: 0.8em;
+  --nv3-md-h3-font-weight: 600;
+  --nv3-md-h3-letter-spacing: 0.15em;
+  --nv3-md-h3-text-transform: uppercase;
+  --nv3-md-h4-font-size: 1.06em;
+  --nv3-md-h4-font-weight: 600;
+  --nv3-md-h5-font-weight: 400;
+  --nv3-md-h5-font-style: italic;
+  --nv3-md-h6-font-size: 0.78em;
+  --nv3-md-h6-font-weight: 600;
+  --nv3-md-h6-letter-spacing: 0.14em;
+  --nv3-md-h6-text-transform: uppercase;
+
+  --nv3-md-inline-code-font-size: 0.92em;
+  --nv3-md-inline-code-heading-font-size: 0.9em;
+  --nv3-md-inline-code-padding: 0.06em 0.3em;
+  --nv3-md-inline-code-radius: 2px;
+  --nv3-md-code-block-font-size: 0.9em;
+  --nv3-md-code-block-line-height: 1.62;
+  --nv3-md-code-block-border-width: 1px;
+
+  --nv3-md-blockquote-font-style: italic;
+  --nv3-md-blockquote-border-width: 1px;
+  --nv3-md-callout-border-width: 1px;
+  --nv3-md-callout-title-font-weight: 600;
+  --nv3-md-callout-title-font-size: 0.78em;
+  --nv3-md-callout-title-letter-spacing: 0.14em;
+  --nv3-md-callout-title-text-transform: uppercase;
+  --nv3-md-horizontal-rule-width: clamp(8rem, 36%, 16rem);
+  --nv3-md-horizontal-rule-padding-block: 1em;
+  --nv3-md-horizontal-rule-border: 0 solid transparent;
+  --nv3-md-horizontal-rule-active-border: 0 solid transparent;
+
+  --nv3-table-header-font-scale: 0.82;
+  --nv3-table-header-font-weight: 600;
+  --nv3-table-header-letter-spacing: 0.14em;
+  --nv3-table-header-text-transform: uppercase;
+  --nv3-task-checkbox-radius: 1px;
+  --nv3-link-underline-thickness: 1px;
+
+  --nv3-org-todo-scale: 0.78;
+  --nv3-org-todo-font-weight: 600;
+  --nv3-org-todo-letter-spacing: 0.14em;
+  --nv3-org-tag-scale: 0.74;
+  --nv3-org-h1-spacing: 1.2em;
+  --nv3-org-h2-spacing: 0.55em;
+}
+
+/* Ivory */
+[data-theme="light"] {
+  --mf-brass: #a37b3b;
+  --mf-brass-text: #8a6528;
+  --mf-oxblood: #8c2a35;
+
+  --nv3-color-bg: #f8f5ee;
+  --nv3-color-surface: #f0ebe0;
+  --nv3-color-surface-hover: #e8e1d3;
+  --nv3-color-surface-active: #ded5c3;
+  --nv3-color-code-inline-bg: #efe9dc;
+  --nv3-color-code-block-bg: #f2ede3;
+  --nv3-color-text: #1c2230;
+  --nv3-color-text-muted: #585d6b;
+  --nv3-color-text-subtle: #99958a;
+  --nv3-color-border: #e5ddcd;
+  --nv3-color-border-strong: #cdbf9f;
+  --nv3-color-accent: #8a6528;
+  --nv3-selection-bg: rgba(163, 123, 59, 0.18);
+  --nv3-caret-color: #a37b3b;
+  --nv3-color-highlight-yellow: #f0dfae;
+
+  --nv3-color-red: #8c2a35;
+  --nv3-color-orange: #a5562a;
+  --nv3-color-yellow: #8a6528;
+  --nv3-color-green: #3f6248;
+  --nv3-color-teal: #2f6466;
+  --nv3-color-blue: #2e4a75;
+  --nv3-color-purple: #5d4778;
+  --nv3-color-pink: #8f3e62;
+
+  --nv3-syntax-keyword: #2e4a75;
+  --nv3-syntax-string: #3f6248;
+  --nv3-syntax-number: #8a6528;
+  --nv3-syntax-atom: #8c2a35;
+  --nv3-syntax-function: #1c2230;
+  --nv3-syntax-type: #5d4778;
+  --nv3-syntax-variable: #1c2230;
+  --nv3-syntax-property: #2e4a75;
+  --nv3-syntax-namespace: #5d4778;
+  --nv3-syntax-definition: #1c2230;
+  --nv3-syntax-operator: #585d6b;
+  --nv3-syntax-punctuation: #99958a;
+  --nv3-syntax-regexp: #3f6248;
+  --nv3-syntax-escape: #8a6528;
+  --nv3-syntax-doc-comment: #99958a;
+  --nv3-syntax-invalid: #8c2a35;
+  --nv3-syntax-inserted: #3f6248;
+  --nv3-syntax-deleted: #8c2a35;
+
+  --nv3-md-highlight-bg: color-mix(in srgb, #f0dfae 80%, transparent);
+
+  --nv3-tag-heading-s: 30%;
+  --nv3-tag-heading-l: 38%;
+  --nv3-tag-heading-border-s: 34%;
+  --nv3-tag-heading-border-l: 62%;
+}
+
+/* Midnight */
+[data-theme="dark"] {
+  --mf-brass: #d2b07a;
+  --mf-brass-text: #d2b07a;
+  --mf-oxblood: #e0848c;
+
+  --nv3-color-bg: #12151c;
+  --nv3-color-surface: #1a1e27;
+  --nv3-color-surface-hover: #222733;
+  --nv3-color-surface-active: #2b303d;
+  --nv3-color-code-inline-bg: #1d212b;
+  --nv3-color-code-block-bg: #161922;
+  --nv3-color-text: #ebe6da;
+  --nv3-color-text-muted: #aaa598;
+  --nv3-color-text-subtle: #6f6d66;
+  --nv3-color-border: #252a35;
+  --nv3-color-border-strong: #4a4436;
+  --nv3-color-accent: #d2b07a;
+  --nv3-selection-bg: rgba(210, 176, 122, 0.22);
+  --nv3-caret-color: #d2b07a;
+  --nv3-color-highlight-yellow: #d2b07a;
+
+  --nv3-color-red: #e0848c;
+  --nv3-color-orange: #e0a07a;
+  --nv3-color-yellow: #d2b07a;
+  --nv3-color-green: #95b89a;
+  --nv3-color-teal: #8cbcbc;
+  --nv3-color-blue: #9fb4dc;
+  --nv3-color-purple: #b9a6d6;
+  --nv3-color-pink: #d99bb7;
+
+  --nv3-syntax-keyword: #9fb4dc;
+  --nv3-syntax-string: #95b89a;
+  --nv3-syntax-number: #d2b07a;
+  --nv3-syntax-atom: #e0848c;
+  --nv3-syntax-function: #ebe6da;
+  --nv3-syntax-type: #b9a6d6;
+  --nv3-syntax-variable: #ebe6da;
+  --nv3-syntax-property: #9fb4dc;
+  --nv3-syntax-namespace: #b9a6d6;
+  --nv3-syntax-definition: #ebe6da;
+  --nv3-syntax-operator: #aaa598;
+  --nv3-syntax-punctuation: #6f6d66;
+  --nv3-syntax-regexp: #95b89a;
+  --nv3-syntax-escape: #d2b07a;
+  --nv3-syntax-doc-comment: #6f6d66;
+  --nv3-syntax-invalid: #e0848c;
+  --nv3-syntax-inserted: #95b89a;
+  --nv3-syntax-deleted: #e0848c;
+
+  /* Champagne washes out on midnight, so marks are champagne ink on a
+     champagne tint instead. */
+  --nv3-md-highlight-bg: color-mix(in srgb, #d2b07a 15%, transparent);
+  --nv3-md-highlight-color: #e3c896;
+
+  --nv3-tag-heading-s: 36%;
+  --nv3-tag-heading-l: 72%;
+  --nv3-tag-heading-border-s: 30%;
+  --nv3-tag-heading-border-l: 46%;
+}
+
+/* Palette roles shared by both appearances. */
+:root {
+  --nv3-md-h3-color: var(--mf-brass-text);
+  --nv3-md-h6-color: var(--nv3-color-text-muted);
+  --nv3-md-inline-code-color: var(--nv3-color-text);
+  --nv3-md-inline-code-bg: var(--nv3-color-code-inline-bg);
+  --nv3-md-code-block-bg: var(--nv3-color-code-block-bg);
+  --nv3-md-code-block-border-color: var(--mf-brass);
+  --nv3-md-blockquote-color: var(--nv3-color-text-muted);
+  --nv3-md-blockquote-border-color: var(--mf-brass);
+  --nv3-md-callout-bg: var(--nv3-color-surface);
+  --nv3-md-callout-border-color: var(--mf-brass);
+  --nv3-md-callout-title-color: var(--mf-brass-text);
+  --nv3-md-callout-marker-color: var(--nv3-color-text-subtle);
+  --nv3-md-horizontal-rule-source-color: var(--nv3-color-text-subtle);
+  --nv3-link-color: var(--nv3-color-text);
+  --nv3-link-hover-color: var(--mf-brass-text);
+  --nv3-wikilink-underline: var(--mf-brass);
+
+  --nv3-table-header-color: var(--mf-brass-text);
+  --nv3-table-header-border: 1px solid var(--mf-brass);
+  --nv3-table-row-border: 1px solid var(--nv3-color-border);
+  --nv3-task-checkbox-border: var(--nv3-color-text-muted);
+  --nv3-task-checkbox-checked: var(--mf-brass);
+  --nv3-task-checkbox-tick: var(--nv3-color-bg);
+
+  --nv3-org-todo-color: var(--mf-oxblood);
+  --nv3-org-doing-color: var(--mf-brass-text);
+  --nv3-org-done-color: var(--nv3-color-text-subtle);
+  --nv3-org-done-keyword-color: var(--nv3-color-text-subtle);
+  --nv3-org-planning-color: var(--nv3-color-text-muted);
+  --nv3-org-planning-keyword-color: var(--nv3-color-text-subtle);
+  --nv3-org-deadline-color: var(--mf-oxblood);
+  --nv3-org-timestamp-color: var(--nv3-color-text-muted);
+  --nv3-org-keyword-color: var(--nv3-color-text-subtle);
+  --nv3-org-checkbox-color: var(--nv3-color-text-muted);
+  --nv3-org-checkbox-checked-color: var(--mf-brass);
+  --nv3-org-list-marker-color: var(--mf-brass);
+  --nv3-org-link-color: var(--nv3-color-text);
+  --nv3-org-tag-color: var(--nv3-color-text-muted);
+  --nv3-org-property-key-color: var(--mf-brass-text);
+}
+
+/* Text sets old-style figures; tables, code and dates keep lining ones that
+   line up in columns. */
+.cm-editor .cm-content {
+  font-variant-numeric: oldstyle-nums proportional-nums;
+}
+
+.cm-editor .nv3-table-ui,
+.cm-editor .cm-line.nv3-code-fence-line,
+.cm-editor .nv3-inline-code,
+.cm-editor .om-timestamp,
+.cm-editor .cm-line.om-planning {
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* The title sits under a short brass rule, like a letterhead. */
+.cm-editor .cm-line.nv3-heading-line-level-1,
+.cm-editor .cm-line.om-title {
+  position: relative;
+  padding-top: 1.1em;
+  padding-bottom: 0.25em;
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-1::before,
+.cm-editor .cm-line.om-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  width: 2.5em;
+  height: 2px;
+  background: var(--mf-brass);
+  pointer-events: none;
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-1:first-child,
+.cm-editor .cm-line.om-title:first-child {
+  padding-top: 0.9em;
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-2 {
+  padding-top: 0.85em;
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-3 {
+  padding-top: 0.6em;
+}
+
+/* Code blocks are one card with a brass hairline down the left. */
+.cm-editor .cm-line.nv3-code-fence-start {
+  border-radius: 2px 2px 0 0;
+}
+
+.cm-editor .cm-line.nv3-code-fence-end {
+  border-radius: 0 0 2px 2px;
+}
+
+/* Org labels are small letterspaced capitals, like the kickers. */
+.cm-editor .om-tags {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.cm-editor .om-planning-keyword {
+  font-size: 0.78em;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+
+/* Rules are a brass hairline broken by a lozenge. */
+.cm-editor .cm-line.nv3-horizontal-rule-line::after {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent, var(--mf-brass) 18%, var(--mf-brass) 44%,
+    transparent 44%, transparent 56%,
+    var(--mf-brass) 56%, var(--mf-brass) 82%, transparent);
+}
+
+.cm-editor .cm-line.nv3-horizontal-rule-line::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  background: var(--mf-brass);
+  transform: translate(-50%, -50%) rotate(45deg);
+  pointer-events: none;
+}
+
+.cm-editor .nv3-tag-heading {
+  color: inherit;
+  border-bottom: 1px solid color-mix(in srgb, var(--mf-brass) 70%, transparent);
+}
+
+/* Org's second level is mostly tasks: a Medium subhead, not a kicker. */
+.cm-editor .om-hl2 {
+  font-size: 1.15em;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  color: var(--nv3-color-text);
+}

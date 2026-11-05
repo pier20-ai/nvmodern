@@ -1,0 +1,4 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["src/lib/calc/**/*.ts", "src/lib/plugins/calc.ts", "src/lib/plugins/calc.test.ts"]
+}

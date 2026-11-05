@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nv3 side stack</title>
+    <link rel="stylesheet" href="../src/styles/editor.lib.css" />
+    <link rel="stylesheet" href="../src/styles/stack.css" />
+    <style>
+      /* Dev frame: a stand-in for the tab's main content beside the stack. */
+      #root { display: flex; }
+      .stack-dev-main {
+        flex: 1 1 auto;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 14px 18px;
+        font-size: 12px;
+        color: var(--nv3-color-text-muted);
+        overflow: auto;
+      }
+      .stack-dev-main header { display: flex; align-items: center; gap: 8px; }
+      .stack-dev-main h1 { margin: 0; font-size: 13px; color: var(--nv3-color-text); }
+      .stack-dev-main button { font: inherit; }
+      .stack-dev-log { margin: 0; font: 11px/1.5 var(--nv3-font-mono); white-space: pre-wrap; }
+      .stack-dev-column {
+        flex: 0 0 clamp(300px, 38vw, 440px);
+        height: 100%;
+        box-shadow: -1px 0 0 var(--nv3-color-border);
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      document.documentElement.setAttribute("data-theme", localStorage.getItem("nv3-theme") || "system");
+    </script>
+    <div id="root"></div>
+    <script type="module" src="./stack.tsx"></script>
+  </body>
+</html>

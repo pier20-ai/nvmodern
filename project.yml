@@ -1,0 +1,206 @@
+name: NVModern
+options:
+  minimumXcodeGenVersion: 2.42.0
+settings:
+  base:
+    SWIFT_VERSION: 5.9
+    PRODUCT_NAME: nvModern
+    DEVELOPMENT_TEAM: ""
+    MARKETING_VERSION: 2.0.0
+    CURRENT_PROJECT_VERSION: 0
+    # Sparkle's EdDSA public key. Empty in source builds, which disables the
+    # updater. `make release` bakes in the key; see docs/releasing.md.
+    SPARKLE_PUBLIC_ED_KEY: ""
+packages:
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle.git
+    from: 2.6.0
+  TOMLKit:
+    url: https://github.com/LebJe/TOMLKit.git
+    from: 0.5.0
+  Yams:
+    url: https://github.com/jpsim/Yams.git
+    from: 5.0.0
+targets:
+  NVModern:
+    type: application
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: NVModern
+        excludes:
+          - WebEditor/**
+          - BuiltinThemes/**
+          - Plugins/**
+          - Resources/WebEditor/**
+      - path: ArborKernel
+        type: folder
+        buildPhase: resources
+      - path: NVModern/BuiltinThemes
+        type: folder
+        buildPhase: resources
+      - path: NVModern/Resources/WebEditor
+        type: folder
+        buildPhase: resources
+    resources:
+      - path: NVModern/Resources/Assets.xcassets
+    info:
+      path: NVModern/Info.plist
+      properties:
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        SUFeedURL: https://github.com/pier20-ai/nvmodern/releases/latest/download/appcast.xml
+        SUPublicEDKey: $(SPARKLE_PUBLIC_ED_KEY)
+        SUEnableAutomaticChecks: true
+        SUScheduledCheckInterval: 86400
+        NSHumanReadableCopyright: "Copyright © 2026 nvModern contributors. Licensed under GPL-3.0-or-later."
+        CFBundleDocumentTypes:
+          - CFBundleTypeExtensions:
+              - outline
+            CFBundleTypeName: Arbor Outline
+            CFBundleTypeRole: Editor
+            LSHandlerRank: Owner
+            LSItemContentTypes:
+              - com.nvmodern.arbor-outline
+          # Markdown is a shared system type, so this is Alternate rather than
+          # Owner: it makes nvModern selectable in Finder's Open With / Change
+          # All without claiming to define the type. Only Markdown is declared —
+          # claiming public.plain-text would offer nvModern for every text file.
+          - CFBundleTypeExtensions:
+              - md
+              - markdown
+              - mdown
+              - mkd
+            CFBundleTypeName: Markdown Document
+            CFBundleTypeRole: Editor
+            LSHandlerRank: Alternate
+            LSItemContentTypes:
+              - net.daringfireball.markdown
+          - CFBundleTypeExtensions:
+              - excalidraw
+            CFBundleTypeName: Excalidraw Canvas
+            CFBundleTypeRole: Editor
+            LSHandlerRank: Alternate
+            LSItemContentTypes:
+              - com.nvmodern.excalidraw
+          - CFBundleTypeExtensions:
+              - org
+            CFBundleTypeName: Org Mode Document
+            CFBundleTypeRole: Editor
+            LSHandlerRank: Alternate
+          - CFBundleTypeExtensions:
+              - epub
+            CFBundleTypeName: EPUB Publication
+            CFBundleTypeRole: Viewer
+            LSHandlerRank: Alternate
+            LSItemContentTypes:
+              - org.idpf.epub-container
+        # Imported, not exported: net.daringfireball.markdown is declared by the
+        # system. This only widens its extension list to the variants the editor
+        # already opens.
+        UTImportedTypeDeclarations:
+          - UTTypeConformsTo:
+              - public.plain-text
+            UTTypeDescription: Markdown Document
+            UTTypeIdentifier: net.daringfireball.markdown
+            UTTypeTagSpecification:
+              public.filename-extension:
+                - md
+                - markdown
+                - mdown
+                - mkd
+              public.mime-type:
+                - text/markdown
+                - text/x-markdown
+        UTExportedTypeDeclarations:
+          - UTTypeConformsTo:
+              - public.json
+            UTTypeDescription: Excalidraw Canvas
+            UTTypeIdentifier: com.nvmodern.excalidraw
+            UTTypeTagSpecification:
+              public.filename-extension:
+                - excalidraw
+              public.mime-type: application/vnd.excalidraw+json
+          - UTTypeConformsTo:
+              - public.plain-text
+            UTTypeDescription: Arbor Outline
+            UTTypeIdentifier: com.nvmodern.arbor-outline
+            UTTypeTagSpecification:
+              public.filename-extension:
+                - outline
+              public.mime-type: text/x-arbor-outline
+        CFBundleURLTypes:
+          - CFBundleURLName: com.nvmodern.app.url
+            CFBundleURLSchemes:
+              - nvmodern
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.nvmodern.app
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_STYLE: Automatic
+        ARCHS: arm64
+    dependencies:
+      - package: TOMLKit
+        product: TOMLKit
+      - package: Yams
+        product: Yams
+      - package: Sparkle
+        product: Sparkle
+      - target: NVModernCLI
+        embed: false
+  NVModernCLI:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: Tools/nv3
+      - path: NVModern/Core/Actions/ActionValue.swift
+      - path: NVModern/Core/Actions/ActionError.swift
+      - path: NVModern/Core/Actions/ActionSource.swift
+      - path: NVModern/Core/Actions/ActionTarget.swift
+      - path: NVModern/Core/Actions/ActionContentSurface.swift
+      - path: NVModern/Core/Actions/ActionRequest.swift
+      - path: NVModern/Core/Actions/ActionSocketConfiguration.swift
+      - path: NVModern/Core/Actions/ActionSocketClient.swift
+      - path: NVModern/Core/Actions/ActionCLIParser.swift
+      - path: NVModern/Core/Actions/ActionMCPCatalog.swift
+      - path: NVModern/Core/Actions/ActionMCPServer.swift
+    settings:
+      base:
+        # nv3, not nvmodern: macOS filesystems are case-insensitive, so a
+        # binary named nvmodern overwrites Contents/MacOS/nvModern.
+        PRODUCT_NAME: nv3
+        PRODUCT_MODULE_NAME: NVModernCLI
+        PRODUCT_BUNDLE_IDENTIFIER: com.nvmodern.cli
+        SKIP_INSTALL: NO
+        GENERATE_INFOPLIST_FILE: YES
+        MARKETING_VERSION: 2.0.0
+        CODE_SIGN_STYLE: Automatic
+        ARCHS: arm64
+        MACOSX_DEPLOYMENT_TARGET: "14.0"
+  NVModernTests:
+    type: bundle.unit-test
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: NVModernTests
+    dependencies:
+      - target: NVModern
+    settings:
+      base:
+        PRODUCT_NAME: NVModernTests
+        BUNDLE_LOADER: "$(TEST_HOST)"
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/nvModern.app/Contents/MacOS/nvModern"
+        PRODUCT_BUNDLE_IDENTIFIER: com.nvmodern.tests
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  NVModern:
+    build:
+      targets:
+        NVModern: all
+        NVModernCLI: all
+        NVModernTests: [test]
+    test:
+      targets:
+        - NVModernTests
+      gatherCoverageData: false

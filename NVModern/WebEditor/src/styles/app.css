@@ -1,0 +1,421 @@
+:root {
+  /* 740px border-box width gives a roughly 700px text measure with side padding. */
+  --editor-max-w: var(--nv3-editor-max-width, 740px);
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+.nvmodern-empty {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.nvmodern-editor-shell {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.nvmodern-editor-shell[data-presentation-mode="quickCapture"] {
+  background: transparent;
+  color: var(--text);
+}
+
+.nvmodern-editor-layout {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: stretch;
+  gap: 18px;
+}
+
+.nvmodern-editor-toc-rail {
+  position: sticky;
+  top: 20px;
+  margin-top: 20px;
+  align-self: flex-start;
+  width: 44px;
+  flex: 0 0 44px;
+  z-index: 40;
+}
+
+.nvmodern-editor-mount {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.nvmodern-editor-mount .cm-editor {
+  width: 100%;
+  height: 100%;
+}
+
+.nvmodern-editor-mount .cm-scroller {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.nvmodern-editor-mount .cm-content {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: min(calc(100% - 48px), var(--editor-max-w));
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Annotation notes in the margin: keep the column centred when the margin
+ * already fits a note, otherwise narrow the column and shift it left. */
+.nvmodern-editor-mount .cm-scroller[data-nv3-margin-notes="margin"] .cm-content {
+  --nvmodern-notes-column: min(calc(100% - 48px - var(--nv3-annotation-note-reserve)), var(--editor-max-w));
+  width: var(--nvmodern-notes-column);
+  margin-right: max(var(--nv3-annotation-note-reserve), calc((100% - var(--nvmodern-notes-column)) / 2));
+}
+
+.nvmodern-editor-shell[data-presentation-mode="quickCapture"] .nvmodern-editor-layout,
+.nvmodern-editor-shell[data-presentation-mode="quickCapture"] .nvmodern-editor-mount,
+.nvmodern-editor-shell[data-presentation-mode="quickCapture"] .cm-editor,
+.nvmodern-editor-shell[data-presentation-mode="quickCapture"] .cm-scroller,
+.nvmodern-editor-shell[data-presentation-mode="quickCapture"] .cm-content {
+  background: transparent;
+}
+
+.nvmodern-editor-shell[data-presentation-mode="quickCapture"] .nvmodern-editor-mount .cm-content {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.nvmodern-editor-error {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  background: color-mix(in srgb, var(--red) 16%, var(--bg));
+  border: 1px solid color-mix(in srgb, var(--red) 65%, var(--border));
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 12px;
+  padding: 8px 10px;
+  font-family: var(--font-mono);
+  white-space: pre-wrap;
+}
+
+.nvmodern-preview-shell {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.nvmodern-preview-content {
+  flex: 1;
+  min-height: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.nvmodern-preview-content:has(> .nvmodern-diff-surface) {
+  overflow: hidden;
+}
+
+.nvmodern-preview-empty {
+  width: 100%;
+  height: 100%;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.nvmodern-image-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.nvmodern-pdf-preview {
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: white;
+}
+
+.nvmodern-epub-surface {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.nvmodern-epub-rendition {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.nvmodern-epub-status {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  color: var(--text-secondary);
+  background: var(--bg);
+  text-align: center;
+  font-size: 13px;
+}
+
+.nvmodern-epub-error {
+  color: var(--red);
+}
+
+.nvmodern-csv-wrap {
+  width: 100%;
+  min-height: 100%;
+}
+
+.nvmodern-csv-truncated {
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--yellow) 14%, var(--bg));
+  border: 1px solid color-mix(in srgb, var(--yellow) 45%, var(--border));
+}
+
+.nvmodern-csv-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  table-layout: fixed;
+}
+
+.nvmodern-csv-table th,
+.nvmodern-csv-table td {
+  border: 1px solid var(--border);
+  padding: 5px 6px;
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.nvmodern-csv-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: color-mix(in srgb, var(--bg) 90%, var(--text) 10%);
+}
+
+.nvmodern-csv-row-index {
+  width: 46px;
+  text-align: right !important;
+  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--bg) 93%, var(--text) 7%);
+}
+
+.nvmodern-diff-surface {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.nvmodern-diff-toolbar {
+  flex: 0 0 auto;
+  min-height: 36px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 4px 8px;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
+  backdrop-filter: blur(16px) saturate(1.15);
+}
+
+.nvmodern-diff-title {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.nvmodern-diff-title span:not(.nvmodern-diff-arrow) {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nvmodern-diff-arrow {
+  flex: 0 0 auto;
+  color: var(--text-tertiary);
+  font-weight: 400;
+}
+
+.nvmodern-diff-actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nvmodern-diff-layout-picker {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--text) 6%, transparent);
+}
+
+.nvmodern-diff-actions button {
+  position: relative;
+  min-height: 24px;
+  border: 0;
+  border-radius: 5px;
+  padding: 0 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  font: 600 11px/1 var(--font-sans);
+  cursor: default;
+  box-shadow: 0 0 0 1px transparent;
+  transition-property: color, background-color, box-shadow, scale;
+  transition-duration: 140ms;
+  transition-timing-function: ease-out;
+}
+
+.nvmodern-diff-actions button::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.nvmodern-diff-actions button:hover {
+  color: var(--text);
+  background: color-mix(in srgb, var(--text) 7%, transparent);
+}
+
+.nvmodern-diff-actions button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--blue) 58%, transparent);
+}
+
+.nvmodern-diff-actions button:active {
+  scale: 0.96;
+}
+
+.nvmodern-diff-layout-picker button[aria-pressed="true"] {
+  color: var(--text);
+  background: var(--bg);
+  box-shadow:
+    0 0 0 1px oklch(0 0 0 / 0.06),
+    0 1px 2px oklch(0 0 0 / 0.08);
+}
+
+.nvmodern-diff-refresh {
+  box-shadow:
+    0 0 0 1px oklch(0 0 0 / 0.07),
+    0 1px 2px oklch(0 0 0 / 0.05) !important;
+}
+
+.nvmodern-diff-view {
+  flex: 1;
+  min-height: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.nvmodern-diff-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: var(--bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  .nvmodern-diff-layout-picker button[aria-pressed="true"],
+  .nvmodern-diff-refresh {
+    box-shadow: 0 0 0 1px oklch(1 0 0 / 0.10) !important;
+  }
+}
+
+.nvmodern-editor-toc-rail .nv3-toc-list-collapsed {
+  gap: 0;
+}
+
+.nvmodern-editor-toc-rail .nv3-toc-list-expanded {
+  gap: 4px;
+}
+
+.nvmodern-editor-toc-rail .nv3-toc-line {
+  height: 2px;
+  opacity: 0.28;
+  background: color-mix(in srgb, var(--text-tertiary) 64%, transparent);
+  transition: opacity 130ms ease, background-color 130ms ease;
+}
+
+.nvmodern-editor-toc-rail .nv3-toc-collapsed-more span {
+  opacity: 0.55;
+}
+
+.nvmodern-editor-toc-rail .nv3-toc:hover .nv3-toc-line,
+.nvmodern-editor-toc-rail .nv3-toc:focus-within .nv3-toc-line {
+  opacity: 0.68;
+}
+
+@media (max-width: 960px) {
+  .nvmodern-editor-layout {
+    gap: 10px;
+  }
+}

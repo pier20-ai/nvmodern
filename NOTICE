@@ -1,0 +1,85 @@
+nvModern
+Copyright (C) 2026 nvModern contributors
+
+nvModern is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version. The full text is in the LICENSE file.
+
+nvModern is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+--------------------------------------------------------------------------------
+Third-party software
+--------------------------------------------------------------------------------
+
+nvModern incorporates the components below. Each remains under its own licence;
+all of them are compatible with distribution under GPL-3.0-or-later. Each
+package's own licence text ships with it (in `node_modules/<package>/` for web
+dependencies, and in the Swift package checkout for native ones). Versions are
+as resolved by `bun.lock` and `Package.resolved`.
+
+Why the project is GPL: `uniorg` and `uniorg-parse` (the Org-mode parser) are
+licensed GPL-3.0-or-later and are bundled into the app, so the combined work
+is distributed under the GPL.
+
+Native (Swift Package Manager)
+
+  TOMLKit        MIT           https://github.com/LebJe/TOMLKit
+  Yams           MIT           https://github.com/jpsim/Yams
+  Sparkle        MIT           https://github.com/sparkle-project/Sparkle
+                 (includes bsdiff, sais, ed25519 and other components under
+                 permissive licences; see Sparkle's LICENSE)
+
+Editor and viewers (bundled into the WKWebView resources)
+
+  uniorg, uniorg-parse
+                 GPL-3.0-or-later  https://github.com/rasendubi/uniorg
+                 uniorg-parse is used from a modified fork (incremental,
+                 synchronous parsing). Source of the modified version:
+                 https://github.com/scutifer/uniorg
+  CodeMirror 6 (@codemirror/*), Lezer (@lezer/*)
+                 MIT           https://codemirror.net
+  @ndim/codemirror-lang-zig, @ndim/lezer-zig
+                 MIT           https://github.com/nDimensional/codemirror-lang-zig
+  @excalidraw/excalidraw
+                 MIT           https://github.com/excalidraw/excalidraw
+                 (and its dependencies, e.g. mermaid, roughjs, DOMPurify)
+  KaTeX          MIT           https://github.com/KaTeX/KaTeX
+  epub.js        BSD-2-Clause  https://github.com/futurepress/epub.js
+  @pierre/diffs  Apache-2.0    https://www.npmjs.com/package/@pierre/diffs
+  React, React DOM
+                 MIT           https://github.com/facebook/react
+  @base-ui/react MIT           https://github.com/mui/base-ui
+  unified        MIT           https://github.com/unifiedjs/unified
+  yaml           ISC           https://github.com/eemeli/yaml
+  zod            MIT           https://github.com/colinhacks/zod
+  pele           MIT           https://github.com/obsidianmd/pele
+
+  Some transitive dependencies are dual-licensed (for example jszip, MIT OR
+  GPL-3.0-or-later; DOMPurify, MPL-2.0 OR Apache-2.0). nvModern uses them under
+  the permissive alternative.
+
+Fonts
+
+  The web bundle includes the font files that ship with KaTeX (MIT / SIL OFL
+  1.1) and Excalidraw (Excalifont, Virgil, Cascadia Code, Assistant, Liberation
+  Sans, ComicShanns and others, mostly SIL OFL 1.1). Their licences travel with
+  the upstream packages.
+
+Patches
+
+  `NVModern/WebEditor/patches/` contains a small patch to @codemirror/view
+  (MIT, Copyright (C) Marijn Haverbeke and others), applied at install time.
+
+Built-in themes
+
+  `NVModern/BuiltinThemes/catppuccin.css` uses the Catppuccin palette
+  (MIT, Copyright (c) Catppuccin) and `nord.css` uses the Nord palette
+  (MIT, Copyright (c) Sven Greb / Arctic Ice Studio).
+
+Development-only
+
+  The Racket Arbor kernel (`ArborKernel/`) depends at run time on the Racket
+  `datalog` package (Apache-2.0 / MIT). Racket itself is not bundled.

@@ -1,0 +1,46 @@
+/*
+ * Dev shell document width and scale, mirroring the app's Document
+ * Inspector. Themes themselves load from NVModern/BuiltinThemes via
+ * /api/theme, exactly as the app bundles them.
+ */
+
+html[data-doc-width="narrow"] {
+  --editor-content-w: 620px;
+  --nv3-editor-max-width: 620px;
+}
+
+html[data-doc-width="comfortable"] {
+  --editor-content-w: 740px;
+  --nv3-editor-max-width: 740px;
+}
+
+html[data-doc-width="wide"] {
+  --editor-content-w: 920px;
+  --nv3-editor-max-width: 920px;
+}
+
+html[data-doc-width="extraWide"] {
+  --editor-content-w: 1080px;
+  --nv3-editor-max-width: 1080px;
+}
+
+html[data-doc-width="full"] {
+  --editor-content-w: 100%;
+  --nv3-editor-max-width: 100%;
+}
+
+html[data-doc-scale="small"] {
+  --nv3-document-scale: 90%;
+}
+
+html[data-doc-scale="normal"] {
+  --nv3-document-scale: 100%;
+}
+
+html[data-doc-scale="large"] {
+  --nv3-document-scale: 110%;
+}
+
+html[data-doc-scale="extraLarge"] {
+  --nv3-document-scale: 125%;
+}

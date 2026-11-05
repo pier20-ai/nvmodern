@@ -1,0 +1,4 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["src/help.tsx", "src/lib/help/**/*.ts", "src/lib/calc/help.ts", "src/lib/calc/help.test.ts", "src/arbor/help.ts", "src/arbor/help.test.ts"]
+}

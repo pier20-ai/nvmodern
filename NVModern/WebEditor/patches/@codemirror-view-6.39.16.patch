@@ -1,0 +1,76 @@
+diff --git a/dist/index.js b/dist/index.js
+index 19672de..f03864e 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -3306,29 +3306,10 @@ class DocView {
+         return getComputedStyle(tile.dom).direction == "rtl" ? Direction.RTL : Direction.LTR;
+     }
+     measureTextSize() {
+-        let lineMeasure = this.tile.blockTiles(tile => {
+-            if (tile.isLine() && tile.children.length && tile.length <= 20) {
+-                let totalWidth = 0, textHeight;
+-                for (let child of tile.children) {
+-                    if (!child.isText() || /[^ -~]/.test(child.text))
+-                        return undefined;
+-                    let rects = clientRectsFor(child.dom);
+-                    if (rects.length != 1)
+-                        return undefined;
+-                    totalWidth += rects[0].width;
+-                    textHeight = rects[0].height;
+-                }
+-                if (totalWidth)
+-                    return {
+-                        lineHeight: tile.dom.getBoundingClientRect().height,
+-                        charWidth: totalWidth / tile.length,
+-                        textHeight
+-                    };
+-            }
+-        });
+-        if (lineMeasure)
+-            return lineMeasure;
+-        // If no workable line exists, force a layout of a measurable element
++        // nvModern: rich Markdown gives visible lines different font sizes and line
++        // heights. Using the current viewport as CM's global height oracle makes
++        // wrapped gap estimates oscillate by thousands of pixels. Always measure a
++        // baseline editor line instead of sampling arbitrary visible content.
+         let dummy = document.createElement("div"), lineHeight, charWidth, textHeight;
+         dummy.className = "cm-line";
+         dummy.style.width = "99999px";
+diff --git a/dist/index.cjs b/dist/index.cjs
+index 0f3f81a..1f06dcb 100644
+--- a/dist/index.cjs
++++ b/dist/index.cjs
+@@ -3310,29 +3310,10 @@ class DocView {
+         return getComputedStyle(tile.dom).direction == "rtl" ? exports.Direction.RTL : exports.Direction.LTR;
+     }
+     measureTextSize() {
+-        let lineMeasure = this.tile.blockTiles(tile => {
+-            if (tile.isLine() && tile.children.length && tile.length <= 20) {
+-                let totalWidth = 0, textHeight;
+-                for (let child of tile.children) {
+-                    if (!child.isText() || /[^ -~]/.test(child.text))
+-                        return undefined;
+-                    let rects = clientRectsFor(child.dom);
+-                    if (rects.length != 1)
+-                        return undefined;
+-                    totalWidth += rects[0].width;
+-                    textHeight = rects[0].height;
+-                }
+-                if (totalWidth)
+-                    return {
+-                        lineHeight: tile.dom.getBoundingClientRect().height,
+-                        charWidth: totalWidth / tile.length,
+-                        textHeight
+-                    };
+-            }
+-        });
+-        if (lineMeasure)
+-            return lineMeasure;
+-        // If no workable line exists, force a layout of a measurable element
++        // nvModern: rich Markdown gives visible lines different font sizes and line
++        // heights. Using the current viewport as CM's global height oracle makes
++        // wrapped gap estimates oscillate by thousands of pixels. Always measure a
++        // baseline editor line instead of sampling arbitrary visible content.
+         let dummy = document.createElement("div"), lineHeight, charWidth, textHeight;
+         dummy.className = "cm-line";
+         dummy.style.width = "99999px";

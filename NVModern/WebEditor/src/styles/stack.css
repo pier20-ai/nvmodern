@@ -1,0 +1,244 @@
+/*
+ * Side stack: a column of read-only note cards beside a tab's content.
+ * Cards are borderless and set apart by a quiet tint of the document
+ * background; everything derives from the editor tokens in editor.lib.css so
+ * light, dark and user themes carry over.
+ */
+
+:root {
+  --nv-stack-bg: var(--nv3-color-bg);
+  --nv-stack-card-bg: color-mix(in srgb, var(--nv3-color-text) 3.5%, var(--nv3-color-bg));
+  --nv-stack-card-hover-bg: color-mix(in srgb, var(--nv3-color-text) 5.5%, var(--nv3-color-bg));
+  --nv-stack-flash-bg: color-mix(in srgb, var(--nv3-color-accent) 16%, var(--nv-stack-card-bg));
+  --nv-stack-control-hover-bg: color-mix(in srgb, var(--nv3-color-text) 8%, transparent);
+  --nv-stack-gap: 10px;
+  --nv-stack-padding: 10px;
+  --nv-stack-card-radius: 10px;
+  /* Card bodies use the document typography a step smaller. */
+  --nv-stack-body-scale: 0.875;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--nv-stack-bg);
+  color: var(--nv3-color-text);
+}
+
+body {
+  font-family: var(--nv3-font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.nv-stack {
+  box-sizing: border-box;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--nv-stack-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--nv-stack-gap);
+  overscroll-behavior: contain;
+}
+
+.nv-stack-is-empty {
+  justify-content: center;
+}
+
+.nv-stack-empty {
+  margin: 0 auto;
+  max-width: 22ch;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--nv3-color-text-subtle);
+}
+
+/* ── Card ───────────────────────────────────────────────────────── */
+
+.nv-stack-card {
+  flex: 0 0 auto;
+  min-width: 0;
+  border-radius: var(--nv-stack-card-radius);
+  background: var(--nv-stack-card-bg);
+  scroll-margin: var(--nv-stack-padding);
+}
+
+.nv-stack-card.is-flashing {
+  animation: nv-stack-card-flash 900ms ease-out;
+}
+
+@keyframes nv-stack-card-flash {
+  0%,
+  30% {
+    background: var(--nv-stack-flash-bg);
+  }
+  100% {
+    background: var(--nv-stack-card-bg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nv-stack-card.is-flashing {
+    animation-duration: 1ms;
+    animation-delay: 0s;
+  }
+}
+
+.nv-stack-card-header {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-height: 30px;
+  padding: 3px 4px 3px 4px;
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.nv-stack-card-header button {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: default;
+}
+
+.nv-stack-card-header button:focus-visible,
+.nv-stack-card-scope:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--nv3-color-accent) 60%, transparent);
+  outline-offset: -2px;
+}
+
+.nv-stack-card-icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border-radius: 6px;
+  color: var(--nv3-color-text-subtle);
+}
+
+.nv-stack-card-icon:hover {
+  color: var(--nv3-color-text);
+  background: var(--nv-stack-control-hover-bg);
+}
+
+.nv-stack-card-toggle svg {
+  transition: transform 120ms ease;
+}
+
+.nv-stack-card.is-collapsed .nv-stack-card-toggle svg {
+  transform: rotate(-90deg);
+}
+
+.nv-stack-card-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 3px 4px;
+  border-radius: 6px;
+  text-align: left;
+}
+
+.nv-stack-card-title:hover .nv-stack-card-title-text {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--nv3-color-text) 35%, transparent);
+  text-underline-offset: 2px;
+}
+
+.nv-stack-card-title-text {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--nv3-color-text);
+}
+
+.nv-stack-card-focus {
+  flex: 0 1000 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--nv3-color-text-muted);
+}
+
+.nv-stack-card-focus::before {
+  content: "› ";
+  color: var(--nv3-color-text-subtle);
+}
+
+.nv-stack-card-actions {
+  flex: 0 0 auto;
+  display: inline-flex;
+  gap: 1px;
+  opacity: 0.55;
+  transition: opacity 120ms ease;
+}
+
+.nv-stack-card:hover .nv-stack-card-actions,
+.nv-stack-card:focus-within .nv-stack-card-actions {
+  opacity: 1;
+}
+
+/* ── Card body ──────────────────────────────────────────────────── */
+
+.nv-stack-card-body {
+  padding: 0 14px 10px 16px;
+}
+
+.nv-stack-card-editor .cm-editor {
+  --nv-stack-card-font-scale: calc(var(--nv3-document-scale) * var(--nv-stack-body-scale));
+}
+
+.nv-stack-card-editor .cm-editor .cm-scroller {
+  font-size: var(--nv-stack-card-font-scale);
+  overflow-y: visible;
+}
+
+.nv-stack-card-editor .cm-editor .cm-content {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+  padding: 0;
+  caret-color: transparent;
+}
+
+.nv-stack-card-editor .cm-editor .cm-cursorLayer {
+  display: none;
+}
+
+.nv-stack-card-note,
+.nv-stack-card-scope {
+  display: block;
+  margin: 6px 0 0;
+  padding: 2px 0;
+  font: 11.5px/1.4 var(--nv3-font-sans);
+  color: var(--nv3-color-text-muted);
+}
+
+.nv-stack-card-scope {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  cursor: default;
+  border-radius: 4px;
+}
+
+.nv-stack-card-scope:hover {
+  color: var(--nv3-color-text);
+}

@@ -1,0 +1,270 @@
+/*
+ * Cyanotype — a blueline print by day, a blueprint by night.
+ *
+ * Every mark is in one ink, set in Berkeley Mono on a 24px drafting grid,
+ * with headings in DIN, the German standard for engineering lettering.
+ * Red pencil (yellow on the blueprint) marks TODOs and deadlines, the way a
+ * checker marks revisions. Built for Org agendas and technical notes.
+ *
+ * Built into nvModern; a file with the same id in the user themes directory
+ * overrides this one.
+ */
+
+:root {
+  --nv3-theme-name: Cyanotype;
+  --nv3-theme-subtitle: Blueprint mono on a drafting grid;
+  --nv3-theme-swatch: #f6f8fa;
+  --nv3-theme-swatch-2: #17396f;
+  --nv3-theme-swatch-3: #d23c2a;
+
+  --nv3-font-sans: "Berkeley Mono Variable", "Berkeley Mono", "IBM Plex Mono", "SF Mono", ui-monospace, monospace;
+  --nv3-font-display: "DIN Condensed", "DIN Alternate", "Arial Narrow", sans-serif;
+  --nv3-font-label: "DIN Alternate", "DIN Condensed", "Arial Narrow", sans-serif;
+  --nv3-font-mono: var(--nv3-font-sans);
+  --nv3-font-size-adjust: 0.522;
+  --nv3-content-font-size: 0.875em;
+  --nv3-content-line-height: 1.7;
+
+  --nv3-md-h1-font-size: 2.85em;
+  --nv3-md-h1-font-weight: 700;
+  --nv3-md-h1-line-height: 1;
+  --nv3-md-h1-letter-spacing: 0.01em;
+  --nv3-md-h1-text-transform: uppercase;
+  --nv3-md-h2-font-size: 1.95em;
+  --nv3-md-h2-font-weight: 700;
+  --nv3-md-h2-line-height: 1.05;
+  --nv3-md-h2-letter-spacing: 0.005em;
+  --nv3-md-h3-font-family: var(--nv3-font-label);
+  --nv3-md-h3-font-size: 1.15em;
+  --nv3-md-h3-font-weight: 700;
+  --nv3-md-h3-letter-spacing: 0.07em;
+  --nv3-md-h3-text-transform: uppercase;
+  --nv3-md-h4-font-family: var(--nv3-font-sans);
+  --nv3-md-h4-font-weight: 700;
+  --nv3-md-h5-font-family: var(--nv3-font-sans);
+  --nv3-md-h5-font-weight: 700;
+  --nv3-md-h6-font-family: var(--nv3-font-sans);
+  --nv3-md-h6-font-weight: 400;
+
+  --nv3-md-inline-code-font-size: 1em;
+  --nv3-md-inline-code-heading-font-size: 1em;
+  --nv3-md-inline-code-padding: 0.05em 0.3em;
+  --nv3-md-inline-code-radius: 0;
+  --nv3-md-code-block-font-size: 1em;
+  --nv3-md-code-block-line-height: 1.6;
+  --nv3-md-code-block-border-width: 1px;
+
+  --nv3-md-blockquote-font-style: italic;
+  --nv3-md-blockquote-border-width: 2px;
+  --nv3-md-callout-bg: transparent;
+  --nv3-md-callout-border-width: 1px;
+  --nv3-md-callout-title-font-family: var(--nv3-font-label);
+  --nv3-md-callout-title-font-size: 1.05em;
+  --nv3-md-callout-title-font-weight: 700;
+  --nv3-md-callout-title-letter-spacing: 0.08em;
+  --nv3-md-callout-title-text-transform: uppercase;
+  --nv3-md-horizontal-rule-width: 100%;
+  --nv3-md-horizontal-rule-padding-block: 0.7em;
+
+  --nv3-table-header-font-scale: 1.05;
+  --nv3-table-header-font-weight: 700;
+  --nv3-table-header-letter-spacing: 0.08em;
+  --nv3-table-header-text-transform: uppercase;
+  --nv3-task-checkbox-radius: 0;
+  --nv3-link-underline-style: dashed;
+  --nv3-link-underline-thickness: 1px;
+
+  --nv3-org-todo-scale: 1;
+  --nv3-org-todo-font-weight: 300;
+  --nv3-org-todo-letter-spacing: 0.06em;
+  --nv3-org-tag-scale: 0.82;
+  --nv3-org-h1-spacing: 1.2em;
+  --nv3-org-h2-spacing: 0.6em;
+}
+
+[data-theme="light"] {
+  --cy-pencil: #d23c2a;
+  --cy-grid: rgba(23, 57, 111, 0.07);
+
+  --nv3-color-bg: #f6f8fa;
+  --nv3-color-surface: #e7eef7;
+  --nv3-color-surface-hover: #dbe5f2;
+  --nv3-color-surface-active: #cfdcee;
+  --nv3-color-code-inline-bg: #e7eef7;
+  --nv3-color-code-block-bg: #eef3f9;
+  --nv3-color-text: #17396f;
+  --nv3-color-text-muted: #4c6a99;
+  --nv3-color-text-subtle: #8199bd;
+  --nv3-color-border: #c9d6e8;
+  --nv3-color-border-strong: #8fa6c8;
+  --nv3-color-accent: #17396f;
+  --nv3-selection-bg: rgba(23, 57, 111, 0.14);
+  --nv3-caret-color: #d23c2a;
+  --nv3-color-highlight-yellow: #ffe066;
+
+  --nv3-color-red: #d23c2a;
+  --nv3-color-orange: #d23c2a;
+  --nv3-color-yellow: #b08400;
+  --nv3-color-green: #17396f;
+  --nv3-color-teal: #17396f;
+  --nv3-color-blue: #17396f;
+  --nv3-color-purple: #4c6a99;
+  --nv3-color-pink: #4c6a99;
+
+  --nv3-syntax-keyword: #0f2c5c;
+  --nv3-syntax-string: #4c6a99;
+  --nv3-syntax-number: #d23c2a;
+  --nv3-syntax-atom: #d23c2a;
+  --nv3-syntax-function: #0f2c5c;
+  --nv3-syntax-type: #0f2c5c;
+  --nv3-syntax-variable: #17396f;
+  --nv3-syntax-property: #17396f;
+  --nv3-syntax-namespace: #0f2c5c;
+  --nv3-syntax-definition: #0f2c5c;
+  --nv3-syntax-operator: #4c6a99;
+  --nv3-syntax-punctuation: #8199bd;
+  --nv3-syntax-regexp: #4c6a99;
+  --nv3-syntax-escape: #d23c2a;
+  --nv3-syntax-doc-comment: #8199bd;
+  --nv3-syntax-invalid: #d23c2a;
+  --nv3-syntax-inserted: #17396f;
+  --nv3-syntax-deleted: #d23c2a;
+
+  --nv3-md-highlight-bg: color-mix(in srgb, #ffe066 60%, transparent);
+}
+
+[data-theme="dark"] {
+  --cy-pencil: #ffd75e;
+  --cy-grid: rgba(255, 255, 255, 0.075);
+
+  --nv3-color-bg: #133e74;
+  --nv3-color-surface: #1b4c88;
+  --nv3-color-surface-hover: #22558f;
+  --nv3-color-surface-active: #2a5f9b;
+  --nv3-color-code-inline-bg: #1b4c88;
+  --nv3-color-code-block-bg: #164580;
+  --nv3-color-text: #eef4ff;
+  --nv3-color-text-muted: #b4cbee;
+  --nv3-color-text-subtle: #83a3d2;
+  --nv3-color-border: #2f5f9b;
+  --nv3-color-border-strong: #6d93c8;
+  --nv3-color-accent: #eef4ff;
+  --nv3-selection-bg: rgba(255, 255, 255, 0.18);
+  --nv3-caret-color: #ffd75e;
+  --nv3-color-highlight-yellow: #ffd75e;
+
+  --nv3-color-red: #ffd75e;
+  --nv3-color-orange: #ffd75e;
+  --nv3-color-yellow: #ffd75e;
+  --nv3-color-green: #eef4ff;
+  --nv3-color-teal: #eef4ff;
+  --nv3-color-blue: #eef4ff;
+  --nv3-color-purple: #b4cbee;
+  --nv3-color-pink: #b4cbee;
+
+  --nv3-syntax-keyword: #ffffff;
+  --nv3-syntax-string: #b4cbee;
+  --nv3-syntax-number: #ffd75e;
+  --nv3-syntax-atom: #ffd75e;
+  --nv3-syntax-function: #ffffff;
+  --nv3-syntax-type: #ffffff;
+  --nv3-syntax-variable: #eef4ff;
+  --nv3-syntax-property: #eef4ff;
+  --nv3-syntax-namespace: #ffffff;
+  --nv3-syntax-definition: #ffffff;
+  --nv3-syntax-operator: #b4cbee;
+  --nv3-syntax-punctuation: #83a3d2;
+  --nv3-syntax-regexp: #b4cbee;
+  --nv3-syntax-escape: #ffd75e;
+  --nv3-syntax-doc-comment: #83a3d2;
+  --nv3-syntax-invalid: #ffd75e;
+  --nv3-syntax-inserted: #eef4ff;
+  --nv3-syntax-deleted: #ffd75e;
+
+  --nv3-md-highlight-bg: #ffd75e;
+  --nv3-md-highlight-color: #133e74;
+}
+
+/* Palette roles shared by both appearances. */
+:root {
+  --nv3-md-h1-color: var(--nv3-color-text);
+  --nv3-md-h3-color: var(--nv3-color-text-muted);
+  --nv3-md-inline-code-color: var(--nv3-color-text);
+  --nv3-md-code-block-bg: var(--nv3-color-code-block-bg);
+  --nv3-md-code-block-border-color: var(--nv3-color-border-strong);
+  --nv3-md-blockquote-color: var(--nv3-color-text-muted);
+  --nv3-md-blockquote-border-color: var(--nv3-color-border-strong);
+  --nv3-md-callout-border-color: var(--nv3-color-text);
+  --nv3-md-callout-title-color: var(--nv3-color-text);
+  --nv3-md-callout-marker-color: var(--nv3-color-text-subtle);
+  --nv3-md-horizontal-rule-border: 1px dashed var(--nv3-color-border-strong);
+  --nv3-md-horizontal-rule-active-border: 1px dashed var(--nv3-color-text);
+  --nv3-link-color: var(--nv3-color-text);
+  --nv3-link-hover-color: var(--cy-pencil);
+  --nv3-wikilink-underline: var(--nv3-color-text);
+
+  --nv3-table-frame: 1px solid var(--nv3-color-border-strong);
+  --nv3-table-header-bg: var(--nv3-color-surface);
+  --nv3-table-header-color: var(--nv3-color-text-muted);
+  --nv3-table-header-border: 1px solid var(--nv3-color-border-strong);
+  --nv3-table-row-border: 1px solid var(--nv3-color-border-strong);
+  --nv3-table-column-border: 1px solid var(--nv3-color-border-strong);
+  --nv3-task-checkbox-border: var(--nv3-color-text);
+  --nv3-task-checkbox-checked: var(--nv3-color-text);
+
+  --nv3-org-todo-color: var(--cy-pencil);
+  --nv3-org-doing-color: var(--nv3-color-text);
+  --nv3-org-done-keyword-color: var(--nv3-color-text-subtle);
+  --nv3-org-deadline-color: var(--cy-pencil);
+  --nv3-org-planning-color: var(--nv3-color-text-muted);
+  --nv3-org-timestamp-color: var(--nv3-color-text-muted);
+  --nv3-org-tag-color: var(--nv3-color-text-muted);
+  --nv3-org-checkbox-color: var(--nv3-color-text);
+  --nv3-org-list-marker-color: var(--nv3-color-text-muted);
+}
+
+/* The drafting grid scrolls with the sheet. */
+.cm-editor .cm-scroller {
+  background-image:
+    linear-gradient(var(--cy-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cy-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: -1px -1px;
+  background-attachment: local;
+}
+
+/* The title gets a drawing's double rule. */
+.cm-editor .cm-line.nv3-heading-line-level-1,
+.cm-editor .cm-line.om-title {
+  padding-bottom: 0.15em;
+  border-bottom: 3px double var(--nv3-color-text);
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-2 {
+  padding-top: 0.9em;
+}
+
+/* Org keywords and tags are boxed callouts on the drawing. */
+.cm-editor .om-todo,
+.cm-editor .om-done,
+.cm-editor .om-tags {
+  display: inline-block;
+  padding: 0.14em 0.38em 0.02em;
+  line-height: 1.2;
+  border: 1.5px solid currentColor;
+}
+
+.cm-editor .om-tags {
+  border-width: 1px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.cm-editor .om-done {
+  text-decoration: line-through;
+}
+
+.cm-editor .nv3-tag-heading {
+  color: inherit;
+  border-bottom: 0;
+}

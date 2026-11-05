@@ -1,0 +1,174 @@
+/*
+ * Newsprint — serif editorial reading theme.
+ *
+ * Adobe Caslon on white, in black ink only. Headings stay roman at the
+ * regular weight; code is scaled to Caslon's small x-height so it sits in the
+ * line instead of shouting over it.
+ *
+ * Built into nvModern; a file with the same id in the user themes directory
+ * overrides this one.
+ */
+
+:root {
+  --nv3-theme-name: Newsprint;
+  --nv3-theme-subtitle: Adobe Caslon in black ink;
+  --nv3-theme-swatch: #fff7de;
+  --nv3-theme-swatch-2: #293024;
+  --nv3-theme-swatch-3: #407d3b;
+
+  --nv3-font-sans: "Adobe Caslon Pro", ui-serif, "Times New Roman", serif;
+  --nv3-font-display: "Adobe Caslon Pro", ui-serif, "Times New Roman", serif;
+  --nv3-font-label: var(--nv3-font-sans);
+  --nv3-font-size-adjust: 0.414;
+  --nv3-content-font-size: 1.25em;
+  --nv3-content-line-height: 1.5;
+
+  --nv3-md-h1-font-size: 1.6em;
+  --nv3-md-h1-font-weight: 400;
+  --nv3-md-h1-line-height: 1.125;
+  --nv3-md-h2-font-size: 1.3em;
+  --nv3-md-h2-font-weight: 400;
+  --nv3-md-h2-line-height: 1.18;
+  --nv3-md-h3-font-size: 1.1em;
+  --nv3-md-h3-font-weight: 400;
+  --nv3-md-h3-line-height: 1.22;
+  --nv3-md-h4-font-weight: 400;
+  --nv3-md-h4-font-style: italic;
+  --nv3-md-h5-font-weight: 400;
+  --nv3-md-h5-font-style: italic;
+  --nv3-md-h6-font-weight: 400;
+  --nv3-md-h6-font-style: italic;
+
+  --nv3-md-inline-code-font-size: 1em;
+  --nv3-md-inline-code-heading-font-size: 1em;
+  --nv3-md-inline-code-bg: transparent;
+  --nv3-md-inline-code-padding: 0;
+  --nv3-md-code-block-font-size: 0.95em;
+
+  --nv3-md-callout-title-font-weight: 400;
+  --nv3-md-callout-title-letter-spacing: 0.08em;
+  --nv3-md-callout-title-text-transform: uppercase;
+  --nv3-md-callout-title-font-size: 0.78em;
+
+  --nv3-table-header-font-weight: 400;
+  --nv3-table-header-font-style: italic;
+
+  --nv3-org-todo-scale: 1;
+  --nv3-org-todo-font-weight: 300;
+  --nv3-org-todo-letter-spacing: 0.1em;
+  --nv3-org-tag-scale: 0.9;
+}
+
+[data-theme="light"] {
+  --nv3-color-bg: #ffffff;
+  --nv3-color-surface: #f5f5f2;
+  --nv3-color-surface-hover: #ebebe7;
+  --nv3-color-surface-active: #e2e1dc;
+  --nv3-color-code-block-bg: #f7f6f3;
+  --nv3-color-text: #181715;
+  --nv3-color-text-muted: #56534e;
+  --nv3-color-text-subtle: #8b867c;
+  --nv3-color-border: #e2dfd8;
+  --nv3-color-border-strong: #c7c1b8;
+  --nv3-color-accent: #222222;
+  --nv3-color-blue: #333333;
+  --nv3-color-purple: #4a4a4a;
+  --nv3-color-orange: #5c4630;
+  --nv3-selection-bg: rgba(24, 23, 21, 0.14);
+
+  --nv3-syntax-keyword: #181715;
+  --nv3-syntax-string: #5c4630;
+  --nv3-syntax-number: #5c4630;
+  --nv3-syntax-atom: #5c4630;
+  --nv3-syntax-function: #181715;
+  --nv3-syntax-type: #181715;
+  --nv3-syntax-variable: #181715;
+  --nv3-syntax-property: #56534e;
+  --nv3-syntax-namespace: #181715;
+  --nv3-syntax-definition: #181715;
+  --nv3-syntax-operator: #56534e;
+  --nv3-syntax-punctuation: #8b867c;
+  --nv3-syntax-regexp: #5c4630;
+  --nv3-syntax-escape: #5c4630;
+  --nv3-syntax-doc-comment: #8b867c;
+
+  --nv3-md-inline-code-color: #5c4630;
+}
+
+[data-theme="dark"] {
+  --nv3-color-bg: #1d1c1a;
+  --nv3-color-surface: #282622;
+  --nv3-color-surface-hover: #32302a;
+  --nv3-color-surface-active: #3b3832;
+  --nv3-color-code-block-bg: #22211e;
+  --nv3-color-text: #d8d2c8;
+  --nv3-color-text-muted: #a29a8e;
+  --nv3-color-text-subtle: #777065;
+  --nv3-color-border: #3b3832;
+  --nv3-color-border-strong: #555046;
+  --nv3-color-accent: #d8d2c8;
+  --nv3-color-blue: #c8c0b2;
+  --nv3-color-purple: #bfb6a8;
+  --nv3-color-orange: #c5a37b;
+  --nv3-selection-bg: rgba(216, 210, 200, 0.18);
+
+  --nv3-syntax-keyword: #e6e0d6;
+  --nv3-syntax-string: #c5a37b;
+  --nv3-syntax-number: #c5a37b;
+  --nv3-syntax-atom: #c5a37b;
+  --nv3-syntax-function: #e6e0d6;
+  --nv3-syntax-type: #e6e0d6;
+  --nv3-syntax-variable: #d8d2c8;
+  --nv3-syntax-property: #a29a8e;
+  --nv3-syntax-namespace: #e6e0d6;
+  --nv3-syntax-definition: #e6e0d6;
+  --nv3-syntax-operator: #a29a8e;
+  --nv3-syntax-punctuation: #777065;
+  --nv3-syntax-regexp: #c5a37b;
+  --nv3-syntax-escape: #c5a37b;
+  --nv3-syntax-doc-comment: #777065;
+
+  --nv3-md-inline-code-color: #c5a37b;
+}
+
+/* Palette roles shared by both appearances. */
+:root {
+  --nv3-md-blockquote-border-color: var(--nv3-color-border-strong);
+  --nv3-md-blockquote-border-width: 2px;
+  --nv3-md-callout-title-color: var(--nv3-color-text);
+  --nv3-link-color: var(--nv3-color-text);
+  --nv3-link-hover-color: var(--nv3-color-text-muted);
+  --nv3-task-checkbox-checked: var(--nv3-color-text);
+
+  --nv3-org-todo-color: var(--nv3-color-text);
+  --nv3-org-doing-color: var(--nv3-color-text-muted);
+  --nv3-org-done-keyword-color: var(--nv3-color-text-subtle);
+  --nv3-org-deadline-color: var(--nv3-color-text);
+  --nv3-org-checkbox-color: var(--nv3-color-text);
+  --nv3-org-link-color: var(--nv3-color-text);
+}
+
+/* Heading rhythm */
+.cm-editor .cm-line.nv3-heading-line-level-1 {
+  padding-top: 1em;
+  padding-bottom: 0.28em;
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-2 {
+  padding-top: 0.86em;
+  padding-bottom: 0.16em;
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-3 {
+  padding-top: 0.58em;
+  padding-bottom: 0.08em;
+}
+
+.cm-editor .om-tags {
+  font-style: italic;
+}
+
+.cm-editor .nv3-tag-heading {
+  color: inherit;
+  border-bottom: 0;
+}

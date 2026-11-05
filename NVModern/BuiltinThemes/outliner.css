@@ -1,0 +1,189 @@
+/*
+ * Outliner — the original Org look, kept and refined.
+ *
+ * One monospace size from title to footnote. Hierarchy is carried by ink:
+ * every heading level has its own colour, the way an Org outline reads in
+ * Emacs, so a long outline can be scanned by colour alone. Google Sans Code
+ * was nvModern's Org face before the themes took over; it stays here.
+ *
+ * Built into nvModern; a file with the same id in the user themes directory
+ * overrides this one.
+ */
+
+:root {
+  --nv3-theme-name: Outliner;
+  --nv3-theme-subtitle: One monospace size, an ink per level;
+  --nv3-theme-swatch: #fafaf8;
+  --nv3-theme-swatch-2: #2f5fb3;
+  --nv3-theme-swatch-3: #b23a6f;
+
+  -webkit-font-smoothing: antialiased;
+
+  --nv3-font-sans: "Google Sans Code", "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
+  --nv3-font-display: var(--nv3-font-sans);
+  --nv3-font-label: var(--nv3-font-sans);
+  --nv3-font-mono: var(--nv3-font-sans);
+  --nv3-font-size-adjust: 0.523;
+  --nv3-content-font-size: 0.94em;
+  --nv3-content-line-height: 1.62;
+
+  --nv3-md-h1-font-size: 1em;
+  --nv3-md-h1-font-weight: 800;
+  --nv3-md-h1-line-height: 1.62;
+  --nv3-md-h1-letter-spacing: 0;
+  --nv3-md-h2-font-size: 1em;
+  --nv3-md-h2-font-weight: 700;
+  --nv3-md-h2-line-height: 1.62;
+  --nv3-md-h3-font-size: 1em;
+  --nv3-md-h3-font-weight: 700;
+  --nv3-md-h3-line-height: 1.62;
+  --nv3-md-h4-font-weight: 600;
+  --nv3-md-h4-line-height: 1.62;
+  --nv3-md-h5-font-weight: 600;
+  --nv3-md-h5-line-height: 1.62;
+  --nv3-md-h6-font-weight: 600;
+  --nv3-md-h6-line-height: 1.62;
+
+  --nv3-md-inline-code-font-size: 1em;
+  --nv3-md-inline-code-heading-font-size: 1em;
+  --nv3-md-inline-code-padding: 0.05em 0.3em;
+  --nv3-md-code-block-font-size: 1em;
+  --nv3-md-code-block-line-height: 1.55;
+  --nv3-table-cell-font-size: 1em;
+
+  --nv3-md-blockquote-font-style: italic;
+  --nv3-md-callout-title-font-weight: 700;
+  --nv3-md-horizontal-rule-width: 100%;
+
+  --nv3-table-header-font-weight: 700;
+  --nv3-task-checkbox-radius: 3px;
+
+  --nv3-org-todo-scale: 1;
+  --nv3-org-todo-font-weight: 300;
+  --nv3-org-todo-letter-spacing: 0;
+  --nv3-org-tag-scale: 0.86;
+  --nv3-org-h1-spacing: 1.1em;
+  --nv3-org-h2-spacing: 0.5em;
+  --nv3-org-h3-spacing: 0.3em;
+}
+
+[data-theme="light"] {
+  --ol-level-1: #2f5fb3;
+  --ol-level-2: #b23a6f;
+  --ol-level-3: #7048a8;
+  --ol-level-4: #11807a;
+  --ol-level-5: #95661a;
+  --ol-level-6: #5c6773;
+
+  --nv3-color-bg: #fafaf8;
+  --nv3-color-surface: #f0f0ed;
+  --nv3-color-surface-hover: #e7e7e3;
+  --nv3-color-surface-active: #ddddd8;
+  --nv3-color-code-inline-bg: #eeeeea;
+  --nv3-color-code-block-bg: #f2f2ef;
+  --nv3-color-text: #26272b;
+  --nv3-color-text-muted: #64666d;
+  --nv3-color-text-subtle: #9a9ca2;
+  --nv3-color-border: #e2e2de;
+  --nv3-color-border-strong: #c9c9c3;
+  --nv3-color-accent: #2f5fb3;
+  --nv3-selection-bg: rgba(47, 95, 179, 0.16);
+  --nv3-color-highlight-yellow: #f6e58f;
+
+  --nv3-color-red: #c8374f;
+  --nv3-color-orange: #b8621b;
+  --nv3-color-yellow: #95661a;
+  --nv3-color-green: #2f8a53;
+  --nv3-color-teal: #11807a;
+  --nv3-color-blue: #2f5fb3;
+  --nv3-color-purple: #7048a8;
+  --nv3-color-pink: #b23a6f;
+}
+
+[data-theme="dark"] {
+  --ol-level-1: #7fa8ff;
+  --ol-level-2: #f283b5;
+  --ol-level-3: #bd9ff2;
+  --ol-level-4: #5fcfc2;
+  --ol-level-5: #e2b86c;
+  --ol-level-6: #a6afba;
+
+  --nv3-color-bg: #17181b;
+  --nv3-color-surface: #202125;
+  --nv3-color-surface-hover: #292a2f;
+  --nv3-color-surface-active: #323339;
+  --nv3-color-code-inline-bg: #23252a;
+  --nv3-color-code-block-bg: #1c1d21;
+  --nv3-color-text: #dfe1e6;
+  --nv3-color-text-muted: #a1a5ae;
+  --nv3-color-text-subtle: #6d717a;
+  --nv3-color-border: #2b2d32;
+  --nv3-color-border-strong: #3d4047;
+  --nv3-color-accent: #7fa8ff;
+  --nv3-selection-bg: rgba(127, 168, 255, 0.22);
+  --nv3-color-highlight-yellow: #6a5a1e;
+
+  --nv3-color-red: #ff7a8a;
+  --nv3-color-orange: #f0a35e;
+  --nv3-color-yellow: #e2b86c;
+  --nv3-color-green: #72c991;
+  --nv3-color-teal: #5fcfc2;
+  --nv3-color-blue: #7fa8ff;
+  --nv3-color-purple: #bd9ff2;
+  --nv3-color-pink: #f283b5;
+}
+
+/* Palette roles shared by both appearances. */
+:root {
+  --nv3-md-h1-color: var(--ol-level-1);
+  --nv3-md-h2-color: var(--ol-level-2);
+  --nv3-md-h3-color: var(--ol-level-3);
+  --nv3-md-h4-color: var(--ol-level-4);
+  --nv3-md-h5-color: var(--ol-level-5);
+  --nv3-md-h6-color: var(--ol-level-6);
+  /* Org headline N keeps level N's ink, as in Emacs. */
+  --nv3-org-h1-color: var(--ol-level-1);
+  --nv3-org-h2-color: var(--ol-level-2);
+  --nv3-org-h3-color: var(--ol-level-3);
+  --nv3-org-h4-color: var(--ol-level-4);
+  --nv3-org-h5-color: var(--ol-level-5);
+  --nv3-org-h6-color: var(--ol-level-6);
+  --nv3-org-h1-rule: 1px dashed var(--nv3-color-border-strong);
+
+  --nv3-md-inline-code-color: var(--ol-level-4);
+  --nv3-md-code-block-bg: var(--nv3-color-code-block-bg);
+  --nv3-md-blockquote-border-color: var(--nv3-color-border-strong);
+  --nv3-md-blockquote-color: var(--nv3-color-text-muted);
+  --nv3-md-horizontal-rule-border: 1px dashed var(--nv3-color-border-strong);
+  --nv3-md-horizontal-rule-active-border: 1px dashed var(--nv3-color-text-subtle);
+  --nv3-link-color: var(--ol-level-1);
+  --nv3-link-hover-color: var(--ol-level-2);
+  --nv3-wikilink-underline: color-mix(in srgb, var(--ol-level-1) 45%, transparent);
+
+  --nv3-table-header-color: var(--nv3-color-text);
+  --nv3-task-checkbox-checked: var(--nv3-color-green);
+
+  --nv3-org-todo-color: var(--nv3-color-red);
+  --nv3-org-doing-color: var(--nv3-color-orange);
+  --nv3-org-done-keyword-color: var(--nv3-color-green);
+  --nv3-org-planning-color: var(--nv3-color-text-muted);
+  --nv3-org-planning-keyword-color: var(--ol-level-4);
+  --nv3-org-timestamp-color: var(--ol-level-4);
+  --nv3-org-deadline-color: var(--nv3-color-red);
+  --nv3-org-checkbox-color: var(--nv3-color-green);
+  --nv3-org-property-key-color: var(--ol-level-3);
+}
+
+/* Markdown sections get the same quiet rule as Org's top level. */
+.cm-editor .cm-line.nv3-heading-line-level-1,
+.cm-editor .cm-line.nv3-heading-line-level-2 {
+  padding-top: 0.9em;
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-2 {
+  border-top: 1px dashed var(--nv3-color-border-strong);
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-1:first-child {
+  padding-top: 0;
+}

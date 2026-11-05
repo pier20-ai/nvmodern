@@ -1,0 +1,553 @@
+.arbor-shell {
+  --arbor-row-height: max(26px, 1lh);
+  --arbor-indent: 1.375em;
+  --arbor-gutter: 1.375em;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--nv3-color-bg, var(--bg));
+  color: var(--nv3-color-text, var(--text));
+  font-family: var(--nv3-font-sans, var(--font-sans));
+  font-size: var(--nv3-document-scale, 100%);
+  /* No -webkit-font-smoothing override. Forcing `antialiased` swaps macOS's
+     subpixel rendering for grayscale, which renders noticeably thinner and
+     lighter — the reason outline text looked washed out next to Markdown,
+     which sets neither property and gets the platform default. */
+}
+
+.arbor-scroller {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.arbor-page {
+  box-sizing: border-box;
+  width: min(calc(100% - 48px), var(--nv3-editor-max-width, 740px));
+  min-height: 100%;
+  margin-inline: auto;
+  padding: 48px 8px 140px;
+}
+
+.arbor-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-block-end: 10px;
+  color: var(--text-tertiary);
+  font-size: 12px;
+}
+
+.arbor-breadcrumbs button {
+  padding: 2px 4px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.arbor-breadcrumbs button:hover {
+  background: color-mix(in srgb, var(--text) 7%, transparent);
+  color: var(--text-secondary);
+}
+
+.arbor-breadcrumbs button:active {
+  scale: 0.96;
+}
+
+.arbor-outline {
+  width: 100%;
+  outline: none;
+  font-size: var(--nv3-content-font-size, 1em);
+  font-size-adjust: var(--nv3-content-font-size-adjust, none);
+  font-weight: 400;
+  line-height: var(--nv3-content-line-height, 1.625);
+  letter-spacing: -0.002em;
+  word-spacing: normal;
+}
+
+.arbor-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--arbor-gutter) minmax(0, 1fr);
+  align-items: start;
+  box-sizing: border-box;
+  min-height: var(--arbor-row-height);
+  padding-inline-start: calc(var(--arbor-depth, 0) * var(--arbor-indent));
+}
+
+.arbor-row[data-selected="true"]::before {
+  content: "";
+  position: absolute;
+  inset: 1px 0;
+  z-index: 0;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  pointer-events: none;
+}
+
+.arbor-row[data-drop-placement="before"]::after,
+.arbor-row[data-drop-placement="after"]::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  left: calc(var(--arbor-depth, 0) * var(--arbor-indent));
+  height: 2px;
+  border-radius: 1px;
+  background: var(--accent);
+  pointer-events: none;
+}
+
+.arbor-row[data-drop-placement="before"]::after {
+  top: 0;
+}
+
+.arbor-row[data-drop-placement="after"]::after {
+  bottom: 0;
+}
+
+.arbor-row[data-drop-placement="first-child"] .arbor-block {
+  border-radius: 3px;
+  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--accent) 70%, transparent);
+}
+
+.arbor-row[data-drop-placement="last-child"] .arbor-block {
+  border-radius: 3px;
+  box-shadow:
+    inset 3px 0 0 color-mix(in srgb, var(--accent) 70%, transparent),
+    inset 0 -2px 0 color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.arbor-row-gutter {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(var(--arbor-row-height) + 5px);
+  /* Match the rendered block's 2px/3px vertical padding so the bullet is
+     centred on the same first-line box at every scale and heading level. */
+}
+
+.arbor-row[data-heading-level="1"] .arbor-row-gutter {
+  font-size: var(--nv3-md-h1-font-size, 1.875em);
+  line-height: var(--nv3-md-h1-line-height, 1.3);
+}
+
+.arbor-row[data-heading-level="2"] .arbor-row-gutter {
+  font-size: var(--nv3-md-h2-font-size, 1.5em);
+  line-height: var(--nv3-md-h2-line-height, 1.3);
+}
+
+.arbor-row[data-heading-level="3"] .arbor-row-gutter {
+  font-size: var(--nv3-md-h3-font-size, 1.25em);
+  line-height: var(--nv3-md-h3-line-height, 1.3);
+}
+
+.arbor-bullet-button {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  margin: 0 -9px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.arbor-bullet-button::after {
+  content: "";
+  position: absolute;
+  inset: 11px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--text) 58%, transparent);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--text) 9%, transparent);
+  transition-property: background-color, box-shadow, scale;
+  transition-duration: 100ms;
+  transition-timing-function: ease-out;
+}
+
+.arbor-bullet-button:hover::after,
+.arbor-row[data-active="true"] .arbor-bullet-button::after {
+  background: var(--text);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--text) 7%, transparent);
+}
+
+.arbor-bullet-button:active::after {
+  scale: 0.96;
+}
+
+.arbor-row[data-collapsed="true"] .arbor-bullet-button::after {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--text) 16%, transparent);
+}
+
+.arbor-block {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.arbor-block-rendered,
+.arbor-block-editor {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--arbor-row-height);
+  padding: 2px 3px 3px;
+  outline: none;
+  color: var(--nv3-color-text, var(--text));
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  word-spacing: inherit;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.arbor-completion {
+  padding: 5px;
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  outline: none;
+  box-shadow:
+    0 12px 32px color-mix(in srgb, black 18%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--text) 10%, transparent);
+}
+
+.arbor-completion {
+  width: min(320px, calc(100% - 24px));
+  max-height: 248px;
+}
+
+.ui-popover-positioner {
+  z-index: 90;
+}
+
+.arbor-completion-list {
+  max-height: 238px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  outline: none;
+}
+
+.arbor-completion-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  min-height: 32px;
+  align-items: center;
+  gap: 16px;
+  padding-inline: 9px;
+  border-radius: 5px;
+  color: var(--text);
+  font-size: 12px;
+  text-align: left;
+  cursor: default;
+  user-select: none;
+}
+
+.arbor-completion-item span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.arbor-completion-item small {
+  color: var(--text-tertiary);
+  font-size: 11px;
+}
+
+.arbor-completion-item[aria-selected="true"] {
+  background: var(--accent);
+  color: white;
+}
+
+.arbor-completion-item[aria-selected="true"] small {
+  color: color-mix(in srgb, white 72%, transparent);
+}
+
+.arbor-block-rendered {
+  cursor: text;
+}
+
+.arbor-task {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 3px;
+  max-width: 100%;
+}
+
+.arbor-task-content {
+  min-width: 0;
+}
+
+.arbor-task[data-checked="true"] .arbor-task-content {
+  color: var(--text-secondary);
+  text-decoration: line-through;
+}
+
+.ui-checkbox {
+  position: relative;
+  display: inline-grid;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
+  place-items: center;
+  margin-block-start: -1px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.ui-checkbox::before {
+  content: "";
+  grid-area: 1 / 1;
+  box-sizing: border-box;
+  width: 14px;
+  height: 14px;
+  border: 1px solid color-mix(in srgb, var(--text) 36%, transparent);
+  border-radius: 4px;
+  background: var(--bg);
+  transition-property: background-color, border-color, scale;
+  transition-duration: 100ms;
+  transition-timing-function: ease-out;
+}
+
+.ui-checkbox:hover::before {
+  border-color: color-mix(in srgb, var(--text) 58%, transparent);
+}
+
+.ui-checkbox[data-checked]::before {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+
+.ui-checkbox:active::before {
+  scale: 0.96;
+}
+
+.ui-checkbox:focus-visible::before {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.ui-checkbox-indicator {
+  z-index: 1;
+  display: grid;
+  grid-area: 1 / 1;
+  width: 12px;
+  height: 12px;
+  place-items: center;
+}
+
+.ui-checkbox-indicator svg {
+  width: 10px;
+  height: 10px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.arbor-block-rendered:focus-visible {
+  border-radius: 3px;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+.arbor-block-editor {
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  caret-color: var(--accent);
+}
+
+.arbor-block-editor:empty::before {
+  content: attr(data-placeholder);
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+
+.arbor-block-editor::selection,
+.arbor-block-rendered::selection {
+  background: var(--selection);
+}
+
+.arbor-row:is([data-computation="live"], [data-computation="snapshot"])[data-active="false"] .arbor-block-rendered {
+  color: color-mix(in srgb, var(--text) 62%, transparent);
+}
+
+.arbor-placeholder {
+  color: var(--text-tertiary);
+}
+
+.arbor-page-link,
+.arbor-block-ref,
+.arbor-link {
+  color: var(--nv3-link-color, var(--blue));
+}
+
+.arbor-rendered-link {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  line-height: inherit;
+  cursor: pointer;
+}
+
+.arbor-page-link {
+  font-weight: 500;
+}
+
+.arbor-block-ref {
+  border-block-end: 1px dotted color-mix(in srgb, var(--nv3-link-color, var(--blue)) 55%, transparent);
+}
+
+.arbor-link {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--nv3-link-color, var(--blue)) 45%, transparent);
+  text-underline-offset: 2px;
+}
+
+.arbor-strong {
+  font-weight: 700;
+}
+
+.arbor-emphasis {
+  font-style: italic;
+}
+
+.arbor-heading {
+  display: inline-block;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.arbor-heading[data-heading-level="1"] {
+  color: var(--nv3-md-h1-color, inherit);
+  font-family: var(--nv3-md-h1-font-family, inherit);
+  font-size: var(--nv3-md-h1-font-size, 1.875em);
+  font-weight: var(--nv3-md-h1-font-weight, 700);
+  line-height: var(--nv3-md-h1-line-height, 1.3);
+  letter-spacing: var(--nv3-md-h1-letter-spacing, -0.01em);
+  font-style: var(--nv3-md-h1-font-style, normal);
+  font-feature-settings: var(--nv3-md-h1-font-feature-settings, normal);
+  text-transform: var(--nv3-md-h1-text-transform, none);
+}
+
+.arbor-heading[data-heading-level="2"] {
+  color: var(--nv3-md-h2-color, inherit);
+  font-family: var(--nv3-md-h2-font-family, inherit);
+  font-size: var(--nv3-md-h2-font-size, 1.5em);
+  font-weight: var(--nv3-md-h2-font-weight, 700);
+  line-height: var(--nv3-md-h2-line-height, 1.3);
+  letter-spacing: var(--nv3-md-h2-letter-spacing, inherit);
+  font-style: var(--nv3-md-h2-font-style, normal);
+  font-feature-settings: var(--nv3-md-h2-font-feature-settings, normal);
+  text-transform: var(--nv3-md-h2-text-transform, none);
+}
+
+.arbor-heading[data-heading-level="3"] {
+  color: var(--nv3-md-h3-color, inherit);
+  font-family: var(--nv3-md-h3-font-family, inherit);
+  font-size: var(--nv3-md-h3-font-size, 1.25em);
+  font-weight: var(--nv3-md-h3-font-weight, 700);
+  line-height: var(--nv3-md-h3-line-height, 1.3);
+  letter-spacing: var(--nv3-md-h3-letter-spacing, inherit);
+  font-style: var(--nv3-md-h3-font-style, normal);
+  font-feature-settings: var(--nv3-md-h3-font-feature-settings, normal);
+  text-transform: var(--nv3-md-h3-text-transform, none);
+}
+
+.arbor-math {
+  display: inline-block;
+  padding-inline: 1px;
+}
+
+.arbor-math.is-display {
+  display: block;
+  overflow-x: auto;
+  padding-block: 6px;
+  text-align: center;
+}
+
+.arbor-highlight {
+  margin-inline: -1px;
+  padding-inline: 1px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--yellow) 34%, transparent);
+  color: inherit;
+}
+
+.arbor-strikethrough {
+  color: var(--text-secondary);
+  text-decoration: line-through;
+}
+
+.arbor-inline-code {
+  padding: var(--nv3-md-inline-code-padding, 1px 4px);
+  border-radius: var(--nv3-md-inline-code-radius, 4px);
+  background: var(--nv3-md-inline-code-bg, color-mix(in srgb, var(--text) 7%, transparent));
+  color: var(--nv3-md-inline-code-color, var(--text-secondary));
+  font-family: var(--nv3-md-inline-code-font-family, var(--font-mono));
+  font-size: var(--nv3-md-inline-code-font-size, 0.88em);
+  line-height: var(--nv3-md-inline-code-line-height, 1.4);
+}
+
+.arbor-code-block {
+  display: block;
+  overflow-x: auto;
+  margin-block: 4px;
+  padding: 8px 10px;
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--text) 6%, transparent);
+  color: var(--text-secondary);
+  font: 0.88em/1.5 var(--font-mono);
+  white-space: pre;
+}
+
+.arbor-image {
+  display: block;
+  max-width: 680px;
+  padding-block: 5px;
+}
+
+.arbor-image img {
+  display: block;
+  max-width: 100%;
+  max-height: 480px;
+  border-radius: 5px;
+  object-fit: contain;
+}
+
+.arbor-tag {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  .arbor-page {
+    width: calc(100% - 20px);
+    padding-block-start: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arbor-bullet-button::after {
+    transition-duration: 0.01ms;
+  }
+
+  .ui-checkbox::before {
+    transition-duration: 0.01ms;
+  }
+}

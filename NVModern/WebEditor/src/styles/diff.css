@@ -1,0 +1,33 @@
+:root {
+  color-scheme: light dark;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  background: Canvas;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: auto;
+  background: Canvas;
+}
+
+.nvmodern-diff-renderer {
+  box-sizing: border-box;
+  min-width: 100%;
+  padding: 12px 14px 28px;
+}
+
+.nvmodern-diff-loading {
+  box-sizing: border-box;
+  min-height: 120px;
+  display: grid;
+  place-items: center;
+  color: GrayText;
+  font-size: 13px;
+}

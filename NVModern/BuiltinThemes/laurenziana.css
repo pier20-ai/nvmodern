@@ -1,0 +1,245 @@
+/*
+ * Laurenziana — Michelangelo's reading room in Florence.
+ *
+ * Lime-plaster walls, grey-green pietra serena and walnut desks become the
+ * paper, the structure and the ink. Michelangelus carries the text, Gill Sans
+ * the labels and Courier Prime the code; all three share a 0.45 x-height.
+ * Hierarchy comes from the italic and from tracked capitals. Sinopia, the red
+ * earth of fresco underdrawings, is kept for TODOs and deadlines.
+ *
+ * Built into nvModern; a file with the same id in the user themes directory
+ * overrides this one.
+ */
+
+:root {
+  --nv3-theme-name: Laurenziana;
+  --nv3-theme-subtitle: Michelangelus on plaster and stone;
+  --nv3-theme-swatch: #f2f2ed;
+  --nv3-theme-swatch-2: #5a6762;
+  --nv3-theme-swatch-3: #9a3b26;
+
+  --nv3-font-sans: "Michelangelus", "Iowan Old Style", Palatino, Georgia, serif;
+  --nv3-font-display: "Michelangelus", "Iowan Old Style", Palatino, Georgia, serif;
+  --nv3-font-label: "Gill Sans", "Gill Sans MT", Seravek, sans-serif;
+  --nv3-font-mono: "Courier Prime", "Courier New", ui-monospace, monospace;
+  --nv3-font-size-adjust: 0.45;
+  --nv3-content-font-size: 1.125em;
+  --nv3-content-line-height: 1.6;
+
+  --nv3-md-h1-font-size: 2.1em;
+  --nv3-md-h1-font-weight: 400;
+  --nv3-md-h1-line-height: 1.08;
+  --nv3-md-h1-letter-spacing: -0.005em;
+  --nv3-md-h1-font-feature-settings: "dlig", "kern";
+  --nv3-md-h2-font-size: 1.45em;
+  --nv3-md-h2-font-weight: 400;
+  --nv3-md-h2-line-height: 1.2;
+  --nv3-md-h2-font-style: italic;
+  --nv3-md-h2-font-feature-settings: "dlig", "init";
+  --nv3-md-h3-font-size: 1.15em;
+  --nv3-md-h3-font-weight: 400;
+  --nv3-md-h3-line-height: 1.3;
+  --nv3-md-h4-font-weight: 700;
+  --nv3-md-h5-font-weight: 400;
+  --nv3-md-h5-font-style: italic;
+  --nv3-md-h6-font-weight: 400;
+  --nv3-md-h6-font-style: italic;
+
+  --nv3-md-inline-code-font-size: 1em;
+  --nv3-md-inline-code-heading-font-size: 1em;
+  --nv3-md-inline-code-padding: 0.04em 0.24em;
+  --nv3-md-inline-code-radius: 2px;
+  --nv3-md-code-block-font-size: 0.92em;
+  --nv3-md-code-block-line-height: 1.55;
+
+  --nv3-md-blockquote-font-style: italic;
+  --nv3-md-blockquote-border-width: 1px;
+  --nv3-md-callout-border-width: 1px;
+  --nv3-md-callout-bg: transparent;
+  --nv3-md-callout-title-font-family: var(--nv3-font-label);
+  --nv3-md-callout-title-font-size: 0.72em;
+  --nv3-md-callout-title-font-weight: 400;
+  --nv3-md-callout-title-letter-spacing: 0.15em;
+  --nv3-md-callout-title-text-transform: uppercase;
+  --nv3-md-horizontal-rule-width: 3.5rem;
+  --nv3-md-horizontal-rule-padding-block: 0.6em;
+
+  --nv3-table-header-font-scale: 0.78;
+  --nv3-table-header-font-weight: 400;
+  --nv3-table-header-letter-spacing: 0.15em;
+  --nv3-table-header-text-transform: uppercase;
+  --nv3-task-checkbox-radius: 1px;
+
+  --nv3-org-todo-scale: 1;
+  --nv3-org-todo-font-weight: 300;
+  --nv3-org-todo-letter-spacing: 0.16em;
+  --nv3-org-tag-scale: 0.82;
+  --nv3-org-h1-spacing: 1em;
+  --nv3-org-h2-spacing: 0.55em;
+  --nv3-org-h3-spacing: 0.3em;
+}
+
+[data-theme="light"] {
+  --lz-pietra: #5a6762;
+  --lz-pietra-rule: #a3aca6;
+  --lz-sinopia: #9a3b26;
+
+  --nv3-color-bg: #f2f2ed;
+  --nv3-color-surface: #e7e7e0;
+  --nv3-color-surface-hover: #dddcd4;
+  --nv3-color-surface-active: #d3d2c9;
+  --nv3-color-code-inline-bg: #e7e7e0;
+  --nv3-color-code-block-bg: #e9e9e2;
+  --nv3-color-text: #2b211b;
+  --nv3-color-text-muted: #5e5852;
+  --nv3-color-text-subtle: #8f8a82;
+  --nv3-color-border: #d9d9d0;
+  --nv3-color-border-strong: #b9bdb5;
+  --nv3-color-accent: #5a6762;
+  --nv3-selection-bg: rgba(90, 103, 98, 0.2);
+  --nv3-caret-color: #9a3b26;
+  --nv3-color-highlight-yellow: #e2c98c;
+
+  --nv3-color-red: #9a3b26;
+  --nv3-color-orange: #a0632a;
+  --nv3-color-yellow: #94792f;
+  --nv3-color-green: #5b6e4f;
+  --nv3-color-teal: #4d6d68;
+  --nv3-color-blue: #4f6470;
+  --nv3-color-purple: #6a5470;
+  --nv3-color-pink: #8a4a5a;
+
+  --nv3-syntax-keyword: #9a3b26;
+  --nv3-syntax-string: #5b6e4f;
+  --nv3-syntax-number: #4f6470;
+  --nv3-syntax-atom: #a0632a;
+  --nv3-syntax-function: #2b211b;
+  --nv3-syntax-type: #6a5470;
+  --nv3-syntax-variable: #2b211b;
+  --nv3-syntax-property: #5a6762;
+  --nv3-syntax-namespace: #6a5470;
+  --nv3-syntax-definition: #2b211b;
+  --nv3-syntax-operator: #5e5852;
+  --nv3-syntax-punctuation: #8f8a82;
+  --nv3-syntax-regexp: #5b6e4f;
+  --nv3-syntax-escape: #a0632a;
+  --nv3-syntax-doc-comment: #8f8a82;
+  --nv3-syntax-invalid: #9a3b26;
+  --nv3-syntax-inserted: #5b6e4f;
+  --nv3-syntax-deleted: #9a3b26;
+
+  --nv3-tag-heading-s: 22%;
+  --nv3-tag-heading-l: 38%;
+  --nv3-tag-heading-border-s: 18%;
+  --nv3-tag-heading-border-l: 62%;
+  --nv3-tag-heading-border-a: 0.7;
+}
+
+[data-theme="dark"] {
+  --lz-pietra: #9fb0a7;
+  --lz-pietra-rule: #5f6b65;
+  --lz-sinopia: #e08a6a;
+
+  --nv3-color-bg: #1d1814;
+  --nv3-color-surface: #28211b;
+  --nv3-color-surface-hover: #322a23;
+  --nv3-color-surface-active: #3b322a;
+  --nv3-color-code-inline-bg: #2a231d;
+  --nv3-color-code-block-bg: #231d18;
+  --nv3-color-text: #e8e4da;
+  --nv3-color-text-muted: #b5ab9c;
+  --nv3-color-text-subtle: #857b6e;
+  --nv3-color-border: #3a3129;
+  --nv3-color-border-strong: #544a40;
+  --nv3-color-accent: #9fb0a7;
+  --nv3-selection-bg: rgba(159, 176, 167, 0.22);
+  --nv3-caret-color: #e08a6a;
+  --nv3-color-highlight-yellow: #6e5a2c;
+
+  --nv3-color-red: #e08a6a;
+  --nv3-color-orange: #d9a066;
+  --nv3-color-yellow: #cdb26a;
+  --nv3-color-green: #a7b98f;
+  --nv3-color-teal: #94b3ad;
+  --nv3-color-blue: #9fb3c0;
+  --nv3-color-purple: #b8a2bf;
+  --nv3-color-pink: #d39aa8;
+
+  --nv3-syntax-keyword: #e08a6a;
+  --nv3-syntax-string: #a7b98f;
+  --nv3-syntax-number: #9fb3c0;
+  --nv3-syntax-atom: #d9a066;
+  --nv3-syntax-function: #e8e4da;
+  --nv3-syntax-type: #b8a2bf;
+  --nv3-syntax-variable: #e8e4da;
+  --nv3-syntax-property: #9fb0a7;
+  --nv3-syntax-namespace: #b8a2bf;
+  --nv3-syntax-definition: #e8e4da;
+  --nv3-syntax-operator: #b5ab9c;
+  --nv3-syntax-punctuation: #857b6e;
+  --nv3-syntax-regexp: #a7b98f;
+  --nv3-syntax-escape: #d9a066;
+  --nv3-syntax-doc-comment: #857b6e;
+  --nv3-syntax-invalid: #e08a6a;
+  --nv3-syntax-inserted: #a7b98f;
+  --nv3-syntax-deleted: #e08a6a;
+
+  --nv3-tag-heading-s: 24%;
+  --nv3-tag-heading-l: 70%;
+  --nv3-tag-heading-border-s: 18%;
+  --nv3-tag-heading-border-l: 42%;
+  --nv3-tag-heading-border-a: 0.8;
+}
+
+/* Palette roles shared by both appearances. */
+:root {
+  --nv3-md-h3-color: var(--lz-pietra);
+  --nv3-md-h6-color: var(--nv3-color-text-muted);
+  --nv3-md-inline-code-color: color-mix(in srgb, var(--lz-sinopia) 55%, var(--nv3-color-text));
+  --nv3-md-code-block-bg: var(--nv3-color-code-block-bg);
+  --nv3-md-blockquote-color: var(--nv3-color-text-muted);
+  --nv3-md-blockquote-border-color: var(--lz-pietra-rule);
+  --nv3-md-callout-color-note: var(--lz-pietra);
+  --nv3-md-callout-color-quote: var(--lz-pietra);
+  --nv3-md-callout-border-color: var(--lz-pietra-rule);
+  --nv3-md-callout-title-color: var(--lz-pietra);
+  --nv3-md-horizontal-rule-border: 3px double var(--lz-pietra-rule);
+  --nv3-md-horizontal-rule-active-border: 3px double var(--lz-pietra);
+  --nv3-md-highlight-bg: color-mix(in srgb, var(--nv3-color-highlight-yellow) 70%, transparent);
+  --nv3-link-color: var(--nv3-color-text);
+  --nv3-link-hover-color: var(--lz-sinopia);
+  --nv3-wikilink-underline: var(--lz-pietra-rule);
+
+  --nv3-table-header-color: var(--lz-pietra);
+  --nv3-table-header-border: 1px solid var(--lz-pietra-rule);
+  --nv3-task-checkbox-border: var(--lz-pietra);
+  --nv3-task-checkbox-checked: var(--lz-pietra);
+
+  --nv3-org-todo-color: var(--lz-sinopia);
+  --nv3-org-doing-color: var(--lz-pietra);
+  --nv3-org-done-keyword-color: var(--nv3-color-text-subtle);
+  --nv3-org-deadline-color: var(--lz-sinopia);
+  --nv3-org-planning-keyword-color: var(--nv3-color-text-subtle);
+  --nv3-org-checkbox-color: var(--lz-pietra);
+  --nv3-org-list-marker-color: var(--lz-pietra);
+}
+
+/* Heading rhythm */
+.cm-editor .cm-line.nv3-heading-line-level-1 {
+  padding-top: 1em;
+  padding-bottom: 0.3em;
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-2 {
+  padding-top: 0.9em;
+  padding-bottom: 0.15em;
+}
+
+.cm-editor .cm-line.nv3-heading-line-level-3 {
+  padding-top: 0.6em;
+}
+
+/* Planning lines read as a quiet italic note under the headline. */
+.cm-editor .om-timestamp {
+  font-style: italic;
+}

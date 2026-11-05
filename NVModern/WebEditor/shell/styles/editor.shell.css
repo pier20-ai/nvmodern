@@ -1,0 +1,473 @@
+/*
+ * NV3 shell-only styles.
+ *
+ * This file styles the demo shell UI around the editor itself.
+ * Editor visuals live in editor.lib.css.
+ */
+
+/* ── Reset ────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --sidebar-w: 240px;
+  --editor-max-w: 960px;
+  --editor-content-w: 740px;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── App layout ───────────────────────────────────────────────────── */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 14px;
+  background: color-mix(in srgb, var(--bg) 94%, var(--bg-secondary));
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.app-title {
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+
+.file-path {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.app-header-spacer {
+  margin-left: auto;
+}
+
+.document-theme-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.document-theme-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-tertiary);
+  font-size: 11px;
+}
+
+.document-theme-control select {
+  height: 26px;
+  max-width: 120px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font: inherit;
+  padding: 0 6px;
+}
+
+.sidebar-toggle,
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.sidebar-toggle:hover,
+.theme-toggle:hover {
+  background: var(--bg-hover);
+}
+
+.app-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ── Sidebar ──────────────────────────────────────────────────────── */
+.sidebar {
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.file-picker {
+  padding: 8px 4px;
+}
+
+.file-picker-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px 8px;
+}
+
+.file-picker-nav button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.file-picker-nav button:hover:not(:disabled) {
+  background: var(--bg-hover);
+}
+
+.file-picker-nav button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.file-picker-cwd {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-picker-list {
+  list-style: none;
+}
+
+.file-picker-entry button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 3px 10px;
+  border: none;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.7;
+  text-align: left;
+  cursor: pointer;
+}
+
+.file-picker-entry button:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.file-picker-entry.is-selected button {
+  background: var(--bg-active);
+  color: var(--text);
+}
+
+.file-icon {
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.file-picker-empty,
+.file-picker-error {
+  padding: 12px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+.file-picker-error {
+  color: var(--red);
+}
+
+/* ── Editor shell chrome ──────────────────────────────────────────── */
+.editor-pane {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  background: var(--bg);
+}
+
+.editor-shell {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-layout {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+.editor-toc-rail {
+  position: sticky;
+  top: 56px;
+  align-self: flex-start;
+  width: 44px;
+  flex-shrink: 0;
+  z-index: 40;
+}
+
+.editor-main {
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 28px;
+  margin-bottom: 10px;
+  padding: 0 6px;
+}
+
+.editor-toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.editor-status {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.editor-status.is-dirty {
+  color: var(--accent);
+}
+
+.editor-status.is-error {
+  color: var(--red);
+}
+
+.editor-autosave {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.editor-save-button {
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border-radius: var(--radius);
+  padding: 4px 9px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.editor-save-button:hover:not(:disabled) {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.editor-save-button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.editor-inspector {
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  margin: 0 0 12px;
+  padding: 8px 10px;
+}
+
+.editor-inspector-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.editor-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  background: var(--bg);
+}
+
+.editor-chip.is-ok {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+
+.editor-chip.is-warning {
+  color: var(--red);
+  border-color: color-mix(in srgb, var(--red) 45%, var(--border));
+}
+
+.editor-inspector-details {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.editor-inspector-ok,
+.editor-inspector-muted {
+  color: var(--text-secondary);
+}
+
+.editor-mode-notice {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.editor-diagnostics-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.editor-diagnostics-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.diagnostic-severity {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  padding: 1px 6px;
+}
+
+.diagnostic-severity.error {
+  color: var(--red);
+  border-color: color-mix(in srgb, var(--red) 45%, var(--border));
+}
+
+.diagnostic-severity.warning {
+  color: #b07900;
+  border-color: rgba(176, 121, 0, 0.4);
+}
+
+.diagnostic-line {
+  margin-left: auto;
+  color: var(--text-tertiary);
+  font-size: 11px;
+}
+
+.editor-inspector-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--text-secondary);
+}
+
+.editor-mount {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
+
+.editor-mount .cm-editor {
+  height: 100%;
+}
+
+.editor-mount .cm-scroller {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.editor-mount .cm-content {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: min(calc(100% - 48px), var(--editor-content-w));
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.editor-error {
+  margin-top: 10px;
+  color: var(--red);
+  font-size: 12px;
+}
+
+@media (max-width: 1120px) {
+  .editor-layout {
+    gap: 0;
+  }
+
+  .editor-toc-rail {
+    display: none;
+  }
+}
+
+/* ── Empty state ──────────────────────────────────────────────────── */
+.empty-state {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
