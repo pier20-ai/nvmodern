@@ -16,70 +16,81 @@ and relaunches. Users get **nvModern > Check for Updates…** and a toggle under
 `AppUpdater` starts Sparkle only when the build has both `SUFeedURL` and a
 non-empty `SUPublicEDKey`. In `project.yml`, `SPARKLE_PUBLIC_ED_KEY` is empty, so
 `make run` and builds from forks never contact GitHub and show no update UI.
-`make release` passes the real key on the command line. Forks that want their own
-updates generate their own key and change `SUFeedURL`.
-
-## One-time setup (maintainer)
-
-1. **Developer ID.** Install a *Developer ID Application* certificate in your
-   login keychain. List it with `security find-identity -v -p codesigning`.
-2. **Notary profile.** Store notarization credentials once:
-
-   ```sh
-   xcrun notarytool store-credentials nvmodern-notary \
-     --apple-id you@example.com --team-id TEAMID
-   ```
-
-3. **Sparkle signing key.** After a first `make` (which fetches Sparkle), run its
-   key tool. It creates the private key in your login keychain and prints the
-   public key:
-
-   ```sh
-   find ~/Library/Developer/Xcode/DerivedData -name generate_keys -path '*sparkle*' | head -1
-   <that path>/generate_keys
-   ```
-
-   Back up the private key (`generate_keys -x private.key`) in a password
-   manager. **If you lose it, existing installs cannot be updated** and users
-   must reinstall manually.
+Release builds get the key from `Tools/release.env`, which only `Tools/release.sh`
+reads. Forks that want their own updates generate their own key and change `SUFeedURL`.
 
 ## Cutting a release
 
+Releases are built by GitHub Actions
+([`.github/workflows/release.yml`](../.github/workflows/release.yml)) on a
+GitHub-hosted Mac (`macos-26`):
+
 1. Make sure `main` is clean and tests pass: `make test` and `make test-web`.
-2. Build, sign, notarize and generate the appcast:
+2. Tag and push: `git tag v2.1.0 && git push origin main v2.1.0`. The tag is
+   the version: `v2.1.0` builds `MARKETING_VERSION` 2.1.0.
+3. The workflow imports the Developer ID into a temporary keychain and runs
+   `make release`. That builds the app, signs it, notarizes and staples the app
+   and the DMG, writes the signed `appcast.xml` and the SHA-256 checksums. Then
+   the workflow creates a **draft** release with `nvModern-2.1.0.dmg`,
+   `nvModern.dmg` (a stable-named copy, so `releases/latest/download/nvModern.dmg`
+   links never change), `nvModern-2.1.0.sha256` and `appcast.xml`. Build logs
+   are attached to the run as the `release-logs` artifact.
+4. Smoke-test the DMG from the draft: mount it, drag the app out, launch it, and
+   check that **nvModern > Check for Updates…** is there.
+5. **Publish** the draft. Only then do installed apps see the update:
+   `releases/latest` ignores drafts and pre-releases.
 
-   ```sh
-   make release VERSION=2.1.0 \
-     DEVELOPER_ID="Developer ID Application: Your Name (TEAMID)" \
-     NOTARY_PROFILE=nvmodern-notary \
-     SPARKLE_PUBLIC_KEY=<public key from generate_keys>
-   ```
+`appcast.xml` points at `releases/download/v<version>/nvModern-<version>.dmg`,
+so the tag must be `v<version>`, and the DMG and the appcast must be on the same
+release.
 
-   Artifacts land in `dist/release/upload/`: `nvModern-2.1.0.dmg`, a
-   stable-named copy `nvModern.dmg` (so README and website links like
-   `releases/latest/download/nvModern.dmg` never change), and `appcast.xml`.
-   The script does not publish.
-3. Smoke-test the notarized DMG: mount it, drag the app out, launch, and check
-   **nvModern > Check for Updates…** is present.
-4. Publish as a draft first, then promote it once happy:
+### Secrets
 
-   ```sh
-   gh release create v2.1.0 dist/release/upload/nvModern-2.1.0.dmg \
-     dist/release/upload/nvModern.dmg dist/release/upload/appcast.xml \
-     --title "nvModern 2.1.0" --generate-notes --draft
-   ```
+The workflow needs these repository secrets. Run
+`Tools/setup-release-secrets.sh <DeveloperID.p12>` yourself in Terminal to set
+them: it prompts for the passwords and never prints them.
 
-   `releases/latest` ignores drafts and pre-releases, so installed apps only see
-   the update after you publish.
+| secret | what |
+|---|---|
+| `DEVELOPER_ID_P12`, `DEVELOPER_ID_P12_PASSWORD` | the "Developer ID Application" certificate and private key, exported from Keychain Access (login › My Certificates › Export…) as a .p12 with a password |
+| `NOTARY_APPLE_ID`, `NOTARY_TEAM_ID`, `NOTARY_PASSWORD` | the developer account's Apple ID, team ID, and an app-specific password (appleid.apple.com › Sign-In and Security › App-Specific Passwords) |
+| `SPARKLE_PRIVATE_KEY` | nvModern's update signing key |
 
-Both assets must be attached to the same release. `appcast.xml` points at
-`releases/download/v<version>/nvModern-<version>.dmg`, so the tag must be
-`v<version>`.
+The script needs `gh` signed in with admin access to the repo, and a prior
+`make` (which fetches Sparkle's `generate_keys`). It creates the update key, or
+reuses it, in the login keychain under the account **`nvmodern`**, never the
+default `ed25519` account, which other apps on the same Mac may use. It stores
+the private half as `SPARKLE_PRIVATE_KEY` and writes the public half to
+`Tools/release.env`. **Commit `Tools/release.env`.** The workflow refuses to run
+without it.
+
+Back up the private key (`generate_keys --account nvmodern -x private.key`, kept
+in a password manager). **If you lose it, existing installs cannot be updated**,
+and users must reinstall by hand.
+
+The update feed and download links only work for users when the GitHub repo is
+public. On a private repo, `releases/latest/download/...` needs a login.
+
+## Releasing locally
+
+`make release` does the same build on a Mac whose login keychain has the
+Developer ID identity, a notarytool profile and the `nvmodern` update key:
+
+```sh
+xcrun notarytool store-credentials nvmodern-notary \
+  --apple-id you@example.com --team-id TEAMID
+make release VERSION=2.1.0 \
+  DEVELOPER_ID="Developer ID Application: Your Name (TEAMID)" \
+  NOTARY_PROFILE=nvmodern-notary
+```
+
+Artifacts land in `dist/release/upload/`. The script never publishes; it prints
+the `gh release create --draft` command to run.
 
 ## Versioning
 
 - `MARKETING_VERSION` (shown to users) comes from `VERSION`.
-- `CFBundleVersion` is a `yymmddHHMM` timestamp set at release time. Sparkle
+- `CFBundleVersion` is a UTC `yymmddHHMM` timestamp set at release time. Sparkle
   compares it, so it must always increase; it does not depend on git history.
 - Source builds keep `CURRENT_PROJECT_VERSION: 0`.
 
@@ -88,6 +99,12 @@ Both assets must be attached to the same release. `appcast.xml` points at
 - The script builds unsigned, embeds the `nv3` CLI, then signs inside-out:
   Sparkle's helpers and framework, `nv3`, then the app, all with the hardened
   runtime. Signing before embedding `nv3` would invalidate the signature.
+- The app is notarized and stapled before it goes into the DMG, so it passes
+  Gatekeeper offline, including after Sparkle installs it. The DMG is then
+  notarized and stapled too.
+- `Tools/release.sh` takes `NOTARY_KEYCHAIN` when the notarytool profile lives
+  outside the login keychain (the workflow's temporary keychain), and
+  `SPARKLE_PRIVATE_KEY` (the exported key) instead of the keychain item.
 - The app has no entitlements and is not sandboxed. JavaScriptCore (plugins)
   runs without JIT under the hardened runtime, which is fine for plugin
   workloads. If a feature needs JIT, add `com.apple.security.cs.allow-jit`.

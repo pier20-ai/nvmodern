@@ -29,7 +29,7 @@ make                # full build: web bundle -> xcodegen -> Debug xcodebuild
 make run            # build + launch app
 make cli            # copy Debug `nv3` CLI to dist/nv3
 make package        # Release build -> dist/nvModern.app + timestamped .dmg (unsigned)
-make release        # signed + notarized DMG and Sparkle appcast (docs/releasing.md); never publishes
+make release        # signed + notarized DMG and Sparkle appcast (docs/releasing.md); never publishes. CI runs it on `v*` tags → draft release
 make install        # Release build -> replaces /Applications/nvModern.app (quit the app first)
 make clean          # remove build artifacts (safe — no source deletion)
 ```

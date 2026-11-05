@@ -297,8 +297,9 @@ profile-perf: build
 	fi
 
 # Signed, notarized release + Sparkle appcast. Never publishes; see docs/releasing.md.
+# Usually run by .github/workflows/release.yml on a `v*` tag. Locally:
 #   make release VERSION=2.1.0 DEVELOPER_ID="Developer ID Application: Name (TEAMID)" \
-#                NOTARY_PROFILE=nvmodern-notary SPARKLE_PUBLIC_KEY=...
+#                NOTARY_PROFILE=nvmodern-notary
 release: project
 	@LOG_DIR="$(LOG_DIR)" bash Tools/release.sh
 
