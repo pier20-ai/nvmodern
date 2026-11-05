@@ -42,6 +42,12 @@ if ! security find-identity -v -p codesigning | grep -qF "$DEVELOPER_ID"; then
   echo "❌ Signing identity not found in keychain: $DEVELOPER_ID" >&2
   exit 1
 fi
+# Check the notary credentials now rather than after a long build.
+if ! xcrun notarytool history --keychain-profile "$NOTARY_PROFILE" > /dev/null 2>&1; then
+  echo "❌ Notary profile '$NOTARY_PROFILE' not found or not working. Store it with:" >&2
+  echo "   xcrun notarytool store-credentials $NOTARY_PROFILE --apple-id <Apple ID> --team-id <TEAMID>" >&2
+  exit 1
+fi
 # `make release` runs XcodeGen first, which rewrites these tracked, generated files.
 if [ -n "$(git status --porcelain -- . ':!NVModern.xcodeproj' ':!NVModern/Info.plist')" ]; then
   echo "❌ Working tree is not clean; commit or stash before releasing." >&2
