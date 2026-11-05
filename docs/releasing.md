@@ -30,18 +30,21 @@ updates generate their own key and change `SUFeedURL`.
      --apple-id you@example.com --team-id TEAMID
    ```
 
-3. **Sparkle signing key.** After a first `make` (which fetches Sparkle), run its
-   key tool. It creates the private key in your login keychain and prints the
-   public key:
+3. **Sparkle signing key.** After a first `make` (which fetches Sparkle), create
+   nvModern's update key under its own keychain account, `nvmodern`. Never use
+   the shared default account (`ed25519`): other Sparkle apps on the same Mac
+   may keep their keys there.
 
    ```sh
-   find ~/Library/Developer/Xcode/DerivedData -name generate_keys -path '*sparkle*' | head -1
-   <that path>/generate_keys
+   SPARKLE_BIN=$(dirname "$(find ~/Library/Developer/Xcode/DerivedData -name generate_keys -path '*artifacts*' | head -1)")
+   "$SPARKLE_BIN/generate_keys" --account nvmodern
    ```
 
-   Back up the private key (`generate_keys -x private.key`) in a password
-   manager. **If you lose it, existing installs cannot be updated** and users
-   must reinstall manually.
+   `make release` reads the public key from this account, so there is nothing
+   to copy into the project. Back up the private key with
+   `"$SPARKLE_BIN/generate_keys" --account nvmodern -x nvmodern-sparkle.key` and
+   keep the file in a password manager. **If you lose it, existing installs
+   cannot be updated**, and users must reinstall by hand.
 
 ## Cutting a release
 
@@ -51,21 +54,23 @@ updates generate their own key and change `SUFeedURL`.
    ```sh
    make release VERSION=2.1.0 \
      DEVELOPER_ID="Developer ID Application: Your Name (TEAMID)" \
-     NOTARY_PROFILE=nvmodern-notary \
-     SPARKLE_PUBLIC_KEY=<public key from generate_keys>
+     NOTARY_PROFILE=nvmodern-notary
    ```
 
-   Artifacts land in `dist/release/upload/`: `nvModern-2.1.0.dmg`, a
+   The script builds the app, signs it inside-out, notarizes and staples the app,
+   then builds, signs, notarizes and staples the DMG, and writes the signed
+   appcast. Artifacts land in `dist/release/upload/`: `nvModern-2.1.0.dmg`, a
    stable-named copy `nvModern.dmg` (so README and website links like
-   `releases/latest/download/nvModern.dmg` never change), and `appcast.xml`.
-   The script does not publish.
+   `releases/latest/download/nvModern.dmg` never change), `nvModern-2.1.0.sha256`
+   and `appcast.xml`. The script does not publish.
 3. Smoke-test the notarized DMG: mount it, drag the app out, launch, and check
    **nvModern > Check for Updates…** is present.
 4. Publish as a draft first, then promote it once happy:
 
    ```sh
    gh release create v2.1.0 dist/release/upload/nvModern-2.1.0.dmg \
-     dist/release/upload/nvModern.dmg dist/release/upload/appcast.xml \
+     dist/release/upload/nvModern.dmg dist/release/upload/nvModern-2.1.0.sha256 \
+     dist/release/upload/appcast.xml \
      --title "nvModern 2.1.0" --generate-notes --draft
    ```
 

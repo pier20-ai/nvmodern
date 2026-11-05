@@ -298,7 +298,7 @@ profile-perf: build
 
 # Signed, notarized release + Sparkle appcast. Never publishes; see docs/releasing.md.
 #   make release VERSION=2.1.0 DEVELOPER_ID="Developer ID Application: Name (TEAMID)" \
-#                NOTARY_PROFILE=nvmodern-notary SPARKLE_PUBLIC_KEY=...
+#                NOTARY_PROFILE=nvmodern-notary   (update key: keychain account "nvmodern")
 release: project
 	@LOG_DIR="$(LOG_DIR)" bash Tools/release.sh
 
